@@ -6,6 +6,9 @@ import App from './App.jsx';
 // dara was import this 
 import './styles/main.css'
 
+// dara was import this 
+import './styles/main.css'
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>

@@ -3,8 +3,6 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App.jsx';
 
-// dara was import this 
-import './styles/main.css'
 
 import './styles/main.css'
 import './styles/app.css'

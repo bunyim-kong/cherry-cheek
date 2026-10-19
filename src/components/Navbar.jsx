@@ -31,17 +31,6 @@ export default function Navbar() {
         <>
             <header className='header'>
                 <div className='navbar'>
-                    <button 
-                      className='hamberger' 
-                      type='button' 
-                      aria-label={menuOpen ? 'Close menu' : 'Open menu'} 
-                      aria-expanded={menuOpen}
-                      aria-controls='mobile-navigation'
-                      onClick={() => setMenuOpen(!menuOpen)}>
-
-                        {menuOpen ? <X /> : <Menu />}
-                    </button>
-
                     <Link to="/" className='logo'>
                         Cherry <span>Cheek</span>
                     </Link>

@@ -5,6 +5,10 @@
     justify-content: center;
     background-color: var(--nav);
     border-bottom: 1px solid rgba(95, 23, 56, .1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
 }
 
 .navbar {
@@ -38,7 +42,12 @@
 .nav-items {
     text-decoration: none;
     color: var(--ink);
-    transition: ;
+    transition: all .2s ease;
+}
+
+.nav-items:hover,
+.nav-items.active {
+    color: var(--rose);
 }
 
 .nav-action {
@@ -53,6 +62,7 @@
     border: none;
     border-radius: 50%;
     background: none;
+    cursor: pointer;
     transition: all .3s ease;
 }
 
@@ -62,4 +72,109 @@
 
 .icon-btn svg {
     width: 1.25rem;
+}
+
+.hamberger,
+.mobile-search {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        min-height: 72px;
+        padding: 0px 20px;
+    }
+
+    .hamberger {
+        display: flex;
+        border: none;
+        background: none;
+    }
+
+    .logo {
+        font-size: 1.35rem;
+    }
+
+    .desktop-search {
+        display: none;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        padding: 20px;
+        background-color: var(--nav);
+        border-top: 1px solid rgba(95, 23, 56, .1);
+        flex-direction: column;
+        align-items: stretch;
+        max-height: calc(100vh - 72px);
+
+        font-family: var(--head-font);
+        font-size: 24px;
+        font-weight: 600;
+    }
+
+    .nav-links.open {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .nav-action {
+        gap: 4px;
+    }
+
+    .icon-btn {
+        width: 1.65rem;
+        height: 1.65rem;
+        border: none;
+        border-radius: 50%;
+        background: none;
+        cursor: pointer;
+        transition: all .3s ease;
+    }
+
+    .mobile-search {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 0.65rem;
+        margin-bottom: 1rem;
+        padding: 0.2rem 0.2rem 1rem;
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid var(--line);
+        border-radius: 0;
+    }
+
+    .mobile-search input {
+        min-width: 0;
+        width: 90%;
+        padding: 0.40rem 0;
+
+        border: none;
+        outline: none;
+        background: transparent;
+
+        color: var(--ink);
+        font: inherit;
+    }
+
+    .mobile-search button {
+        padding: 0.6rem 0.8rem;
+        border: none;
+        border-radius: 999px;
+        background: var(--wine);
+        color: white;
+        font-size: 0.78rem;
+        cursor: pointer;
+    }
+
+    .mobile-search svg {
+        width: 20px;
+        height: 20px;
+        color: var(--ink);
+    }
 }

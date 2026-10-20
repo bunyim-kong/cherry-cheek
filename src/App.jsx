@@ -5,12 +5,8 @@ function App() {
   return (
     <>
       {/* Keep every product card directly inside the responsive grid. */}
-      <div className="products-container">
         <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-      </div>
+
 
       {/* The footer follows the grid as a sibling, not as a grid item. */}
       <Footer />

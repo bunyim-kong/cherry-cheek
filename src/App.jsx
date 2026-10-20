@@ -7,6 +7,7 @@ export default function app() {
         <>
             <Navbar />
             helloo
+            <ProductCard />
             <Footer />
         </>
     );

@@ -2,6 +2,7 @@ import CategoryCard from "./components/CategoryCard";
 
 function App() {
   return (
+    
     <CategoryCard />
     
   );

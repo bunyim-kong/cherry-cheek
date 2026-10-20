@@ -1,7 +1,6 @@
 import "./CategoryCard.css";
 import "../styles/main.css";
-import toner from "../assets/images/toner.jpg";
-
+import cleanser from "../assets/images/cleanser.jpg";
 
 function CategoryCard() {
   return (

@@ -1,12 +1,13 @@
-import CategoryCard from "./components/CategoryCard";
+import Navbar from './components/Navbar';
+import Footer from "./components/Footer";
+import ProductCard from "./components/ProductCard";
 
-function App() {
-  return (
-    
-    <CategoryCard />
-    
-  );
+export default function app() {
+    return (
+        <>
+            <Navbar />
+            <ProductCard />
+            <Footer />
+        </>
+    );
 }
-
-
-export default App;

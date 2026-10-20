@@ -1,25 +1,34 @@
 .product-card {
   width: 100%;
   max-width: none;
-  min-width: 0; 
+  min-width: 0; /* lets the card shrink inside a grid column */
   box-sizing: border-box;
-  color: #21151a;
-  background: transparent; 
+  color: var(--ink);
+  background: transparent;
+  font-family: var(--body-font); /* DM Sans for the whole card */
 }
 
 .product-image {
-  position: relative; 
+  position: relative; /* so badge and button can sit on the image */
   width: 100%;
   aspect-ratio: 3 / 3.6;
-  border-radius: 12px; 
+  border-radius: 12px;
   overflow: hidden;
+  isolation: isolate; /* keep overlay layers above the clipped photo */
 }
 
 .product-image img {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover; 
+  object-fit: cover; /* fills the box without stretching */
+  transition: transform 0.4s ease; /* animate the photo zoom smoothly */
+}
+
+@media (hover: hover) {
+  .product-image:hover img {
+    transform: scale(1.08); /* zoom only the photo on hover-capable devices */
+  }
 }
 
 .new-badge {
@@ -28,11 +37,13 @@
   left: 8px;
   padding: 3px 8px;
   border-radius: 999px;
-  background: #fff;
-  color: #21151a;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body-font);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 1px;
+  z-index: 1; /* keep the badge fixed above the photo */
 }
 
 .add-to-bag {
@@ -43,11 +54,38 @@
   padding: 8px 0;
   border: none;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.92);
-  color: #21151a;
+  background:var(--wine);
+  color: var(--cream);
+  font-family: var(--body-font); /* buttons do not inherit fonts, so set it here */
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
+  z-index: 2; 
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.add-to-bag:hover,
+.add-to-bag:focus-visible {
+  background: var(--wine);
+  color: var(--paper);
+}
+
+@media (hover: hover) {
+  .add-to-bag {
+    opacity: 0;
+    transform: translateY(12px);
+    pointer-events: none;
+  }
+
+  .product-card:hover .add-to-bag,
+  .product-card:focus-within .add-to-bag {
+    opacity: 1; 
+    transform: translateY(0);
+    pointer-events: auto;
+  }
 }
 
 .product-info {
@@ -55,30 +93,34 @@
   flex-direction: column; 
   gap: 6px;
   padding: 12px 4px 0;
+  min-width: 0; 
 }
 
 .category {
   margin: 0;
-  font-size: 10px; 
+  font-family: var(--body-font);
+  font-size: 10px;
   font-weight: 600;
   letter-spacing: 1.5px;
   text-transform: uppercase;
+  color: var(--wine); 
 }
 
 .product-name {
   margin: 0;
-  font-size: 16px;
+  font-family: var(--head-font); 
+  font-size: 20px;
   line-height: 1.2;
-  font-weight: 400;
+  font-weight: 500;
   overflow-wrap: anywhere; 
 }
 
 .product-meta {
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap; 
-  gap: 6px;
+  gap: 8px;
   margin: 0;
 }
 
@@ -87,30 +129,71 @@
   align-items: center;
   gap: 5px;
   margin: 0;
+  font-family: var(--body-font);
   font-size: 13px;
+  min-width: 0;
+  color: #9a5b24; /* warm brown-gold for the star and rating value */
+  white-space: nowrap;
 }
 
 .rating svg {
   width: 14px;
   height: 14px;
   flex-shrink: 0;
+  color: #9a5b24; /* keep the star aligned in the rating color */
+}
+
+.rating-value {
+  color: #9a5b24; /* match the star to the rating number */
+}
+
+.review-count {
+  color: var(--muted); /* soften the review count */
 }
 
 .price {
   margin: 0;
+  font-family: var(--body-font);
   font-size: 14px;
   font-weight: 600;
-  white-space: nowrap; 
+  white-space: nowrap; /* price stays on one line */
 }
 
-@media (max-width: 480px) {
+.price-line {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: 0;
+  font-family: var(--body-font);
+  white-space: nowrap; /* keep current and old prices together */
+}
+
+.old-price {
+  color: var(--muted);
+  font-size: 13px;
+  text-decoration: line-through;
+}
+
+@media (max-width: 767px) {
   .product-name {
-    font-size: 14px; 
+    font-size: 16px; /* use the compact name size on mobile */
     line-height: 1.3;
+  }
+
+  .product-meta {
+    flex-direction: column; /* stack rating and price on mobile */
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 6px;
+    margin-top: 4px; /* add extra space after the product name */
   }
 
   .rating,
   .price {
     font-size: 12px;
+  }
+
+  .price-line {
+    align-self: flex-start; /* align both prices to the card's left edge */
   }
 }

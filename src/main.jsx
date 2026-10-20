@@ -6,8 +6,8 @@ import App from './App.jsx';
 // dara was import this 
 import './styles/main.css'
 
-// dara was import this 
 import './styles/main.css'
+import './styles/app.css'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

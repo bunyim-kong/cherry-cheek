@@ -3,7 +3,7 @@
 :root {
   --ink: #24171d;
   --muted: #716168;
-  --cream: #fffaf6;
+  --cream: #fbf6ec;
   --paper: #ffffff;
   --blush: #f7e5e8;
   --blush-soft: #fcf2f1;
@@ -26,13 +26,20 @@
 html {
     scroll-behavior: smooth;
     scrollbar-width: none;
+    background-color: #fbf6ec; /* keep the document canvas light cream */
 }
 
 body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: var(--cream);
+    background-color: #fbf6ec; /* match the requested page background */
     color: var(--ink);
     font-family: var(--body-font);
+}
+
+#root {
+    width: 100%;
+    min-width: 0;
+    background-color: #fbf6ec;
 }

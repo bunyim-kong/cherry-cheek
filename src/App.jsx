@@ -6,7 +6,6 @@ export default function app() {
     return (
         <>
             <Navbar />
-            helloo
             <ProductCard />
             <Footer />
         </>

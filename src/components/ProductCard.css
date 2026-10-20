@@ -1,7 +1,7 @@
 .product-card {
   width: 100%;
   max-width: none;
-  min-width: 0; /* lets the card shrink inside a grid column */
+  min-width: 280px; /* lets the card shrink inside a grid column */
   box-sizing: border-box;
   color: var(--ink);
   background: transparent;

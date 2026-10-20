@@ -1,11 +1,18 @@
 import Footer from "./components/Footer";
+import ProductCard from "./components/ProductCard";
 
 function App() {
   return (
     <>
-      {/* Your other components/pages go here (Header, Navbar, etc.) */}
+      {/* Keep every product card directly inside the responsive grid. */}
+      <div className="products-container">
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
+      </div>
 
-      {/* 2. Put the Footer at the very bottom */}
+      {/* The footer follows the grid as a sibling, not as a grid item. */}
       <Footer />
     </>
   );

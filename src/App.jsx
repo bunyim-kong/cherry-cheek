@@ -4,12 +4,14 @@ import ProductCard from "./components/ProductCard";
 function App() {
   return (
     <>
-      {/* Keep every product card directly inside the responsive grid. */}
+      <div className="products-container">{/* all product cards share the responsive grid */}
         <ProductCard />
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
+      </div>
 
-
-      {/* The footer follows the grid as a sibling, not as a grid item. */}
-      <Footer />
+      <Footer />{/* keep the footer below and outside the product grid */}
     </>
   );
 }

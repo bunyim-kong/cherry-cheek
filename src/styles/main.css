@@ -33,7 +33,7 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #fbf6ec; /* match the requested page background */
+    background-color: #fbf6ec;
     color: var(--ink);
     font-family: var(--body-font);
 }

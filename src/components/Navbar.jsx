@@ -71,15 +71,15 @@ export default function Navbar() {
                     </nav>
 
                     <div className="nav-action">
-                        <button className='icon-btn desktop-search' type='button'>
+                        <button className='icon-btn desktop-search flex items-center justify-center' type='button'>
                             <Search />
                         </button>
 
-                        <button className='icon-btn' to='/login'>
+                        <button className='icon-btn flex items-center justify-center' to='/login'>
                             <UserRound />
                         </button>
 
-                        <button className='icon-btn' to='/cart'>
+                        <button className='icon-btn flex items-center justify-center' to='/cart'>
                             <ShoppingBag />
                         </button>
                     </div>

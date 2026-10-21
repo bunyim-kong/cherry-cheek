@@ -5,7 +5,7 @@
     justify-content: center;
     background-color: var(--nav);
     border-bottom: 1px solid rgba(95, 23, 56, .1);
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
     z-index: 100;

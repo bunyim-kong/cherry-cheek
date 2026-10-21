@@ -1,13 +1,13 @@
-import Navbar from './components/Navbar';
-import Footer from "./components/Footer";
-import ProductCard from "./components/ProductCard";
+import { Navigate, Route, Routes } from 'react-router-dom';
+import AdminLayout from './layouts/AdminLayout';
+import UserLayout from './layouts/UserLayout';
 
 export default function app() {
     return (
-        <>
-            <Navbar />
-            <ProductCard />
-            <Footer />
-        </>
+        <Routes>
+            <Route element={<UserLayout />}>
+                
+            </Route>
+        </Routes>
     );
 }

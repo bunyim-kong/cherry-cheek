@@ -1,0 +1,436 @@
+/* Main Container */
+.product-detail {
+  margin: 0 auto;
+  padding: 32px 40px 60px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 34px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* Product Layout */
+.product-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 64px;
+}
+
+/* Product Gallery */
+.product-gallery {
+  display: grid;
+  grid-template-columns: 70px minmax(0, 1fr);
+  align-items: start;
+  gap: 16px;
+}
+
+.product-thumbnails {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; 
+}
+
+.thumbnail {
+  display: block;
+  width: 70px;
+  height: 90px;
+  object-fit: cover;
+  border: 1px solid var(--line);
+}
+
+.product-main-image {
+  width: 100%;
+  aspect-ratio: 4/5;
+  overflow: hidden;
+}
+
+.product-main-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+/* Product Information */
+.product-brand {
+  margin: 0 0 20px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.product-title {
+  margin: 0 0 20px;
+  color: #333333;
+  font-family: var(--head-font);
+  font-size: 58px;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.product-rating {
+  margin: 0 0 24px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.product-rating span {
+  margin: 0 7px;
+}
+
+.product-price-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 26px;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.product-price {
+  color: var(--wine);
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.product-description {
+  margin: 0 0 24px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.product-skin-types {
+  display: flex;
+  gap: 8px;
+  margin: 0 0 26px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* Purchase Controls */
+.product-purchase {
+  display: flex;
+  align-items: stretch;
+  gap: 16px;
+}
+
+.quantity {
+  display: flex;
+  flex: 0 0 130px;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 50px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  background-color: var(--paper);
+}
+
+.quantity button {
+  width: 28px;
+  height: 36px;
+  color: var(--ink);
+  font-family: var(--body-font);
+  font-size: 17px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.quantity button:disabled {
+  opacity: 0.4;
+}
+
+.quantity span {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.add-button {
+  flex: 1;
+  min-width: 0;
+  min-height: 50px;
+  padding: 12px 18px;
+  color: var(--paper);
+  font-family: var(--body-font);
+  font-size: 14px;
+  font-weight: 600;
+  background-color: var(--wine);
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.product-delivery {
+  margin: 24px 0 28px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.product-delivery span {
+  margin: 0 7px;
+}
+
+/* Additional Details */
+.product-extra {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.product-extra h2 {
+  margin: 0 0 8px;
+  color: var(--ink);
+  font-family: var(--body-font);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.product-extra p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* Tablet */
+@media (max-width: 1000px) {
+  .product-detail {
+    padding: 28px 24px 48px;
+  }
+
+  .product-layout {
+    gap: 28px;
+  }
+
+  .product-gallery {
+    grid-template-columns: 55px minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .thumbnail {
+    width: 55px;
+    height: 72px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 650px) {
+  .product-detail {
+    padding: 20px 16px 40px;
+  }
+
+  .breadcrumb {
+    margin-bottom: 20px;
+    color: var(--muted);
+  }
+
+  .product-layout {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .product-gallery {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .product-main-image {
+    aspect-ratio: 4 / 5;
+  }
+
+  .product-thumbnails {
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .thumbnail {
+    width: 64px;
+    height: 76px;
+  }
+
+  .product-brand {
+    margin-bottom: 12px;
+  }
+
+  .product-title {
+    margin-bottom: 14px;
+    font-size: 36px;
+  }
+
+  .product-rating {
+    margin-bottom: 20px;
+  }
+
+  .product-price-row {
+    margin-bottom: 20px;
+  }
+
+  .product-description {
+    margin-bottom: 18px;
+  }
+
+  .product-skin-types {
+    margin-bottom: 22px;
+  }
+
+  .product-purchase {
+    gap: 10px;
+  }
+
+  .quantity {
+    flex-basis: 112px;
+    min-height: 46px;
+    padding: 0 6px;
+  }
+
+  .add-button {
+    min-height: 46px;
+    padding: 10px;
+    font-size: 12px;
+  }
+
+  .product-delivery {
+    margin: 20px 0 26px;
+  }
+
+  .product-extra {
+    gap: 22px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 360px) {
+  .product-detail {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .product-title {
+    font-size: 30px;
+  }
+
+  .quantity {
+    flex-basis: 100px;
+  }
+
+  .add-button {
+    font-size: 11px;
+  }
+}
+
+/* Product Related Section */
+.product-skincare {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  padding: 60px 40px;
+
+  box-sizing: border-box;
+  background-color: green;
+}
+
+  /* Section Header */
+.container-product_related {
+  width: 100%;
+  margin-top: 32px;
+}
+
+/* Section Label */
+.breadcrumb {
+  margin: 0 0 12px;
+
+  font-family: var(--body-font);
+  font-size: 12px;
+  font-weight: 500;
+
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Section Title */
+.title-product_related {
+  margin: 0;
+
+  color: var(--ink);
+
+  font-family: var(--head-font);
+  font-size: 58px;
+  font-weight: 500;
+
+  line-height: 1.2;
+}
+
+  /* Related Products Grid */
+.product-related-recommend {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 10px;
+  margin-top: 20px;
+  align-items: start;
+}
+
+  /* Tablet Responsive */
+@media (max-width: 1000px) {
+  .product-skincare {
+    padding: 28px 24px 48px;
+  }
+
+  .title-product_related {
+    font-size: 46px;
+  }
+
+  .product-related-recommend {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+  }
+}
+
+  /* Mobile Responsive */
+@media (max-width: 760px) {
+  .product-skincare {
+    padding: 10px 16px;
+  }
+
+  .container-product_related {
+    margin-bottom: 24px;
+  }
+
+  .title-product_related {
+    font-size: 26px;
+  }
+
+  .product-related-recommend {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 12px;
+  }
+}
+
+  /* Small Mobile */
+@media (max-width: 360px) {
+  .product-skincare {
+    padding: 32px 12px;
+  }
+
+  .title-product_related {
+    font-size: 30px;
+  }
+
+  .product-related-recommend {
+    gap: 5px;
+  }
+} 

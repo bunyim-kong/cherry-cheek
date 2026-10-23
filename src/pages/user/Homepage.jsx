@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import CategoryCard from "../../components/CategoryCard";
 import ProductCard from "../../components/ProductCard";
 import "./Homepage.css";
+import "../../styles/main.css";
+import { ArrowRight } from "lucide-react";
 
 function ProductShelf({ products }) {
     return (

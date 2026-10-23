@@ -1,13 +1,10 @@
-import Navbar from './components/Navbar';
-import Footer from "./components/Footer";
-import ProductCard from "./components/ProductCard";
 
-export default function app() {
+import Login from './pages/User/Login';
+
+export default function App() {
     return (
         <>
-            <Navbar />
-            <ProductCard />
-            <Footer />
+            <Login />
         </>
     );
 }

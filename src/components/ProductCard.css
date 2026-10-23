@@ -1,34 +1,33 @@
 .product-card {
   width: 100%;
   max-width: none;
-  min-width: 0;
+  min-width: 280px; 
   box-sizing: border-box;
   color: var(--ink);
   background: transparent;
-  font-family: var(--body-font); /* DM Sans for the whole card */
+  font-family: var(--body-font);
 }
 
 .product-image {
-  position: relative; /* so badge and button can sit on the image */
+  position: relative;
   width: 100%;
   aspect-ratio: .82;
   border-radius: 1rem;
   overflow: hidden;
-  isolation: isolate; /* keep overlay layers above the clipped photo */
-  background: #eee3e1;
+  isolation: isolate; 
 }
 
 .product-image img {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* fills the box without stretching */
-  transition: transform 0.55s ease; /* animate the photo zoom smoothly */
+  object-fit: cover;
+  transition: transform 0.4s ease;
 }
 
 @media (hover: hover) {
   .product-image:hover img {
-    transform: scale(1.04); /* zoom only the photo on hover-capable devices */
+    transform: scale(1.08); 
   }
 }
 
@@ -41,12 +40,10 @@
   background: rgba(255, 250, 246, .92);
   color: var(--wine);
   font-family: var(--body-font);
-  font-size: .68rem;
-  font-weight: 600;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  backdrop-filter: blur(8px);
-  z-index: 1; /* keep the badge fixed above the photo */
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  z-index: 1;
 }
 
 .add-to-bag {
@@ -60,8 +57,8 @@
   border-radius: 999px;
   background:var(--wine);
   color: var(--cream);
-  font-family: var(--body-font); /* buttons do not inherit fonts, so set it here */
-  font-size: .82rem;
+  font-family: var(--body-font); 
+  font-size: 12px;
   font-weight: 600;
   cursor: pointer;
   z-index: 2; 

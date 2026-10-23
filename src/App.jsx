@@ -4,7 +4,9 @@ import HomePage from './pages/user/Homepage';
 import OurStory from './pages/user/OurStory';
 import ShopPage from './pages/user/Shop';
 
-export default function app() {
+import Login from './pages/User/Login';
+
+export default function App() {
     return (
         <Routes>
             <Route element={<UserLayout />}>

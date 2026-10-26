@@ -1,4 +1,5 @@
 import "./ProductCard.css";
+import productImage from "../assets/cloud-milk-toner.jpg";
 
 const defaultProduct = {
   brand: "Cherry Cheeks",

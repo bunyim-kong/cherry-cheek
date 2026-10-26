@@ -1,6 +1,6 @@
 import { Menu, Search, ShoppingBag, UserRound, X } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
-import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import '../styles/main.css';
 import './Navbar.css';
 
@@ -19,7 +19,7 @@ export default function Navbar() {
     function handleSearch(event) {
         event.preventDefault();
 
-        const query = Search.trim();
+        const query = search.trim();
 
         if(query) {
             navigate(`/shop?q=${encodeURIComponent(query)}`);

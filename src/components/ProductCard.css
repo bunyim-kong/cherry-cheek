@@ -11,8 +11,8 @@
 .product-image {
   position: relative;
   width: 100%;
-  aspect-ratio: .82;
-  border-radius: 1rem;
+  aspect-ratio: 3 / 3.5;
+  border-radius: 12px;
   overflow: hidden;
   isolation: isolate; 
 }

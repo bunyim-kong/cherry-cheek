@@ -156,10 +156,6 @@
 .cc-note .cc-eyebrow, .cc-note .cc-text-link { color: #eab1c1 !important; }
 .cc-note h2 { margin-bottom: 2rem; font-size: clamp(2.5rem, 5vw, 4.8rem); letter-spacing: -.045em; }
 
-@media (max-width: 1320px) {
-    .homepage .container { width: min(1200px, calc(100% - 3rem)); }
-}
-
 @media (max-width: 1000px) {
     .cc-hero__grid { min-height: 560px; gap: 2rem; }
     .cc-hero__visual { height: 560px; }
@@ -169,7 +165,6 @@
 }
 
 @media (max-width: 760px) {
-    .homepage .container { width: min(100% - 2rem, 1200px); }
     .cc-hero { padding-top: 0; }
     .cc-hero__grid { min-height: 0; grid-template-columns: 1fr; gap: 0; }
     .cc-hero__copy { padding: 4rem 0 3rem; }

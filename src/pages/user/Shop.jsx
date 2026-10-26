@@ -1,5 +1,7 @@
-import { Search, SlidersHorizontal, X } from 'lucide-react'; // Icons identify search and mobile filters.
+import { Search, SlidersHorizontal } from 'lucide-react'; // Icons identify search and mobile filters.
 import { useMemo, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import CloseIcon from '../../components/CloseIcon';
 import './Shop.css';
 import ProductCard from "../../components/ProductCard";
 import { products } from "../../data/products"; // FIX: this was missing, it caused the crash
@@ -7,10 +9,27 @@ import { products } from "../../data/products"; // FIX: this was missing, it cau
 const categories = ['All', 'Cleansers', 'Toners', 'Serums', 'Moisturizers', 'Sun Care'];
 
 function Shop() {
+    const [searchParams, setSearchParams] = useSearchParams();
     const [filtersOpen, setFiltersOpen] = useState(false);
-    const [search, setSearch] = useState('');
+    const search = searchParams.get('q') ?? '';
     const [category, setCategory] = useState('All');
     const [sort, setSort] = useState('rating');
+
+    function handleSearchChange(event) {
+        const nextSearch = event.target.value;
+
+        setSearchParams((currentParams) => {
+            const nextParams = new URLSearchParams(currentParams);
+
+            if (nextSearch) {
+                nextParams.set('q', nextSearch);
+            } else {
+                nextParams.delete('q');
+            }
+
+            return nextParams;
+        }, { replace: true });
+    }
 
     // Filter + sort the products, only recalculates when search/category/sort change
     const visibleProducts = useMemo(() => {
@@ -18,13 +37,24 @@ function Shop() {
 
         const filtered = products.filter((p) => {
             const matchesCategory = category === 'All' || p.category === category;
-            const matchesSearch = `${p.name} ${p.brand} ${p.category}`.toLowerCase().includes(text);
+            const searchableText = [
+                p.name,
+                p.brand,
+                p.category,
+                p.description,
+                ...(p.concerns ?? []),
+                ...(p.tags ?? []),
+            ]
+                .filter(Boolean)
+                .join(' ')
+                .toLowerCase();
+            const matchesSearch = !text || searchableText.includes(text);
             return matchesCategory && matchesSearch;
         });
 
         return [...filtered].sort((a, b) => {
-            if (sort === 'price-low') return a.price - b.price;
-            if (sort === 'price-high') return b.price - a.price;
+            if (sort === 'price-asc') return a.price - b.price;
+            if (sort === 'price-desc') return b.price - a.price;
             if (sort === 'newest') return new Date(b.addedAt) - new Date(a.addedAt);
             return b.rating - a.rating;
         });
@@ -33,7 +63,11 @@ function Shop() {
     const countLabel = `${visibleProducts.length} ${visibleProducts.length === 1 ? 'product' : 'products'}`;
 
     function clearFilters() {
-        setSearch('');
+        setSearchParams((currentParams) => {
+            const nextParams = new URLSearchParams(currentParams);
+            nextParams.delete('q');
+            return nextParams;
+        });
         setCategory('All');
         setSort('rating');
     }
@@ -71,7 +105,7 @@ function Shop() {
                                 aria-label="Search skincare products"
                                 placeholder="Search skincare"
                                 value={search}
-                                onChange={(e) => setSearch(e.target.value)} // Keep search tied to existing state.
+                                onChange={handleSearchChange}
                             />
                         </div>
                         <p className="toolbar-count" aria-live="polite">{countLabel}</p>
@@ -107,7 +141,7 @@ function Shop() {
                                 onClick={() => setFiltersOpen(false)}
                                 aria-label="Close filters"
                             >
-                                <X />
+                                <CloseIcon aria-hidden="true" />
                             </button>
                         </div>
 

@@ -64,6 +64,22 @@ function Shop() {
         }, { replace: true });
     }
 
+    function handleSearchChange(event) {
+        const nextSearch = event.target.value;
+
+        setSearchParams((currentParams) => {
+            const nextParams = new URLSearchParams(currentParams);
+
+            if (nextSearch) {
+                nextParams.set('q', nextSearch);
+            } else {
+                nextParams.delete('q');
+            }
+
+            return nextParams;
+        }, { replace: true });
+    }
+
     // Filter + sort the products, only recalculates when search/category/sort change
     const visibleProducts = useMemo(() => {
         const text = search.toLowerCase().trim();
@@ -119,12 +135,37 @@ function Shop() {
                     </p>
                 </header>
 
-                <div className="shop-body">
-                    <div className="shop-toolbar">
-                        <button
-                            className="filter-toggle"
-                            type="button"
-                            onClick={() => setFiltersOpen(true)} // Open the existing filters drawer.
+            <div className="shop-body">
+                <div className="shop-toolbar">
+                    <button
+                        className="filter-toggle"
+                        type="button"
+                        onClick={() => setFiltersOpen(true)} // Open the existing filters drawer.
+                    >
+                        <SlidersHorizontal size={18} aria-hidden="true" />
+                        <span>Filters</span>
+                    </button>
+                    <div className="toolbar-left">
+                        <div className="toolbar-search">
+                            <Search size={20} aria-hidden="true" />
+                            <input
+                                id="shop-search"
+                                type="search"
+                                aria-label="Search skincare products"
+                                placeholder="Search skincare"
+                                value={search}
+                                onChange={handleSearchChange}
+                            />
+                        </div>
+                        <p className="toolbar-count" aria-live="polite">{countLabel}</p>
+                    </div>
+
+                    <div className="toolbar-sort">
+                        <label htmlFor="shop-sort">Sort by</label>
+                        <select
+                            id="shop-sort"
+                            value={sort}
+                            onChange={(e) => setSort(e.target.value)} // Keep sorting tied to existing state.
                         >
                             <SlidersHorizontal size={18} aria-hidden="true" />
                             <span>Filters</span>

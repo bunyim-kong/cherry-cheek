@@ -1,4 +1,5 @@
 import "./ProductCard.css";
+import productImage from "../assets/cloud-milk-toner.jpg";
 
 function ProductCard({ product, onAddToBag }) {
   const { image, name, brand, rating, reviews, price, oldPrice, isNew } = product;

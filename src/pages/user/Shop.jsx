@@ -1,4 +1,4 @@
-import { X } from 'lucide-react'; // removed Search + SlidersHorizontal since they aren't used yet
+import { Search, SlidersHorizontal, X } from 'lucide-react'; // Icons identify search and mobile filters.
 import { useMemo, useState } from 'react';
 import './Shop.css';
 import ProductCard from "../../components/ProductCard";
@@ -10,7 +10,7 @@ function Shop() {
     const [filtersOpen, setFiltersOpen] = useState(false);
     const [search, setSearch] = useState('');
     const [category, setCategory] = useState('All');
-    const [sort, setSort] = useState('featured');
+    const [sort, setSort] = useState('rating');
 
     // Filter + sort the products, only recalculates when search/category/sort change
     const visibleProducts = useMemo(() => {
@@ -35,10 +35,9 @@ function Shop() {
     function clearFilters() {
         setSearch('');
         setCategory('All');
-        setSort('featured');
+        setSort('rating');
     }
 
-    // Example handler, replace with real cart logic later
     function handleAddToBag(product) {
         console.log('Added:', product.name);
     }
@@ -46,6 +45,7 @@ function Shop() {
     return (
         <section className="shop">
             <header className="shop-header">
+                <p className="shop-eyebrow">THE FULL EDIT</p>
                 <h1 className="shop-title">Skincare</h1>
                 <p className="shop-subtitle">
                     Shop gentle everyday formulas by routine step, concern or brand.
@@ -53,11 +53,51 @@ function Shop() {
             </header>
 
             <div className="shop-body">
-                {/* FIX: removed the duplicate shop-grid that was sitting here */}
+                <div className="shop-toolbar">
+                    <button
+                        className="filter-toggle"
+                        type="button"
+                        onClick={() => setFiltersOpen(true)} // Open the existing filters drawer.
+                    >
+                        <SlidersHorizontal size={18} aria-hidden="true" />
+                        <span>Filters</span>
+                    </button>
+                    <div className="toolbar-left">
+                        <div className="toolbar-search">
+                            <Search size={20} aria-hidden="true" />
+                            <input
+                                id="shop-search"
+                                type="search"
+                                aria-label="Search skincare products"
+                                placeholder="Search skincare"
+                                value={search}
+                                onChange={(e) => setSearch(e.target.value)} // Keep search tied to existing state.
+                            />
+                        </div>
+                        <p className="toolbar-count" aria-live="polite">{countLabel}</p>
+                    </div>
+
+                    <div className="toolbar-sort">
+                        <label htmlFor="shop-sort">Sort by</label>
+                        <select
+                            id="shop-sort"
+                            value={sort}
+                            onChange={(e) => setSort(e.target.value)} // Keep sorting tied to existing state.
+                        >
+                            <option value="featured">Featured</option>
+                            <option value="rating">Top rated</option>
+                            <option value="price-asc">Price: low to high</option>
+                            <option value="price-desc">Price: high to low</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+
+            <div className="shop-body">
 
                 <div className="shop-layout">
 
-                    {/* left sidebar (slide-in drawer on mobile) */}
                     <aside className={`filters ${filtersOpen ? 'filters--open' : ''}`}>
                         <div className="filters-mobile-header">
                             <strong>Filters</strong>
@@ -86,7 +126,7 @@ function Shop() {
                             ))}
                         </div>
 
-                        {(category !== 'All' || search || sort !== 'featured') && (
+                        {(category !== 'All' || search || sort !== 'rating') && (
                             <button className="clear-button" type="button" onClick={clearFilters}>
                                 Clear all filters
                             </button>

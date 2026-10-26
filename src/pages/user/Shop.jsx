@@ -70,6 +70,11 @@ function Shop() {
         });
         setCategory('All');
         setSort('rating');
+        setSearchParams({});
+    }
+
+    function handleCategoryChange(nextCategory) {
+        setSearchParams(nextCategory === 'All' ? {} : { category: nextCategory.toLowerCase() });
     }
 
     function handleAddToBag(product) {
@@ -153,7 +158,7 @@ function Shop() {
                                         type="radio"
                                         name="category"
                                         checked={category === c}
-                                        onChange={() => setCategory(c)}
+                                        onChange={() => handleCategoryChange(c)}
                                     />
                                     <span>{c}</span>
                                 </label>

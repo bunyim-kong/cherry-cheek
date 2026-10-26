@@ -81,6 +81,7 @@
   }
 
   .product-image:hover .add-to-bag,
+  .product-card:has(.product-info:hover) .add-to-bag,
   .product-card:focus-within .add-to-bag {
     opacity: 1; 
     transform: translateY(0);

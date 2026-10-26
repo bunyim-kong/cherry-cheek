@@ -25,7 +25,7 @@
   transition: transform 0.4s ease;
 }
 
-@media (hover: hover) {
+@media (hover: hover) and (pointer: fine) {
   .product-image:hover img {
     transform: scale(1.08); 
   }
@@ -48,9 +48,9 @@
 
 .add-to-bag {
   position: absolute;
-  left: 8px;
-  right: 8px;
-  bottom: 8px;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
   padding: 8px 0;
   border: none;
   border-radius: 999px;
@@ -64,7 +64,7 @@
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: opacity 0.25s ease, transform 0.25s ease, background 0.2s ease;
 }
 
 .add-to-bag:hover,
@@ -73,14 +73,15 @@
   color: var(--paper);
 }
 
-@media (hover: hover) {
+@media (hover: hover) and (pointer: fine) {
   .add-to-bag {
+    /* Reveal the action only on hover or keyboard focus. */
     opacity: 0;
     transform: translateY(12px);
     pointer-events: none;
   }
 
-  .product-card:hover .add-to-bag,
+  .product-image:hover .add-to-bag,
   .product-card:focus-within .add-to-bag {
     opacity: 1; 
     transform: translateY(0);
@@ -196,4 +197,62 @@
   .price-line {
     align-self: flex-start; /* align both prices to the card's left edge */
   }
+}
+
+@media (hover: none), (max-width: 640px) {
+  .product-card {
+    width: 100%;
+    min-width: 0; /* Let each card fit its grid track without horizontal scrolling. */
+    flex-shrink: 1;
+  }
+
+  .product-image {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    border-radius: 14px;
+  }
+
+  .new-badge {
+    top: 10px;
+    left: 10px;
+    padding: 5px 9px;
+    font-size: 10px;
+  }
+
+  .product-info { gap: 6px; padding: 10px 2px 0; }
+  .category { font-size: 10px; letter-spacing: .12em; }
+  .product-name { font-size: 15px; line-height: 1.25; }
+  .product-meta { gap: 5px; }
+  .rating { font-size: 12px; }
+  .price { font-size: 14px; }
+  .old-price { font-size: 12px; }
+
+  .add-to-bag {
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    width: auto;
+    padding: 7px;
+    border: 0;
+    border-radius: 16px;
+    background: #5c1a35;
+    color: #fff;
+    font-family: var(--body-font);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: .01em;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .12);
+    z-index: 2;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    transition: background-color .2s ease, transform .15s ease;
+    cursor: pointer;
+  }
+
+  .new-badge { z-index: 3; } /* Keep the badge above the button if they meet. */
+  .add-to-bag:hover { background: #481329; }
+  .add-to-bag:active { transform: scale(.98); }
+  .add-to-bag:focus-visible { outline: 2px solid #fff; outline-offset: -4px; }
 }

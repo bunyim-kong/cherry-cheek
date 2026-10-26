@@ -10,7 +10,12 @@ function ProductCard({ product, onAddToBag }) {
 
         {isNew && <span className="new-badge">NEW</span>}
 
-        <button className="add-to-bag" type="button" onClick={onAddToBag}>
+        <button
+          className="add-to-bag"
+          type="button"
+          aria-label={`Add ${name} to bag`}
+          onClick={onAddToBag}
+        >
           Add to bag
         </button>
       </div>

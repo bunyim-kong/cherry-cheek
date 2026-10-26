@@ -66,6 +66,12 @@
   transition: opacity .25s ease, transform .25s ease, background-color .2s ease;
 }
 
+.add-to-bag:hover,
+.add-to-bag:focus-visible {
+  background: var(--wine-dark);
+  color: var(--paper);
+}
+
 @media (hover: hover) and (pointer: fine) {
   .add-to-bag {
     /* Reveal the action only on hover or keyboard focus. */
@@ -75,7 +81,6 @@
   }
 
   .product-image:hover .add-to-bag,
-  .product-card:has(.product-info:hover) .add-to-bag,
   .product-card:focus-within .add-to-bag {
     opacity: 1; 
     transform: translateY(0);
@@ -230,7 +235,7 @@
   .category { font-size: 10px; letter-spacing: .12em; }
   .product-name { font-size: 15px; line-height: 1.25; }
   .product-meta { gap: 5px; }
-  .quantity { font-size: 12px; }
+  .rating { font-size: 12px; }
   .price { font-size: 14px; }
   .old-price { font-size: 12px; }
 
@@ -242,7 +247,11 @@
     padding: 7px;
     border: 0;
     border-radius: 16px;
+    background: #5c1a35;
+    color: #fff;
+    font-family: var(--body-font);
     font-size: 14px;
+    font-weight: 600;
     letter-spacing: .01em;
     text-align: center;
     box-shadow: 0 4px 12px rgba(0, 0, 0, .12);
@@ -251,9 +260,11 @@
     transform: none;
     pointer-events: auto;
     transition: background-color .2s ease, transform .15s ease;
+    cursor: pointer;
   }
 
   .new-badge { z-index: 3; } /* Keep the badge above the button if they meet. */
+  .add-to-bag:hover { background: #481329; }
   .add-to-bag:active { transform: scale(.98); }
-  .add-to-bag:focus-visible { outline: 2px solid var(--paper); outline-offset: -4px; }
+  .add-to-bag:focus-visible { outline: 2px solid #fff; outline-offset: -4px; }
 }

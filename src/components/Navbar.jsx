@@ -1,14 +1,13 @@
 import { Menu, Search, ShoppingBag, UserRound } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import Button from './Button';
 import '../styles/main.css';
 import CloseIcon from './CloseIcon';
 import './Navbar.css';
 
 const navLinks = [
     { label: 'Shop', to: '/shop' },
-    { label: 'Category', to: '/shop' },
+    { label: 'Category', to: '/category' },
     { label: 'Our Story', to: '/our-story' },
     { label: 'About', to: '/about' },
 ];
@@ -100,7 +99,7 @@ export default function Navbar() {
                 <div className="navbar container">
                     <Button
                       className="hamburger"
-                      variant="icon"
+                      type="button"
                       aria-label={menuOpen ? 'Close menu' : 'Open menu'}
                       aria-expanded={menuOpen}
                       aria-controls="mobile-navigation"
@@ -129,7 +128,7 @@ export default function Navbar() {
                               onChange={(event) => setSearch(event.target.value)}
                               autoComplete="off"
                             />
-                            <Button type="submit" size="compact">Search</Button>
+                            <button type="submit">Search</button>
                         </form>
 
                         {navLinks.map((item) => (
@@ -144,24 +143,24 @@ export default function Navbar() {
                     </nav>
 
                     <div className="nav-action">
-                        <Button
+                        <button
                           ref={searchButtonRef}
                           className="icon-btn desktop-search"
-                          variant="icon"
+                          type="button"
                           aria-label="Search products"
                           aria-haspopup="dialog"
                           aria-expanded={searchOpen}
                           onClick={() => setSearchOpen(true)}>
                             <Search aria-hidden="true" />
-                        </Button>
+                        </button>
 
-                        <Button className="icon-btn" variant="icon" to="/login" aria-label="Your account">
+                        <Link className="icon-btn" to="/login" aria-label="Your account">
                             <UserRound aria-hidden="true" />
-                        </Button>
+                        </Link>
 
-                        <Button className="icon-btn" variant="icon" to="/cart" aria-label="Shopping bag">
+                        <Link className="icon-btn" to="/cart" aria-label="Shopping bag">
                             <ShoppingBag aria-hidden="true" />
-                        </Button>
+                        </Link>
                     </div>
                 </div>
             </header>
@@ -176,9 +175,9 @@ export default function Navbar() {
                   onMouseDown={(event) => {
                       if (event.target === event.currentTarget) setSearchOpen(false);
                   }}>
-                    <Button
+                    <button
                       className="search-overlay__close"
-                      variant="icon"
+                      type="button"
                       aria-label="Close search"
                       onClick={() => setSearchOpen(false)}>
                         <CloseIcon aria-hidden="true" />
@@ -201,7 +200,7 @@ export default function Navbar() {
                                   placeholder="Search serum, cleanser, sunscreen..."
                                   autoComplete="off"
                                 />
-                                <Button type="submit" variant="secondary">Search</Button>
+                                <button type="submit">Search</button>
                             </div>
                         </form>
                     </div>

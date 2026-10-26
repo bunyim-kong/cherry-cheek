@@ -1,5 +1,6 @@
 import { Search, SlidersHorizontal, X } from 'lucide-react'; // Icons identify search and mobile filters.
 import { useMemo, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import './Shop.css';
 import ProductCard from "../../components/ProductCard";
 import { products } from "../../data/products"; // FIX: this was missing, it caused the crash
@@ -7,9 +8,13 @@ import { products } from "../../data/products"; // FIX: this was missing, it cau
 const categories = ['All', 'Cleansers', 'Toners', 'Serums', 'Moisturizers', 'Sun Care'];
 
 function Shop() {
+    const [searchParams, setSearchParams] = useSearchParams();
     const [filtersOpen, setFiltersOpen] = useState(false);
     const [search, setSearch] = useState('');
-    const [category, setCategory] = useState('All');
+    const requestedCategory = searchParams.get('category');
+    const category = categories.find(
+        (item) => item.toLowerCase() === requestedCategory?.toLowerCase(),
+    ) ?? 'All';
     const [sort, setSort] = useState('rating');
 
     // Filter + sort the products, only recalculates when search/category/sort change
@@ -34,8 +39,12 @@ function Shop() {
 
     function clearFilters() {
         setSearch('');
-        setCategory('All');
         setSort('rating');
+        setSearchParams({});
+    }
+
+    function handleCategoryChange(nextCategory) {
+        setSearchParams(nextCategory === 'All' ? {} : { category: nextCategory.toLowerCase() });
     }
 
     function handleAddToBag(product) {
@@ -119,7 +128,7 @@ function Shop() {
                                         type="radio"
                                         name="category"
                                         checked={category === c}
-                                        onChange={() => setCategory(c)}
+                                        onChange={() => handleCategoryChange(c)}
                                     />
                                     <span>{c}</span>
                                 </label>

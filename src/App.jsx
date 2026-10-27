@@ -1,16 +1,15 @@
-import Navbar from './components/Navbar';
-import Footer from "./components/Footer";
-import ProductCard from "./components/ProductCard";
-import Register from "./pages/user/Register";
+import { Route, Routes } from 'react-router-dom';
+import UserLayout from './layouts/UserLayout';
+import HomePage from './pages/user/Homepage';
+import ShopPage from './pages/user/Shop';
 
 export default function app() {
     return (
-        <>
-            <Navbar /> 
-                        <ProductCard />
-     
-         
-            <Footer />
-        </>
+        <Routes>
+            <Route element={<UserLayout />}>
+                <Route index element={<HomePage />} />
+                <Route path="shop" element={<ShopPage />} />
+            </Route>
+        </Routes>
     );
 }

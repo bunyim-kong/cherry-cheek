@@ -1,12 +1,10 @@
-import {
-    ArrowRight,
-    Droplets,
-    Leaf,
-    ShieldCheck,
-    Sparkles,
-} from "lucide-react";
+import { ArrowRight, Droplets, Leaf, ShieldCheck, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
+import CategoryCard from "../../components/CategoryCard";
 import ProductCard from "../../components/ProductCard";
+import cleanseImage from "../../assets/images/cleanser.jpg";
+import moisturizeImage from "../../assets/images/moisturize.jpg";
+import treatImage from "../../assets/images/treat.jpg";
 import "./Homepage.css";
 
 const routineSteps = [
@@ -15,21 +13,21 @@ const routineSteps = [
         name: "Cleanse",
         note: "Fresh starts, never stripped",
         to: "/shop?category=cleansers",
-        image: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=1000&q=88",
+        image: cleanseImage,
     },
     {
         step: "Step 02",
         name: "Treat",
         note: "Targeted care, made simple",
         to: "/shop?category=serums",
-        image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=1000&q=88",
+        image: treatImage,
     },
     {
         step: "Step 03",
         name: "Moisturize",
         note: "Comfort that lasts all day",
         to: "/shop?category=moisturizers",
-        image: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=1000&q=88",
+        image: moisturizeImage,
     },
 ];
 
@@ -40,10 +38,27 @@ const favorites = [
     { brand: "Solskin", name: "Daily Veil SPF 50", price: "$31.00", rating: "4.8", reviews: "143", badge: "Daily essential", image: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=900&q=88" },
 ];
 
+const newArrivals = [
+    { brand: "Pinky Studio", name: "Soft Focus Cleansing Balm", price: "$28.00", rating: "4.8", reviews: "67", badge: "Just in", image: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=900&q=88" },
+    { brand: "Pinky Studio", name: "Dew Petal Essence", price: "$32.00", rating: "4.9", reviews: "41", badge: "New", image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=900&q=88" },
+    { brand: "Pinky Studio", name: "Rosy Barrier Cream", price: "$34.00", rating: "4.7", reviews: "36", badge: "New", image: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=900&q=88" },
+    { brand: "Pinky Studio", name: "Cloud Veil Sunscreen", price: "$26.00", rating: "4.8", reviews: "52", badge: "Just in", image: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=900&q=88" },
+];
+
 function ProductShelf() {
     return (
         <div className="cc-product-grid">
             {favorites.map((product) => (
+                <ProductCard product={product} key={product.name} />
+            ))}
+        </div>
+    );
+}
+
+function NewArrival() {
+    return (
+        <div className="cc-product-grid">
+            {newArrivals.map((product) => (
                 <ProductCard product={product} key={product.name} />
             ))}
         </div>
@@ -88,23 +103,28 @@ function Homepage() {
             <section className="cc-section container">
                 <div className="cc-section-heading cc-section-heading--split">
                     <div><p className="cc-eyebrow">Find your step</p><h2>Build a routine that feels simple</h2></div>
-                    <Link className="cc-text-link cc-desktop-link" to="/category">Shop every category <ArrowRight size={17} aria-hidden="true" /></Link>
+                    <Link className="cc-text-link cc-desktop-link" to="/shop">Shop every category <ArrowRight size={17} aria-hidden="true" /></Link>
                 </div>
                 <div className="cc-category-grid">
                     {routineSteps.map((card, index) => (
-                        <Link className={`cc-category-card cc-category-card--${index + 1}`} key={card.name} to={card.to}>
-                            <img src={card.image} alt="" loading="lazy" />
-                            <span className="cc-category-card__overlay"><span>{card.step}</span><strong>{card.name}</strong><small>{card.note}</small></span>
-                        </Link>
+                        <CategoryCard
+                            key={card.name}
+                            step={card.step}
+                            name={card.name}
+                            description={card.note}
+                            image={card.image}
+                            to={card.to}
+                            featured={index === 1}
+                        />
                     ))}
                 </div>
             </section>
 
-            <section className="cc-section cc-section--tint" id="most-loved">
+            <section className="cc-section cc-section--tint cc-new-arrivals" id="new-arrivals">
                 <div className="container">
                     <div className="cc-section-heading cc-section-heading--split">
-                        <div><p className="cc-eyebrow">Most loved</p><h2>Everyday skin favorites</h2></div>
-                        <Link className="cc-text-link" to="/shop">View all <ArrowRight size={17} aria-hidden="true" /></Link>
+                        <div><p className="cc-eyebrow">Most loved</p><h2>Community favorites</h2></div>
+                        <Link className="cc-text-link" to="/shop">Shop new arrivals <ArrowRight size={17} aria-hidden="true" /></Link>
                     </div>
                     <ProductShelf />
                 </div>
@@ -114,6 +134,7 @@ function Homepage() {
                 <div className="cc-editorial__image">
                     <img src="https://images.unsplash.com/photo-1615397349754-cfa2066a298e?auto=format&fit=crop&w=1300&q=88" alt="Serum bottles arranged in soft natural light" loading="lazy" width="1300" height="1500" />
                 </div>
+
                 <div className="cc-editorial__copy">
                     <p className="cc-eyebrow">The Cherry edit</p>
                     <h2>Less noise. Better daily care.</h2>
@@ -122,12 +143,14 @@ function Homepage() {
                 </div>
             </section>
 
-            <section className="cc-note">
-                <div className="container cc-note__inner">
-                    <Sparkles aria-hidden="true" />
-                    <p className="cc-eyebrow">A little note from us</p>
-                    <h2>Good skin days begin with a routine you actually enjoy.</h2>
-                    <Link className="cc-text-link" to="/shop">Find your new favorite <ArrowRight size={17} aria-hidden="true" /></Link>
+            <section className="cc-section cc-section--tint" id="most-loved">
+                <div className="container">
+                    <div className="cc-section-heading cc-section-heading--split">
+                        <div><p className="cc-eyebrow">Just Land</p><h2>New Arrival</h2></div>
+                        <Link className="cc-text-link" to="/shop">Shop new arrival <ArrowRight size={17} aria-hidden="true" /></Link>
+                    </div>
+                    
+                    <NewArrival />
                 </div>
             </section>
         </div>

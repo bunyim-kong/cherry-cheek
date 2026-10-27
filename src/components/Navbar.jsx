@@ -1,6 +1,6 @@
 import { Menu, Search, ShoppingBag, UserRound, X } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
-import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import '../styles/main.css';
 import './Navbar.css';
 
@@ -19,7 +19,7 @@ export default function Navbar() {
     function handleSearch(event) {
         event.preventDefault();
 
-        const query = Search.trim();
+        const query = search.trim();
 
         if(query) {
             navigate(`/shop?q=${encodeURIComponent(query)}`);
@@ -71,15 +71,15 @@ export default function Navbar() {
                     </nav>
 
                     <div className="nav-action">
-                        <button className='icon-btn desktop-search' type='button'>
+                        <button className='icon-btn desktop-search flex items-center justify-center' type='button'>
                             <Search />
                         </button>
 
-                        <button className='icon-btn' to='/login'>
+                        <button className='icon-btn flex items-center justify-center' to='/login'>
                             <UserRound />
                         </button>
 
-                        <button className='icon-btn' to='/cart'>
+                        <button className='icon-btn flex items-center justify-center' to='/cart'>
                             <ShoppingBag />
                         </button>
                     </div>

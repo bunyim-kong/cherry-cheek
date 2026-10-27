@@ -1,6 +1,7 @@
 import { Menu, Search, ShoppingBag, UserRound, X } from 'lucide-react';
 import { useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/auth';
 import '../styles/main.css';
 import './Navbar.css';
 
@@ -12,6 +13,7 @@ const navLinks = [
 ]
 
 export default function Navbar() {
+    const { user } = useAuth();
     const [ menuOpen, setMenuOpen ] = useState(false);
     const [search, setSearch] = useState('');
     const navigate = useNavigate();
@@ -75,11 +77,17 @@ export default function Navbar() {
                             <Search />
                         </button>
 
-                        <button className='icon-btn flex items-center justify-center' to='/login'>
+                        <Link
+                          className='icon-btn flex items-center justify-center'
+                          to={user ? '/account' : '/login'}
+                          aria-label={user ? 'Your account' : 'Sign in'}>
                             <UserRound />
-                        </button>
+                        </Link>
 
-                        <button className='icon-btn flex items-center justify-center' to='/cart'>
+                        <button
+                          className='icon-btn flex items-center justify-center'
+                          type='button'
+                          aria-label='Shopping bag'>
                             <ShoppingBag />
                         </button>
                     </div>

@@ -1,16 +1,19 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/auth";
 import RegisterImage from "../../assets/register-1.jpg";
-import "./Register.css";
+import "./Auth.css";
 
 function Register() {
   const navigate = useNavigate();
+  const { register } = useAuth();
 
   const [form, setForm] = useState({ name: "", email: "", password: "" });
   const [error, setError] = useState("");
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+    setError("");
   };
 
   const handleSubmit = (e) => {
@@ -25,51 +28,74 @@ function Register() {
     }
 
    
-    localStorage.setItem("cc_user", JSON.stringify(form));
-
-    navigate("/");
+    register({ name: form.name, email: form.email });
+    navigate("/account");
   };
 
   return (
-    <main className="register">
-    
-      <div className="register-image">
+    <main className="auth-page">
+      <div className="auth-visual">
         <img src={RegisterImage} alt="Makeup products on a vanity" />
       </div>
 
-      <section className="register-panel">
-        <div className="register-box">
-          <p className="register-logo">
+      <section className="auth-panel">
+        <div className="auth-box">
+          <Link className="auth-logo" to="/">
             Cherry <span>Cheeks</span>
-          </p>
-          <p className="register-eyebrow">Create your account</p>
-          <h1 className="register-title">Join Cherry Cheeks</h1>
-          <p className="register-sub">
+          </Link>
+          <p className="auth-eyebrow">Create your account</p>
+          <h1 className="auth-title">Join Cherry Cheeks</h1>
+          <p className="auth-description">
             Create a demo account to save your bag and view orders.
           </p>
 
-          <form onSubmit={handleSubmit} noValidate>
-            <label htmlFor="name">Full Name</label>
-            <input id="name" name="name" type="text" autoComplete="name" value={form.name} onChange={handleChange} />
-            <label htmlFor="email">Email address</label>
-            <input id="email" name="email"type="email" autoComplete="email"value={form.email}
-              onChange={handleChange} />
-
-            <label htmlFor="password">Password</label>
-            <input id="password" name="password" type="password" autoComplete="new-password" value={form.password} onChange={handleChange}
+          <form className="auth-form" onSubmit={handleSubmit} noValidate>
+            <label htmlFor="register-name">Full name</label>
+            <input
+              id="register-name"
+              name="name"
+              type="text"
+              autoComplete="name"
+              value={form.name}
+              onChange={handleChange}
+              required
             />
-            {error && <p className="register-error">{error}</p>}
 
-            <button type="submit" className="register-btn">
+            <label htmlFor="register-email">Email address</label>
+            <input
+              id="register-email"
+              name="email"
+              type="email"
+              autoComplete="email"
+              value={form.email}
+              onChange={handleChange}
+              required
+            />
+
+            <label htmlFor="register-password">Password</label>
+            <input
+              id="register-password"
+              name="password"
+              type="password"
+              autoComplete="new-password"
+              value={form.password}
+              onChange={handleChange}
+              minLength="6"
+              required
+            />
+
+            {error && <p className="auth-error">{error}</p>}
+
+            <button type="submit" className="auth-submit">
               Create account
             </button>
           </form>
 
-          <p className="register-note">
+          <p className="auth-note">
             Bag saved in this browser · Faster checkout · Order history
           </p>
 
-          <p className="register-signin">
+          <p className="auth-switch">
             Already have an account? <Link to="/login">Sign in</Link>
           </p>
         </div>

@@ -38,7 +38,7 @@
   display: grid;
   grid-template-columns: 1.25fr .75fr;
   gap: 6rem;
-  padding-top: 7rem;
+  padding-top: 5rem;
   padding-bottom: 5rem;
   align-items: end;
 }
@@ -92,7 +92,7 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 6rem;
-  padding-top: 5rem;
+  padding-top: 0;
   align-items: center;
 }
 
@@ -200,13 +200,13 @@
   .about-hero {
     grid-template-columns: 1fr;
     gap: 2rem;
-    padding-top: 4.5rem;
+    padding-top: 2.5rem;
   }
 
   .editorial {
     grid-template-columns: 1fr;
     gap: 3rem;
-    padding-top: 3.5rem;
+    padding-top: 0;
   }
 
   .editorial__copy {

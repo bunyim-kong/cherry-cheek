@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import CloseIcon from '../../components/CloseIcon';
 import './Shop.css';
-import '../../styles/main.css'
+import Button from '../../components/Button';
 import ProductCard from "../../components/ProductCard";
 
 function Shop() {
@@ -137,14 +137,14 @@ function Shop() {
 
             <div className="shop-body">
                 <div className="shop-toolbar">
-                    <button
+                    <Button
                         className="filter-toggle"
-                        type="button"
+                        variant="secondary"
                         onClick={() => setFiltersOpen(true)} // Open the existing filters drawer.
                     >
                         <SlidersHorizontal size={18} aria-hidden="true" />
                         <span>Filters</span>
-                    </button>
+                    </Button>
                     <div className="toolbar-left">
                         <div className="toolbar-search">
                             <Search size={20} aria-hidden="true" />

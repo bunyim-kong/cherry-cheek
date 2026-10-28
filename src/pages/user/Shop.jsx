@@ -1,5 +1,6 @@
-import { Search, SlidersHorizontal, X } from 'lucide-react'; // Icons identify search and mobile filters.
+import { Search, SlidersHorizontal } from 'lucide-react'; // Icons identify search and mobile filters.
 import { useMemo, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import './Shop.css';
 import '../../styles/main.css'
 import ProductCard from "../../components/ProductCard";
@@ -8,10 +9,30 @@ import { products } from "../../data/products"; // FIX: this was missing, it cau
 const categories = ['All', 'Cleansers', 'Toners', 'Serums', 'Moisturizers', 'Sun Care'];
 
 function Shop() {
+    const [searchParams, setSearchParams] = useSearchParams();
     const [filtersOpen, setFiltersOpen] = useState(false);
-    const [search, setSearch] = useState('');
-    const [category, setCategory] = useState('All');
+    const search = searchParams.get('q') ?? '';
+    const requestedCategory = searchParams.get('category');
+    const category = categories.find(
+        (item) => item.toLowerCase() === requestedCategory?.toLowerCase(),
+    ) ?? 'All';
     const [sort, setSort] = useState('rating');
+
+    function handleSearchChange(event) {
+        const nextSearch = event.target.value;
+
+        setSearchParams((currentParams) => {
+            const nextParams = new URLSearchParams(currentParams);
+
+            if (nextSearch) {
+                nextParams.set('q', nextSearch);
+            } else {
+                nextParams.delete('q');
+            }
+
+            return nextParams;
+        }, { replace: true });
+    }
 
     // Filter + sort the products, only recalculates when search/category/sort change
     const visibleProducts = useMemo(() => {
@@ -19,13 +40,24 @@ function Shop() {
 
         const filtered = products.filter((p) => {
             const matchesCategory = category === 'All' || p.category === category;
-            const matchesSearch = `${p.name} ${p.brand} ${p.category}`.toLowerCase().includes(text);
+            const searchableText = [
+                p.name,
+                p.brand,
+                p.category,
+                p.description,
+                ...(p.concerns ?? []),
+                ...(p.tags ?? []),
+            ]
+                .filter(Boolean)
+                .join(' ')
+                .toLowerCase();
+            const matchesSearch = !text || searchableText.includes(text);
             return matchesCategory && matchesSearch;
         });
 
         return [...filtered].sort((a, b) => {
-            if (sort === 'price-low') return a.price - b.price;
-            if (sort === 'price-high') return b.price - a.price;
+            if (sort === 'price-asc') return a.price - b.price;
+            if (sort === 'price-desc') return b.price - a.price;
             if (sort === 'newest') return new Date(b.addedAt) - new Date(a.addedAt);
             return b.rating - a.rating;
         });
@@ -34,9 +66,12 @@ function Shop() {
     const countLabel = `${visibleProducts.length} ${visibleProducts.length === 1 ? 'product' : 'products'}`;
 
     function clearFilters() {
-        setSearch('');
-        setCategory('All');
         setSort('rating');
+        setSearchParams({});
+    }
+
+    function handleCategoryChange(nextCategory) {
+        setSearchParams(nextCategory === 'All' ? {} : { category: nextCategory.toLowerCase() });
     }
 
     function handleAddToBag(product) {

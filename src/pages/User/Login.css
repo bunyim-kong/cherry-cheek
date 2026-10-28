@@ -1,0 +1,219 @@
+/* Login Layout */
+.content_login {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+
+/* Left Image Container */
+.left-product_Image {
+  width: 100%;
+  height: 100vh;
+}
+
+
+/* Login Image */
+.login-product__image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+
+/* Right Login Content */
+.right-form_content {
+  margin: auto;
+  padding: 40px;
+}
+
+
+/* Brand Name */
+.right-form_content span {
+  color: #000000;
+}
+.right-form_content h2 {
+  font-family: var(--head-font);
+  margin: 0 0 32px;
+  color: var(--rose);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+
+/* Welcome Text */
+.login-welcome {
+  margin: 0 0 12px;
+  color: var(--wine);
+  font-size: 12px;
+  font-weight: 400;
+}
+
+
+/* Main Heading */
+.right-form_content h1 {
+  font-family: var(--head-font);
+  margin: 0 0 12px;
+  color: #222222;
+  font-size: 32px;
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+
+/* Description */
+.login-description {
+  margin: 0 0 28px;
+  color: #777777;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+
+/* Form */
+.form {
+  width: 100%;
+}
+
+
+.form form {
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* Labels */
+.form label {
+  margin-bottom: 8px;
+  color: #333333;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+
+/* Input Fields */
+.form input {
+  width: 100%;
+  height: 48px;
+  margin-bottom: 20px;
+  padding: 0 14px;
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+
+
+  font-size: 14px;
+
+
+  outline: none;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+
+/* Input Focus */
+.form input:focus {
+  border-color: var(--rose);
+  box-shadow: 0 0 0 3px rgba(157, 0, 53, 0.1);
+}
+
+
+/* Placeholder */
+.form input::placeholder {
+  color: var(--muted);
+}
+
+
+.login-benefits {
+  margin: 24px 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+
+/* Register Text */
+.login-register {
+  margin: 0;
+  font-size: 14px;
+}
+
+
+/* Create Account */
+.login-register span a {
+  color: var(--wine-dark);
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+
+/* Tablet Responsive */
+@media (max-width: 900px) {
+  .content_login {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+
+
+  .left-product_Image {
+    height: 500px;
+  }
+
+
+  .right-form_content {
+    padding: 24px 20px 24px 0;
+  }
+
+
+  .right-form_content h1 {
+    font-size: 28px;
+    font-family: var(--head-font);
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 650px) {
+  .container {
+    padding: 20px 16px;
+  }
+
+
+  .content_login {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+
+  /* Hide image on mobile */
+  .left-product_Image {
+    display: none;
+  }
+
+
+  .right-form_content {
+    width: 100%;
+    max-width: 100%;
+    padding: 10px 8px 24px;
+  }
+
+
+  .right-form_content h2 {
+    margin-bottom: 24px;
+    font-size: 24px;
+  }
+
+
+  .right-form_content h1 {
+    font-size: 26px;
+    font-family: var(--head-font);
+  }
+
+
+  .login-description {
+    font-size: 13px;
+  }
+}

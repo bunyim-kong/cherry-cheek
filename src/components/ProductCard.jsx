@@ -29,6 +29,7 @@ function ProductCard({ product = {}, onAddToBag }) {
     ...product,
   };
   const badge = item.badge ?? (item.isNew ? 'NEW' : null);
+  const inStock = item.stockQuantity > 0;
 
   const badgeLabel = badge ?? (isNew ? 'NEW' : null);
   const inStock = stockQuantity > 0;

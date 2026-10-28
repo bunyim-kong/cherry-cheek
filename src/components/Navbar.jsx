@@ -1,6 +1,7 @@
 import { Menu, Search, ShoppingBag, UserRound } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
+import Button from './Button';
 import '../styles/main.css';
 import Button from './Button';
 import CloseIcon from './CloseIcon';
@@ -155,13 +156,13 @@ export default function Navbar() {
                             <Search aria-hidden="true" />
                         </Button>
 
-                        <Link className="icon-btn" to="/login" aria-label="Your account">
+                        <Button className="icon-btn" variant="icon" to="/login" aria-label="Your account">
                             <UserRound aria-hidden="true" />
-                        </Link>
+                        </Button>
 
-                        <Link className="icon-btn" to="/cart" aria-label="Shopping bag">
+                        <Button className="icon-btn" variant="icon" to="/cart" aria-label="Shopping bag">
                             <ShoppingBag aria-hidden="true" />
-                        </Link>
+                        </Button>
                     </div>
                 </div>
             </header>

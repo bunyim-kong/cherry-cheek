@@ -1,6 +1,7 @@
 import { Menu, Search, ShoppingBag, UserRound } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
+import Button from './Button';
 import '../styles/main.css';
 import CloseIcon from './CloseIcon';
 import './Navbar.css';
@@ -80,9 +81,9 @@ export default function Navbar() {
         <>
             <header className="header">
                 <div className="navbar">
-                    <button
+                    <Button
                       className="hamburger"
-                      type="button"
+                      variant="icon"
                       aria-label={menuOpen ? 'Close menu' : 'Open menu'}
                       aria-expanded={menuOpen}
                       aria-controls='mobile-navigation'
@@ -131,7 +132,7 @@ export default function Navbar() {
                     </nav>
 
                     <div className="nav-action">
-                        <button
+                        <Button
                           ref={searchButtonRef}
                           className='icon-btn desktop-search flex items-center justify-center'
                           type='button'
@@ -139,7 +140,7 @@ export default function Navbar() {
                           aria-haspopup='dialog'
                           onClick={() => setSearchOpen(true)}>
                             <Search aria-hidden="true" />
-                        </button>
+                        </Button>
 
                         <Link
                           className='icon-btn flex items-center justify-center'
@@ -167,7 +168,7 @@ export default function Navbar() {
                   aria-labelledby="search-dialog-title">
                     <button
                       className="search-overlay__close"
-                      type="button"
+                      variant="icon"
                       aria-label="Close search"
                       onClick={() => setSearchOpen(false)}>
                         <CloseIcon aria-hidden="true" />
@@ -192,7 +193,7 @@ export default function Navbar() {
                                   placeholder="Search serum, cleanser, sunscreen..."
                                   autoComplete="off"
                                 />
-                                <button type="submit">Search</button>
+                                <Button type="submit" variant="secondary">Search</Button>
                             </div>
                         </form>
                     </div>

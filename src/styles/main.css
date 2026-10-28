@@ -28,7 +28,7 @@
 html {
     scroll-behavior: smooth;
     scrollbar-width: none;
-    background-color: #fbf6ec; /* keep the document canvas light cream */
+    background-color: var(--cream); /* keep the document canvas light cream */
 }
 
 body {

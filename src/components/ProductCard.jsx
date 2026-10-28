@@ -1,3 +1,4 @@
+import Button from './Button';
 import "./ProductCard.css";
 import productImage from "../assets/cloud-milk-toner.jpg";
 
@@ -11,14 +12,14 @@ function ProductCard({ product, onAddToBag }) {
 
         {isNew && <span className="new-badge">NEW</span>}
 
-        <button
+        <Button
           className="add-to-bag"
-          type="button"
+          size="compact"
           aria-label={`Add ${name} to bag`}
           onClick={onAddToBag}
         >
           Add to bag
-        </button>
+        </Button>
       </div>
 
       <div className="product-info">

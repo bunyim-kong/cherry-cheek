@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import Button from '../../components/Button';
 import storyImage from '../../assets/images/our-story-1.jpg';
 import './OurStory.css';
 
@@ -40,9 +40,9 @@ function OurStory() {
                         you can compare what matters. Clear descriptions and practical
                         directions come before trends.
                     </p>
-                    <Link className="button button--primary" to="/shop">
+                    <Button to="/shop">
                         Explore the collection
-                    </Link>
+                    </Button>
                 </div>
             </section>
         </div>

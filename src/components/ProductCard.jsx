@@ -1,3 +1,4 @@
+import Button from './Button';
 import "./ProductCard.css";
 import productImage from "../assets/cloud-milk-toner.jpg";
 
@@ -21,11 +22,18 @@ function ProductCard({ product = {}, oldPrice, onAddToBag }) {
   return (
     <article className="product-card">
       <div className="product-image">
-        <img src={item.image} alt={`${item.name} by ${item.brand}`} loading="lazy" />
-        {item.badge && <span className="new-badge">{item.badge}</span>}
-        <button className="add-to-bag" type="button" onClick={onAddToBag} aria-label={`Add ${item.name} to bag`}>
+        <img src={image} alt={name} />
+
+        {isNew && <span className="new-badge">NEW</span>}
+
+        <Button
+          className="add-to-bag"
+          size="compact"
+          aria-label={`Add ${name} to bag`}
+          onClick={onAddToBag}
+        >
           Add to bag
-        </button>
+        </Button>
       </div>
 
       <div className="product-info">

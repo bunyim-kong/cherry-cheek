@@ -1,7 +1,7 @@
 .product-card {
   width: 100%;
   max-width: none;
-  min-width: 280px; 
+  min-width: 0;
   box-sizing: border-box;
   color: var(--ink);
   background: transparent;
@@ -11,47 +11,51 @@
 .product-image {
   position: relative;
   width: 100%;
-  aspect-ratio: 3 / 3.5;
-  border-radius: 15px;
+  aspect-ratio: .82;
+  border-radius: 1rem;
   overflow: hidden;
-  isolation: isolate; 
+  isolation: isolate; /* keep overlay layers above the clipped photo */
+  background: #eee3e1;
 }
 
 .product-image img {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s ease;
+  object-fit: cover; /* fills the box without stretching */
+  transition: transform 0.55s ease; /* animate the photo zoom smoothly */
 }
 
 @media (hover: hover) and (pointer: fine) {
   .product-image:hover img {
-    transform: scale(1.08); 
+    transform: scale(1.04); /* zoom only the photo on hover-capable devices */
   }
 }
 
 .new-badge {
   position: absolute;
-  top: 8px;
-  left: 8px;
-  padding: 3px 8px;
+  top: .8rem;
+  left: .8rem;
+  padding: .42rem .65rem;
   border-radius: 999px;
-  background: var(--paper);
-  color: var(--ink);
+  background: rgba(255, 250, 246, .92);
+  color: var(--wine);
   font-family: var(--body-font);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  z-index: 1;
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  backdrop-filter: blur(8px);
+  z-index: 1; /* keep the badge fixed above the photo */
 }
 
 .add-to-bag {
   position: absolute;
-  left: 12px;
-  right: 12px;
-  bottom: 12px;
-  padding: 8px 0;
+  left: .75rem;
+  right: .75rem;
+  bottom: .75rem;
+  min-height: 2.85rem;
+  padding: .65rem 1rem;
   border: none;
   border-radius: 999px;
   font-size: 12px;
@@ -59,7 +63,7 @@
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
-  transition: opacity 0.25s ease, transform 0.25s ease, background 0.2s ease;
+  transition: opacity .25s ease, transform .25s ease, background-color .2s ease;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -82,15 +86,15 @@
 .product-info {
   display: flex;
   flex-direction: column; 
-  gap: 6px;
-  padding: 12px 4px 0;
+  gap: .4rem;
+  padding: 1rem .25rem 0;
   min-width: 0; 
 }
 
 .category {
   margin: 0;
   font-family: var(--body-font);
-  font-size: 10px;
+  font-size: .67rem;
   font-weight: 600;
   letter-spacing: 1.5px;
   text-transform: uppercase;
@@ -100,7 +104,7 @@
 .product-name {
   margin: 0;
   font-family: var(--head-font); 
-  font-size: 20px;
+  font-size: 1.25rem;
   line-height: 1.2;
   font-weight: 500;
   overflow-wrap: anywhere; 
@@ -111,7 +115,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
+  gap: 1rem;
   margin: 0;
 }
 
@@ -121,7 +125,7 @@
   gap: 5px;
   margin: 0;
   font-family: var(--body-font);
-  font-size: 13px;
+  font-size: .76rem;
   min-width: 0;
   color: #9a5b24; /* warm brown-gold for the star and rating value */
   white-space: nowrap;
@@ -145,7 +149,7 @@
 .price {
   margin: 0;
   font-family: var(--body-font);
-  font-size: 14px;
+  font-size: .88rem;
   font-weight: 600;
   white-space: nowrap; /* price stays on one line */
 }
@@ -166,6 +170,23 @@
 }
 
 @media (max-width: 767px) {
+  .product-image { border-radius: .75rem; }
+
+  .new-badge {
+    top: .5rem;
+    left: .5rem;
+    padding: .35rem .5rem;
+    font-size: .58rem;
+  }
+
+  .add-to-bag {
+    right: .45rem;
+    bottom: .45rem;
+    left: .45rem;
+    min-height: 2.4rem;
+    font-size: .72rem;
+  }
+
   .product-name {
     font-size: 16px; /* use the compact name size on mobile */
     line-height: 1.3;

@@ -89,7 +89,7 @@ function Footer() {
 
         {/* Bottom bar */}
         <div className="footer-bottom">
-          <span>© 2026 Pinky Studio</span>
+          <span>© 2026 Cherry Cheeks</span>
           <span className="footer-dot">·</span>
           <a href="">Privacy</a>
           <span className="footer-dot">·</span>

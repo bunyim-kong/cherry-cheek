@@ -1,25 +1,19 @@
 import "./CategoryCard.css";
-import "../styles/main.css";
-import cleanser from "../assets/images/cleanser.jpg";
+import { Link } from "react-router-dom";
 
-function CategoryCard() {
+function CategoryCard({ step, name, description, image, to, featured = false }) {
   return (
-    <section className="container">
-      <div className="content">
-        <article className="category-product">
-          <div className="container-category_image">
-            <img src={cleanser} alt="Toners" className="category-product__image" />
-          </div>
-
-          <div className="category-product__info">
-            <p className="category-product__step">STEP1</p>
-            <h3 className="category-product__name">Toners</h3>
-            <p className="category-product_des">Explore Toners</p>
-          </div>
-        </article>
-
-      </div>
-    </section>
+    <Link
+      className={`cc-category-card${featured ? " cc-category-card--featured" : ""}`}
+      to={to}>
+        
+      <img src={image} alt="" loading="lazy" />
+      <span className="cc-category-card__overlay">
+        <span>{step}</span>
+        <strong>{name}</strong>
+        <small>{description}</small>
+      </span>
+    </Link>
   );
 }
 

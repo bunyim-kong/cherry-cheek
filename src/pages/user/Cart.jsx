@@ -105,7 +105,6 @@ function Cart() {
             
           </div>
 
-
           <div className="order-summary">
             <h2>Order Summary</h2>
 
@@ -145,4 +144,5 @@ function Cart() {
     </main>
   );
 }
+
 export default Cart;

@@ -8,9 +8,13 @@ const defaultProduct = {
   price: "$25.00",
   rating: "4.9",
   reviews: "89",
-  badge: "New",
+  isNew: true,
   image: productImage,
 };
+
+function formatPrice(value) {
+  return typeof value === 'number' ? `$${value.toFixed(2)}` : value;
+}
 
 function ProductCard({ product = {}, oldPrice, onAddToBag }) {
   const item = {
@@ -18,18 +22,19 @@ function ProductCard({ product = {}, oldPrice, onAddToBag }) {
     ...product,
     oldPrice: product.oldPrice ?? oldPrice,
   };
+  const badge = item.badge ?? (item.isNew ? 'NEW' : null);
 
   return (
     <article className="product-card">
       <div className="product-image">
-        <img src={image} alt={name} />
+        <img src={item.image} alt={item.name} />
 
-        {isNew && <span className="new-badge">NEW</span>}
+        {badge && <span className="new-badge">{badge}</span>}
 
         <Button
           className="add-to-bag"
           size="compact"
-          aria-label={`Add ${name} to bag`}
+          aria-label={`Add ${item.name} to bag`}
           onClick={onAddToBag}
         >
           Add to bag
@@ -55,8 +60,8 @@ function ProductCard({ product = {}, oldPrice, onAddToBag }) {
             <span className="review-count">({item.reviews})</span>
           </p>
           <p className="price-line">
-            {item.oldPrice && <span className="old-price">{item.oldPrice}</span>}
-            <span className="price">{item.price}</span>
+            {item.oldPrice != null && <span className="old-price">{formatPrice(item.oldPrice)}</span>}
+            <span className="price">{formatPrice(item.price)}</span>
           </p>
         </div>
       </div>

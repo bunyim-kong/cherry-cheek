@@ -17,8 +17,9 @@ function ProductCard({ product, onAddToBag }) {
           size="compact"
           aria-label={`Add ${item.name} to bag`}
           onClick={onAddToBag}
+          disabled={!inStock}
         >
-          Add to bag
+          {inStock ? 'Add to bag' : 'Out of stock'}
         </Button>
       </div>
 

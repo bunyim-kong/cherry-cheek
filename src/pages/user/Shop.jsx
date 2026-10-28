@@ -2,6 +2,7 @@ import { Search, SlidersHorizontal, X } from 'lucide-react'; // Icons identify s
 import { useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import './Shop.css';
+import '../../styles/main.css'
 import ProductCard from "../../components/ProductCard";
 import { products } from "../../data/products"; // FIX: this was missing, it caused the crash
 
@@ -53,123 +54,125 @@ function Shop() {
 
     return (
         <section className="shop">
-            <header className="shop-header">
-                <p className="shop-eyebrow">THE FULL EDIT</p>
-                <h1 className="shop-title">Skincare</h1>
-                <p className="shop-subtitle">
-                    Shop gentle everyday formulas by routine step, concern or brand.
-                </p>
-            </header>
+            <div className='container'>
+                <header className="shop-header">
+                    <p className="shop-eyebrow">THE FULL EDIT</p>
+                    <h1 className="shop-title">Skincare</h1>
+                    <p className="shop-subtitle">
+                        Shop gentle everyday formulas by routine step, concern or brand.
+                    </p>
+                </header>
 
-            <div className="shop-body">
-                <div className="shop-toolbar">
-                    <button
-                        className="filter-toggle"
-                        type="button"
-                        onClick={() => setFiltersOpen(true)} // Open the existing filters drawer.
-                    >
-                        <SlidersHorizontal size={18} aria-hidden="true" />
-                        <span>Filters</span>
-                    </button>
-                    <div className="toolbar-left">
-                        <div className="toolbar-search">
-                            <Search size={20} aria-hidden="true" />
-                            <input
-                                id="shop-search"
-                                type="search"
-                                aria-label="Search skincare products"
-                                placeholder="Search skincare"
-                                value={search}
-                                onChange={(e) => setSearch(e.target.value)} // Keep search tied to existing state.
-                            />
-                        </div>
-                        <p className="toolbar-count" aria-live="polite">{countLabel}</p>
-                    </div>
-
-                    <div className="toolbar-sort">
-                        <label htmlFor="shop-sort">Sort by</label>
-                        <select
-                            id="shop-sort"
-                            value={sort}
-                            onChange={(e) => setSort(e.target.value)} // Keep sorting tied to existing state.
+                <div className="shop-body">
+                    <div className="shop-toolbar">
+                        <button
+                            className="filter-toggle"
+                            type="button"
+                            onClick={() => setFiltersOpen(true)} // Open the existing filters drawer.
                         >
-                            <option value="featured">Featured</option>
-                            <option value="rating">Top rated</option>
-                            <option value="price-asc">Price: low to high</option>
-                            <option value="price-desc">Price: high to low</option>
-                        </select>
+                            <SlidersHorizontal size={18} aria-hidden="true" />
+                            <span>Filters</span>
+                        </button>
+                        <div className="toolbar-left">
+                            <div className="toolbar-search">
+                                <Search size={20} aria-hidden="true" />
+                                <input
+                                    id="shop-search"
+                                    type="search"
+                                    aria-label="Search skincare products"
+                                    placeholder="Search skincare"
+                                    value={search}
+                                    onChange={(e) => setSearch(e.target.value)} // Keep search tied to existing state.
+                                />
+                            </div>
+                            <p className="toolbar-count" aria-live="polite">{countLabel}</p>
+                        </div>
+
+                        <div className="toolbar-sort">
+                            <label htmlFor="shop-sort">Sort by</label>
+                            <select
+                                id="shop-sort"
+                                value={sort}
+                                onChange={(e) => setSort(e.target.value)} // Keep sorting tied to existing state.
+                            >
+                                <option value="featured">Featured</option>
+                                <option value="rating">Top rated</option>
+                                <option value="price-asc">Price: low to high</option>
+                                <option value="price-desc">Price: high to low</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-            </div>
 
 
-            <div className="shop-body">
+                <div className="shop-body">
 
-                <div className="shop-layout">
+                    <div className="shop-layout">
 
-                    <aside className={`filters ${filtersOpen ? 'filters--open' : ''}`}>
-                        <div className="filters-mobile-header">
-                            <strong>Filters</strong>
+                        <aside className={`filters ${filtersOpen ? 'filters--open' : ''}`}>
+                            <div className="filters-mobile-header">
+                                <strong>Filters</strong>
+                                <button
+                                    type="button"
+                                    className="icon-button"
+                                    onClick={() => setFiltersOpen(false)}
+                                    aria-label="Close filters"
+                                >
+                                    <X />
+                                </button>
+                            </div>
+
+                            <div className="filter-group">
+                                <h2>Category</h2>
+                                {categories.map((c) => (
+                                    <label key={c}>
+                                        <input
+                                            type="radio"
+                                            name="category"
+                                            checked={category === c}
+                                            onChange={() => setCategory(c)}
+                                        />
+                                        <span>{c}</span>
+                                    </label>
+                                ))}
+                            </div>
+
+                            {(category !== 'All' || search || sort !== 'rating') && (
+                                <button className="clear-button" type="button" onClick={clearFilters}>
+                                    Clear all filters
+                                </button>
+                            )}
+
+                            <button className="filters-apply" type="button" onClick={() => setFiltersOpen(false)}>
+                                Show {countLabel}
+                            </button>
+                        </aside>
+
+                        {filtersOpen && (
                             <button
+                                className="drawer-backdrop"
                                 type="button"
-                                className="icon-button"
-                                onClick={() => setFiltersOpen(false)}
                                 aria-label="Close filters"
-                            >
-                                <X />
-                            </button>
-                        </div>
-
-                        <div className="filter-group">
-                            <h2>Category</h2>
-                            {categories.map((c) => (
-                                <label key={c}>
-                                    <input
-                                        type="radio"
-                                        name="category"
-                                        checked={category === c}
-                                        onChange={() => handleCategoryChange(c)}
-                                    />
-                                    <span>{c}</span>
-                                </label>
-                            ))}
-                        </div>
-
-                        {(category !== 'All' || search || sort !== 'rating') && (
-                            <button className="clear-button" type="button" onClick={clearFilters}>
-                                Clear all filters
-                            </button>
+                                onClick={() => setFiltersOpen(false)}
+                            />
                         )}
 
-                        <button className="filters-apply" type="button" onClick={() => setFiltersOpen(false)}>
-                            Show {countLabel}
-                        </button>
-                    </aside>
+                        {/* product grid */}
+                        <div className="shop-grid">
+                            {/* FIX: real ProductCard instead of the placeholder block */}
+                            {visibleProducts.map((p) => (
+                                <ProductCard
+                                    key={p.id}
+                                    product={p}
+                                    onAddToBag={() => handleAddToBag(p)}
+                                />
+                            ))}
 
-                    {filtersOpen && (
-                        <button
-                            className="drawer-backdrop"
-                            type="button"
-                            aria-label="Close filters"
-                            onClick={() => setFiltersOpen(false)}
-                        />
-                    )}
+                            {/* Shows when filters match nothing */}
+                            {visibleProducts.length === 0 && <p>No products found.</p>}
+                        </div>
 
-                    {/* product grid */}
-                    <div className="shop-grid">
-                        {/* FIX: real ProductCard instead of the placeholder block */}
-                        {visibleProducts.map((p) => (
-                            <ProductCard
-                                key={p.id}
-                                product={p}
-                                onAddToBag={() => handleAddToBag(p)}
-                            />
-                        ))}
-
-                        {/* Shows when filters match nothing */}
-                        {visibleProducts.length === 0 && <p>No products found.</p>}
                     </div>
-
                 </div>
             </div>
         </section>

@@ -6,13 +6,18 @@
 .auth-page {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  min-height: 100svh;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
   color: var(--ink);
   background: var(--paper);
+  font-family: var(--body-font);
 }
 
 .auth-visual {
-  min-height: 100svh;
+  min-width: 0;
+  height: 100%;
   overflow: hidden;
   background: var(--blush-soft);
 }
@@ -21,15 +26,17 @@
   display: block;
   width: 100%;
   height: 100%;
-  min-height: 100svh;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
   object-position: center;
 }
 
 .auth-panel {
   display: flex;
+  height: 100%;
   align-items: center;
-  padding: clamp(2rem, 6vw, 5.5rem);
+  overflow: hidden;
+  padding: clamp(1.5rem, 5vw, 4.5rem);
 }
 
 .auth-box {
@@ -46,10 +53,15 @@
   font-weight: 700;
   letter-spacing: -0.03em;
   text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 .auth-logo span {
   color: var(--rose);
+}
+
+.auth-logo:hover {
+  color: var(--wine);
 }
 
 .auth-eyebrow {
@@ -101,7 +113,12 @@
   font: inherit;
   font-size: 0.9rem;
   outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.auth-form input:hover {
+  border-color: var(--rose);
+  background: var(--blush-soft);
 }
 
 .auth-form input:focus {
@@ -159,9 +176,11 @@
   color: var(--wine);
   font-weight: 700;
   text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 .auth-switch a:hover {
+  color: var(--wine-dark);
   text-decoration: underline;
 }
 
@@ -175,11 +194,58 @@
   }
 
   .auth-panel {
-    min-height: 100svh;
+    height: 100%;
     padding: 2rem 1.25rem;
   }
 
   .auth-logo {
     margin-bottom: 2.5rem;
+  }
+}
+
+@media (max-height: 760px) {
+  .auth-panel {
+    padding-block: 1.25rem;
+  }
+
+  .auth-logo {
+    margin-bottom: 1.25rem;
+    font-size: 1.4rem;
+  }
+
+  .auth-eyebrow {
+    margin-bottom: 0.4rem;
+  }
+
+  .auth-title {
+    margin-bottom: 0.5rem;
+    font-size: clamp(1.75rem, 4vw, 2.2rem);
+  }
+
+  .auth-description {
+    margin-bottom: 1.1rem;
+    line-height: 1.5;
+  }
+
+  .auth-form label {
+    margin-bottom: 0.35rem;
+  }
+
+  .auth-form input {
+    height: 2.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .auth-submit {
+    min-height: 2.75rem;
+    margin-top: 0.2rem;
+  }
+
+  .auth-note {
+    margin-top: 0.85rem;
+  }
+
+  .auth-switch {
+    margin-top: 0.9rem;
   }
 }

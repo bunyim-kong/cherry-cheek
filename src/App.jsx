@@ -7,6 +7,7 @@ import ShopPage from './pages/user/Shop';
 import Account from './pages/user/Account';
 import Login from './pages/user/Login';
 import Register from './pages/user/Register';
+import Checkout from './pages/user/Checkout';
 
 export default function App() {
     return (
@@ -20,6 +21,7 @@ export default function App() {
                 <Route path="category" element={<Navigate to="/shop" replace />} />
                 <Route path="our-story" element={<OurStory />} />
                 <Route path="about" element={<About />} />
+                <Route path="checkout" element={<Checkout />} />
             </Route>
         </Routes>
     );

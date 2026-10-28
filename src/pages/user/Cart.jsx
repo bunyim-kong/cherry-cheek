@@ -21,23 +21,6 @@ function Cart() {
           </a>
         </div>
       </section>
-
-      {/* When stage from ordering it will appear*/}
-      <section className="contianer-shopping-bag">
-        <div className="">
-          <p>YOUR SELECTION</p>
-          <h1>Shopping bag</h1>
-        </div>
-
-        <div className="container-product-order">
-          <div className="product-detail">
-              
-          </div>
-          <div className="order-summury">
-
-          </div>
-        </div>
-      </section>
     </main>
   );
 }

@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/auth';
 import '../styles/main.css';
+import Button from './Button';
 import CloseIcon from './CloseIcon';
 import './Navbar.css';
 
@@ -16,6 +17,7 @@ const navLinks = [
 export default function Navbar() {
     const { user } = useAuth();
     const [ menuOpen, setMenuOpen ] = useState(false);
+    const [searchOpen, setSearchOpen] = useState(false);
     const [search, setSearch] = useState('');
     const searchButtonRef = useRef(null);
     const searchOverlayRef = useRef(null);

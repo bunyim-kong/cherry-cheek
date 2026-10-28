@@ -105,7 +105,7 @@ export default function Navbar() {
                       aria-expanded={menuOpen}
                       aria-controls="mobile-navigation"
                       onClick={() => setMenuOpen((isOpen) => !isOpen)}>
-                        {menuOpen ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
+                        {menuOpen ? <CloseIcon aria-hidden="true" /> : <Menu aria-hidden="true" />}
                     </Button>
 
                     <Link to="/" className="logo" onClick={() => setMenuOpen(false)}>
@@ -181,7 +181,7 @@ export default function Navbar() {
                       variant="icon"
                       aria-label="Close search"
                       onClick={() => setSearchOpen(false)}>
-                        <X aria-hidden="true" />
+                        <CloseIcon aria-hidden="true" />
                     </Button>
 
                     <div className="search-dialog-content">

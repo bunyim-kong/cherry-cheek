@@ -15,7 +15,8 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-    const [menuOpen, setMenuOpen] = useState(false);
+    const { user } = useAuth();
+    const [ menuOpen, setMenuOpen ] = useState(false);
     const [searchOpen, setSearchOpen] = useState(false);
     const [search, setSearch] = useState('');
     const searchButtonRef = useRef(null);

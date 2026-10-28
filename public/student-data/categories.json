@@ -2,26 +2,31 @@
   {
     "id": 1,
     "name": "Skincare",
-    "description": "Face care products"
+    "description": "Face care products",
+    "image": "/images/categories/skincare.jpg"
   },
   {
     "id": 2,
     "name": "Makeup",
-    "description": "Cosmetics and color products"
+    "description": "Cosmetics and color products",
+    "image": "/images/categories/makeup.jpg"
   },
   {
     "id": 3,
     "name": "Haircare",
-    "description": "Hair washing and treatment"
+    "description": "Hair washing and treatment",
+    "image": "/images/categories/haircare.jpg"
   },
   {
     "id": 4,
     "name": "Fragrance",
-    "description": "Perfumes and body fragrance"
+    "description": "Perfumes and body fragrance",
+    "image": "/images/categories/fragrance.jpg"
   },
   {
     "id": 5,
     "name": "Body Care",
-    "description": "Body and hand care"
+    "description": "Body and hand care",
+    "image": "/images/categories/body-care.jpg"
   }
 ]

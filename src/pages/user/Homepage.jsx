@@ -1,5 +1,6 @@
 import { ArrowRight, Droplets, Leaf, ShieldCheck, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import CategoryCard from "../../components/CategoryCard";
 import ProductCard from "../../components/ProductCard";
 import cleanseImage from "../../assets/images/cleanser.jpg";
@@ -30,6 +31,8 @@ const routineSteps = [
         image: moisturizeImage,
     },
 ];
+
+
 
 const favorites = [
     { brand: "Cherry Cheeks", name: "Cloud Milk Toner", price: "$25.00", rating: "4.9", reviews: "89", badge: "New", image: "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=900&q=88" },
@@ -66,6 +69,19 @@ function NewArrival() {
 }
 
 function Homepage() {
+    const [category, setCategory] = useState([]);
+
+    useEffect(() => {
+        async function callCategory() {
+            const res = await fetch("/student-data/categories.json");
+            const data = await res.json();
+
+            setCategory(data);
+        }
+
+        callCategory();
+    });
+
     return (
         <div className="homepage">
             <section className="cc-hero">
@@ -103,18 +119,15 @@ function Homepage() {
             <section className="cc-section container">
                 <div className="cc-section-heading cc-section-heading--split">
                     <div><p className="cc-eyebrow">Find your step</p><h2>Build a routine that feels simple</h2></div>
-                    <Link className="cc-text-link cc-desktop-link" to="/shop">Shop every category <ArrowRight size={17} aria-hidden="true" /></Link>
+                    <Link className="cc-text-link cc-desktop-link" to="/category">Shop every category <ArrowRight size={17} aria-hidden="true" /></Link>
                 </div>
                 <div className="cc-category-grid">
-                    {routineSteps.map((card, index) => (
+                    {category.slice(0, 3).map((items) => (
                         <CategoryCard
-                            key={card.name}
-                            step={card.step}
-                            name={card.name}
-                            description={card.note}
-                            image={card.image}
-                            to={card.to}
-                            featured={index === 1}
+                            key={items.id}
+                            name={items.name}
+                            description={items.description}
+                            image={items.image}
                         />
                     ))}
                 </div>

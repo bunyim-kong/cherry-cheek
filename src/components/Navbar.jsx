@@ -86,11 +86,10 @@ export default function Navbar() {
                       variant="icon"
                       aria-label={menuOpen ? 'Close menu' : 'Open menu'}
                       aria-expanded={menuOpen}
-                      aria-controls='mobile-navigation'
-                      onClick={() => setMenuOpen(!menuOpen)}>
-
-                        {menuOpen ? <CloseIcon aria-hidden="true" /> : <Menu />}
-                    </button>
+                      aria-controls="mobile-navigation"
+                      onClick={() => setMenuOpen((isOpen) => !isOpen)}>
+                        {menuOpen ? <CloseIcon aria-hidden="true" /> : <Menu aria-hidden="true" />}
+                    </Button>
 
                     <Link to="/" className="logo" onClick={() => setMenuOpen(false)}>
                         Cherry <span>Cheek</span>

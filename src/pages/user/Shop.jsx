@@ -11,7 +11,7 @@ const categories = ['All', 'Cleansers', 'Toners', 'Serums', 'Moisturizers', 'Sun
 function Shop() {
     const [searchParams, setSearchParams] = useSearchParams();
     const [filtersOpen, setFiltersOpen] = useState(false);
-    const [search, setSearch] = useState('');
+    const search = searchParams.get('q') ?? '';
     const requestedCategory = searchParams.get('category');
     const category = categories.find(
         (item) => item.toLowerCase() === requestedCategory?.toLowerCase(),
@@ -66,7 +66,6 @@ function Shop() {
     const countLabel = `${visibleProducts.length} ${visibleProducts.length === 1 ? 'product' : 'products'}`;
 
     function clearFilters() {
-        setSearch('');
         setSort('rating');
         setSearchParams({});
     }

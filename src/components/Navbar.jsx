@@ -1,8 +1,9 @@
-import { Menu, Search, ShoppingBag, UserRound, X } from 'lucide-react';
+import { Menu, Search, ShoppingBag, UserRound } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import Button from './Button';
 import '../styles/main.css';
+import CloseIcon from './CloseIcon';
 import './Navbar.css';
 
 const navLinks = [

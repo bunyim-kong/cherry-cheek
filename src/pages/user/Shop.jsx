@@ -4,6 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 import CloseIcon from '../../components/CloseIcon';
 import './Shop.css';
 import Button from '../../components/Button';
+import CloseIcon from '../../components/CloseIcon';
 import ProductCard from "../../components/ProductCard";
 
 function Shop() {

@@ -54,13 +54,14 @@ function Shop() {
 
     return (
         <section className="shop">
-            <header className="shop-header">
-                <p className="shop-eyebrow">THE FULL EDIT</p>
-                <h1 className="shop-title">Skincare</h1>
-                <p className="shop-subtitle">
-                    Shop gentle everyday formulas by routine step, concern or brand.
-                </p>
-            </header>
+            <div className='container'>
+                <header className="shop-header">
+                    <p className="shop-eyebrow">THE FULL EDIT</p>
+                    <h1 className="shop-title">Skincare</h1>
+                    <p className="shop-subtitle">
+                        Shop gentle everyday formulas by routine step, concern or brand.
+                    </p>
+                </header>
 
             <div className="shop-body">
                 <div className="shop-toolbar">
@@ -94,19 +95,44 @@ function Shop() {
                             value={sort}
                             onChange={(e) => setSort(e.target.value)} // Keep sorting tied to existing state.
                         >
-                            <option value="featured">Featured</option>
-                            <option value="rating">Top rated</option>
-                            <option value="price-asc">Price: low to high</option>
-                            <option value="price-desc">Price: high to low</option>
-                        </select>
+                            <SlidersHorizontal size={18} aria-hidden="true" />
+                            <span>Filters</span>
+                        </button>
+                        <div className="toolbar-left">
+                            <div className="toolbar-search">
+                                <Search size={20} aria-hidden="true" />
+                                <input
+                                    id="shop-search"
+                                    type="search"
+                                    aria-label="Search skincare products"
+                                    placeholder="Search skincare"
+                                    value={search}
+                                    onChange={(e) => setSearch(e.target.value)} // Keep search tied to existing state.
+                                />
+                            </div>
+                            <p className="toolbar-count" aria-live="polite">{countLabel}</p>
+                        </div>
+
+                        <div className="toolbar-sort">
+                            <label htmlFor="shop-sort">Sort by</label>
+                            <select
+                                id="shop-sort"
+                                value={sort}
+                                onChange={(e) => setSort(e.target.value)} // Keep sorting tied to existing state.
+                            >
+                                <option value="featured">Featured</option>
+                                <option value="rating">Top rated</option>
+                                <option value="price-asc">Price: low to high</option>
+                                <option value="price-desc">Price: high to low</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-            </div>
 
 
-            <div className="shop-body">
+                <div className="shop-body">
 
-                <div className="shop-layout">
+                    <div className="shop-layout">
 
                     <aside className={`filters ${filtersOpen ? 'filters--open' : ''}`}>
                         <div className="filters-mobile-header">
@@ -156,21 +182,7 @@ function Shop() {
                         />
                     )}
 
-                    {/* product grid */}
-                    <div className="shop-grid">
-                        {/* FIX: real ProductCard instead of the placeholder block */}
-                        {visibleProducts.map((p) => (
-                            <ProductCard
-                                key={p.id}
-                                product={p}
-                                onAddToBag={() => handleAddToBag(p)}
-                            />
-                        ))}
-
-                        {/* Shows when filters match nothing */}
-                        {visibleProducts.length === 0 && <p>No products found.</p>}
                     </div>
-
                 </div>
             </div>
         </section>

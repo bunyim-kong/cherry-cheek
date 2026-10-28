@@ -4,7 +4,6 @@ import HomePage from './pages/user/Homepage';
 import OurStory from './pages/user/OurStory';
 import About from './pages/user/About';
 import ShopPage from './pages/user/Shop';
-
 import Login from './pages/User/Login';
 import Register from './pages/user/Register';
 

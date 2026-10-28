@@ -1,6 +1,7 @@
 import { Search, SlidersHorizontal } from 'lucide-react'; // Icons identify search and mobile filters.
 import { useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import CloseIcon from '../../components/CloseIcon';
 import './Shop.css';
 import Button from '../../components/Button';
 import CloseIcon from '../../components/CloseIcon';
@@ -134,7 +135,7 @@ function Shop() {
                                     aria-label="Search skincare products"
                                     placeholder="Search skincare"
                                     value={search}
-                                    onChange={(e) => setSearch(e.target.value)} // Keep search tied to existing state.
+                                    onChange={handleSearchChange}
                                 />
                             </div>
                             <p className="toolbar-count" aria-live="polite">{countLabel}</p>

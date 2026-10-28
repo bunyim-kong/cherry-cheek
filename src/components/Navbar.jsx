@@ -10,7 +10,7 @@ const navLinks = [
     { label: 'Category', to: '/shop' },
     { label: 'Our Story', to: '/our-story' },
     { label: 'About', to: '/about' },
-]
+];
 
 export default function Navbar() {
     const { user } = useAuth();
@@ -78,12 +78,12 @@ export default function Navbar() {
 
     return (
         <>
-            <header className='header'>
-                <div className='navbar'>
-                    <button 
-                      className='hamberger' 
-                      type='button' 
-                      aria-label={menuOpen ? 'Close menu' : 'Open menu'} 
+            <header className="header">
+                <div className="navbar">
+                    <button
+                      className="hamburger"
+                      type="button"
+                      aria-label={menuOpen ? 'Close menu' : 'Open menu'}
                       aria-expanded={menuOpen}
                       aria-controls='mobile-navigation'
                       onClick={() => setMenuOpen(!menuOpen)}>
@@ -91,7 +91,7 @@ export default function Navbar() {
                         {menuOpen ? <CloseIcon aria-hidden="true" /> : <Menu />}
                     </button>
 
-                    <Link to="/" className='logo'>
+                    <Link to="/" className="logo" onClick={() => setMenuOpen(false)}>
                         Cherry <span>Cheek</span>
                     </Link>
 
@@ -175,7 +175,6 @@ export default function Navbar() {
 
                     <div className="search-dialog-content">
                         <h2 id="search-dialog-title">What are you looking for?</h2>
-
                         <form className="search-form" onSubmit={submitSearch}>
                             <label className="sr-only" htmlFor="site-search">
                                 Search products
@@ -193,7 +192,6 @@ export default function Navbar() {
                                   placeholder="Search serum, cleanser, sunscreen..."
                                   autoComplete="off"
                                 />
-
                                 <button type="submit">Search</button>
                             </div>
                         </form>

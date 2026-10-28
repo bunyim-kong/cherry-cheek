@@ -5,6 +5,7 @@
   --ink: #24171d;
   --muted: #716168;
   --cream: #fbf6ec;
+  --page-bg: #fffaf6;
   --paper: #ffffff;
   --blush: #f7e5e8;
   --blush-soft: #fcf2f1;
@@ -27,24 +28,35 @@
 html {
     scroll-behavior: smooth;
     scrollbar-width: none;
-    background-color: #fbf6ec; /* keep the document canvas light cream */
+    background-color: var(--cream); /* keep the document canvas light cream */
 }
 
 body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #fbf6ec; /* match the requested page background */
+    background-color: var(--cream); /* match the requested page background */
     color: var(--ink);
     font-family: var(--body-font);
 }
 
 .container {
+    width: min(1280px, calc(100% - 3rem));
+    margin-inline: auto;
+}
+
+
+#root {
     width: 100%;
-    max-width: 1280px;
-    margin: 0 auto;
+    min-width: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+@media (max-width: 760px) {
+    .container {
+        width: calc(100% - 2rem);
+    }
 }
 
 .content {

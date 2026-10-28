@@ -9,7 +9,7 @@ import './Navbar.css';
 
 const navLinks = [
     { label: 'Shop', to: '/shop' },
-    { label: 'Category', to: '/shop' },
+    { label: 'Category', to: '/category' },
     { label: 'Our Story', to: '/our-story' },
     { label: 'About', to: '/about' },
 ];

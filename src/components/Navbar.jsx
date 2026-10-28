@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import Button from './Button';
 import '../styles/main.css';
+import Button from './Button';
 import CloseIcon from './CloseIcon';
 import './Navbar.css';
 

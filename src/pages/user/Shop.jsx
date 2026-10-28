@@ -1,6 +1,7 @@
 import { Search, SlidersHorizontal, X } from 'lucide-react'; // Icons identify search and mobile filters.
 import { useMemo, useState } from 'react';
 import './Shop.css';
+import Button from '../../components/Button';
 import ProductCard from "../../components/ProductCard";
 import { products } from "../../data/products"; // FIX: this was missing, it caused the crash
 
@@ -54,14 +55,14 @@ function Shop() {
 
             <div className="shop-body">
                 <div className="shop-toolbar">
-                    <button
+                    <Button
                         className="filter-toggle"
-                        type="button"
+                        variant="secondary"
                         onClick={() => setFiltersOpen(true)} // Open the existing filters drawer.
                     >
                         <SlidersHorizontal size={18} aria-hidden="true" />
                         <span>Filters</span>
-                    </button>
+                    </Button>
                     <div className="toolbar-left">
                         <div className="toolbar-search">
                             <Search size={20} aria-hidden="true" />
@@ -101,14 +102,14 @@ function Shop() {
                     <aside className={`filters ${filtersOpen ? 'filters--open' : ''}`}>
                         <div className="filters-mobile-header">
                             <strong>Filters</strong>
-                            <button
-                                type="button"
+                            <Button
                                 className="icon-button"
+                                variant="icon"
                                 onClick={() => setFiltersOpen(false)}
                                 aria-label="Close filters"
                             >
                                 <X />
-                            </button>
+                            </Button>
                         </div>
 
                         <div className="filter-group">
@@ -127,20 +128,20 @@ function Shop() {
                         </div>
 
                         {(category !== 'All' || search || sort !== 'rating') && (
-                            <button className="clear-button" type="button" onClick={clearFilters}>
+                            <Button className="clear-button" variant="ghost" onClick={clearFilters}>
                                 Clear all filters
-                            </button>
+                            </Button>
                         )}
 
-                        <button className="filters-apply" type="button" onClick={() => setFiltersOpen(false)}>
+                        <Button className="filters-apply" onClick={() => setFiltersOpen(false)}>
                             Show {countLabel}
-                        </button>
+                        </Button>
                     </aside>
 
                     {filtersOpen && (
-                        <button
+                        <Button
                             className="drawer-backdrop"
-                            type="button"
+                            variant="plain"
                             aria-label="Close filters"
                             onClick={() => setFiltersOpen(false)}
                         />

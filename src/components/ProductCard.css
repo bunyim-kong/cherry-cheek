@@ -54,23 +54,12 @@
   padding: 8px 0;
   border: none;
   border-radius: 999px;
-  background:var(--wine);
-  color: var(--cream);
-  font-family: var(--body-font); 
   font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
   z-index: 2; 
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
   transition: opacity 0.25s ease, transform 0.25s ease, background 0.2s ease;
-}
-
-.add-to-bag:hover,
-.add-to-bag:focus-visible {
-  background: var(--wine);
-  color: var(--paper);
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -236,11 +225,7 @@
     padding: 7px;
     border: 0;
     border-radius: 16px;
-    background: #5c1a35;
-    color: #fff;
-    font-family: var(--body-font);
     font-size: 14px;
-    font-weight: 600;
     letter-spacing: .01em;
     text-align: center;
     box-shadow: 0 4px 12px rgba(0, 0, 0, .12);
@@ -249,11 +234,9 @@
     transform: none;
     pointer-events: auto;
     transition: background-color .2s ease, transform .15s ease;
-    cursor: pointer;
   }
 
   .new-badge { z-index: 3; } /* Keep the badge above the button if they meet. */
-  .add-to-bag:hover { background: #481329; }
   .add-to-bag:active { transform: scale(.98); }
-  .add-to-bag:focus-visible { outline: 2px solid #fff; outline-offset: -4px; }
+  .add-to-bag:focus-visible { outline: 2px solid var(--paper); outline-offset: -4px; }
 }

@@ -1,6 +1,7 @@
 import { Menu, Search, ShoppingBag, UserRound, X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
+import Button from './Button';
 import '../styles/main.css';
 import './Navbar.css';
 
@@ -96,15 +97,15 @@ export default function Navbar() {
         <>
             <header className="header">
                 <div className="navbar">
-                    <button
+                    <Button
                       className="hamburger"
-                      type="button"
+                      variant="icon"
                       aria-label={menuOpen ? 'Close menu' : 'Open menu'}
                       aria-expanded={menuOpen}
                       aria-controls="mobile-navigation"
                       onClick={() => setMenuOpen((isOpen) => !isOpen)}>
                         {menuOpen ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
-                    </button>
+                    </Button>
 
                     <Link to="/" className="logo" onClick={() => setMenuOpen(false)}>
                         Cherry <span>Cheek</span>
@@ -127,7 +128,7 @@ export default function Navbar() {
                               onChange={(event) => setSearch(event.target.value)}
                               autoComplete="off"
                             />
-                            <button type="submit">Search</button>
+                            <Button type="submit" size="compact">Search</Button>
                         </form>
 
                         {navLinks.map((item) => (
@@ -142,24 +143,24 @@ export default function Navbar() {
                     </nav>
 
                     <div className="nav-action">
-                        <button
+                        <Button
                           ref={searchButtonRef}
                           className="icon-btn desktop-search"
-                          type="button"
+                          variant="icon"
                           aria-label="Search products"
                           aria-haspopup="dialog"
                           aria-expanded={searchOpen}
                           onClick={() => setSearchOpen(true)}>
                             <Search aria-hidden="true" />
-                        </button>
+                        </Button>
 
-                        <Link className="icon-btn" to="/login" aria-label="Your account">
+                        <Button className="icon-btn" variant="icon" to="/login" aria-label="Your account">
                             <UserRound aria-hidden="true" />
-                        </Link>
+                        </Button>
 
-                        <Link className="icon-btn" to="/cart" aria-label="Shopping bag">
+                        <Button className="icon-btn" variant="icon" to="/cart" aria-label="Shopping bag">
                             <ShoppingBag aria-hidden="true" />
-                        </Link>
+                        </Button>
                     </div>
                 </div>
             </header>
@@ -174,13 +175,13 @@ export default function Navbar() {
                   onMouseDown={(event) => {
                       if (event.target === event.currentTarget) setSearchOpen(false);
                   }}>
-                    <button
+                    <Button
                       className="search-overlay__close"
-                      type="button"
+                      variant="icon"
                       aria-label="Close search"
                       onClick={() => setSearchOpen(false)}>
                         <X aria-hidden="true" />
-                    </button>
+                    </Button>
 
                     <div className="search-dialog-content">
                         <h2 id="search-dialog-title">What are you looking for?</h2>
@@ -199,7 +200,7 @@ export default function Navbar() {
                                   placeholder="Search serum, cleanser, sunscreen..."
                                   autoComplete="off"
                                 />
-                                <button type="submit">Search</button>
+                                <Button type="submit" variant="secondary">Search</Button>
                             </div>
                         </form>
                     </div>

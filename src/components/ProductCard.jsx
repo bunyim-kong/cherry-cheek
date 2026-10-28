@@ -28,6 +28,7 @@ function ProductCard({ product = {}, onAddToBag }) {
     ...defaultProduct,
     ...product,
   };
+  const badge = item.badge ?? (item.isNew ? 'NEW' : null);
 
   const badgeLabel = badge ?? (isNew ? 'NEW' : null);
   const inStock = stockQuantity > 0;
@@ -42,7 +43,7 @@ function ProductCard({ product = {}, onAddToBag }) {
         <Button
           className="add-to-bag"
           size="compact"
-          aria-label={`Add ${name} to bag`}
+          aria-label={`Add ${item.name} to bag`}
           onClick={onAddToBag}
           disabled={!inStock}
         >

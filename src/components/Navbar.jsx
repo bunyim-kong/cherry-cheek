@@ -14,8 +14,7 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-    const { user } = useAuth();
-    const [ menuOpen, setMenuOpen ] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
     const [searchOpen, setSearchOpen] = useState(false);
     const [search, setSearch] = useState('');
     const searchButtonRef = useRef(null);
@@ -141,19 +140,13 @@ export default function Navbar() {
                             <Search aria-hidden="true" />
                         </Button>
 
-                        <Link
-                          className='icon-btn flex items-center justify-center'
-                          to={user ? '/account' : '/login'}
-                          aria-label={user ? 'Your account' : 'Sign in'}>
-                            <UserRound />
+                        <Link className="icon-btn" to="/login" aria-label="Your account">
+                            <UserRound aria-hidden="true" />
                         </Link>
 
-                        <button
-                          className='icon-btn flex items-center justify-center'
-                          type='button'
-                          aria-label='Shopping bag'>
-                            <ShoppingBag />
-                        </button>
+                        <Link className="icon-btn" to="/cart" aria-label="Shopping bag">
+                            <ShoppingBag aria-hidden="true" />
+                        </Link>
                     </div>
                 </div>
             </header>

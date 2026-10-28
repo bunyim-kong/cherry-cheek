@@ -1,23 +1,46 @@
 import { Search, SlidersHorizontal } from 'lucide-react'; // Icons identify search and mobile filters.
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import CloseIcon from '../../components/CloseIcon';
 import './Shop.css';
 import '../../styles/main.css'
 import ProductCard from "../../components/ProductCard";
-import { products } from "../../data/products"; // FIX: this was missing, it caused the crash
 
-const categories = ['All', 'Cleansers', 'Toners', 'Serums', 'Moisturizers', 'Sun Care'];
+const categoryNames = {
+    1: 'Skincare',
+    2: 'Makeup',
+    3: 'Haircare',
+    4: 'Fragrance',
+    5: 'Body Care',
+};
 
 function Shop() {
     const [searchParams, setSearchParams] = useSearchParams();
     const [filtersOpen, setFiltersOpen] = useState(false);
+    const [products, setProducts] = useState([]);
     const search = searchParams.get('q') ?? '';
     const requestedCategory = searchParams.get('category');
+    const categories = useMemo(
+        () => ['All', ...new Set(products.map((product) => product.category))],
+        [products],
+    );
     const category = categories.find(
         (item) => item.toLowerCase() === requestedCategory?.toLowerCase(),
     ) ?? 'All';
-    const [sort, setSort] = useState('rating');
+    const [sort, setSort] = useState('featured');
+
+    useEffect(() => {
+        async function loadProducts() {
+            const productData = await (await fetch('/student-data/products.json')).json();
+
+            setProducts(productData.map((product) => ({
+                ...product,
+                category: categoryNames[product.categoryId],
+            })));
+        }
+
+        loadProducts();
+    }, []);
 
     function handleSearchChange(event) {
         const nextSearch = event.target.value;
@@ -59,15 +82,15 @@ function Shop() {
         return [...filtered].sort((a, b) => {
             if (sort === 'price-asc') return a.price - b.price;
             if (sort === 'price-desc') return b.price - a.price;
-            if (sort === 'newest') return new Date(b.addedAt) - new Date(a.addedAt);
-            return b.rating - a.rating;
+            if (sort === 'stock-desc') return b.stockQuantity - a.stockQuantity;
+            return a.id - b.id;
         });
-    }, [search, category, sort]);
+    }, [products, search, category, sort]);
 
     const countLabel = `${visibleProducts.length} ${visibleProducts.length === 1 ? 'product' : 'products'}`;
 
     function clearFilters() {
-        setSort('rating');
+        setSort('featured');
         setSearchParams({});
     }
 
@@ -123,9 +146,9 @@ function Shop() {
                                 onChange={(e) => setSort(e.target.value)} // Keep sorting tied to existing state.
                             >
                                 <option value="featured">Featured</option>
-                                <option value="rating">Top rated</option>
                                 <option value="price-asc">Price: low to high</option>
                                 <option value="price-desc">Price: high to low</option>
+                                <option value="stock-desc">Stock: high to low</option>
                             </select>
                         </div>
                     </div>
@@ -164,7 +187,7 @@ function Shop() {
                                 ))}
                             </div>
 
-                            {(category !== 'All' || search || sort !== 'rating') && (
+                            {(category !== 'All' || search || sort !== 'featured') && (
                                 <button className="clear-button" type="button" onClick={clearFilters}>
                                     Clear all filters
                                 </button>

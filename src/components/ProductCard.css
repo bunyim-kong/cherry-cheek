@@ -14,7 +14,7 @@
   aspect-ratio: .82;
   border-radius: 1rem;
   overflow: hidden;
-  isolation: isolate; /* keep overlay layers above the clipped photo */
+  isolation: isolate; 
   background: #eee3e1;
 }
 
@@ -22,13 +22,13 @@
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* fills the box without stretching */
-  transition: transform 0.55s ease; /* animate the photo zoom smoothly */
+  object-fit: cover; 
+  transition: transform 0.55s ease;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .product-image:hover img {
-    transform: scale(1.04); /* zoom only the photo on hover-capable devices */
+    transform: scale(1.04); 
   }
 }
 
@@ -119,7 +119,7 @@
   margin: 0;
 }
 
-.rating {
+.quantity {
   display: flex;
   align-items: center;
   gap: 5px;
@@ -127,23 +127,18 @@
   font-family: var(--body-font);
   font-size: .76rem;
   min-width: 0;
-  color: #9a5b24; /* warm brown-gold for the star and rating value */
+  color: #9a5b24; 
   white-space: nowrap;
 }
 
-.rating svg {
-  width: 14px;
-  height: 14px;
-  flex-shrink: 0;
-  color: #9a5b24; /* keep the star aligned in the rating color */
-}
 
-.rating-value {
-  color: #9a5b24; /* match the star to the rating number */
+
+.quantity-value {
+  color: #9a5b24;
 }
 
 .review-count {
-  color: var(--muted); /* soften the review count */
+  color: var(--muted); 
 }
 
 .price {
@@ -193,20 +188,21 @@
   }
 
   .product-meta {
-    flex-direction: column; /* stack rating and price on mobile */
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 6px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
     margin-top: 4px; /* add extra space after the product name */
   }
 
-  .rating,
+  .quantity,
   .price {
     font-size: 12px;
   }
 
   .price-line {
-    align-self: flex-start; /* align both prices to the card's left edge */
+    align-self: auto;
+    margin-left: auto;
   }
 }
 
@@ -234,7 +230,7 @@
   .category { font-size: 10px; letter-spacing: .12em; }
   .product-name { font-size: 15px; line-height: 1.25; }
   .product-meta { gap: 5px; }
-  .rating { font-size: 12px; }
+  .quantity { font-size: 12px; }
   .price { font-size: 14px; }
   .old-price { font-size: 12px; }
 

@@ -3,6 +3,7 @@ import { useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import './Shop.css';
 import Button from '../../components/Button';
+import CloseIcon from '../../components/CloseIcon';
 import ProductCard from "../../components/ProductCard";
 import { products } from "../../data/products"; // FIX: this was missing, it caused the crash
 
@@ -11,7 +12,7 @@ const categories = ['All', 'Cleansers', 'Toners', 'Serums', 'Moisturizers', 'Sun
 function Shop() {
     const [searchParams, setSearchParams] = useSearchParams();
     const [filtersOpen, setFiltersOpen] = useState(false);
-    const [search, setSearch] = useState('');
+    const search = searchParams.get('q') ?? '';
     const requestedCategory = searchParams.get('category');
     const category = categories.find(
         (item) => item.toLowerCase() === requestedCategory?.toLowerCase(),
@@ -66,7 +67,6 @@ function Shop() {
     const countLabel = `${visibleProducts.length} ${visibleProducts.length === 1 ? 'product' : 'products'}`;
 
     function clearFilters() {
-        setSearch('');
         setSort('rating');
         setSearchParams({});
     }
@@ -170,7 +170,7 @@ function Shop() {
                                 onClick={() => setFiltersOpen(false)}
                                 aria-label="Close filters"
                             >
-                                <X />
+                                <CloseIcon aria-hidden="true" />
                             </Button>
                         </div>
 

@@ -8,14 +8,14 @@ function ProductCard({ product, onAddToBag }) {
   return (
     <article className="product-card">
       <div className="product-image">
-        <img src={image} alt={name} />
+        <img src={item.image} alt={item.name} />
 
-        {isNew && <span className="new-badge">NEW</span>}
+        {badge && <span className="new-badge">{badge}</span>}
 
         <Button
           className="add-to-bag"
           size="compact"
-          aria-label={`Add ${name} to bag`}
+          aria-label={`Add ${item.name} to bag`}
           onClick={onAddToBag}
         >
           Add to bag

@@ -80,7 +80,7 @@ export default function Navbar() {
     return (
         <>
             <header className="header">
-                <div className="navbar">
+                <div className="navbar container">
                     <Button
                       className="hamburger"
                       variant="icon"

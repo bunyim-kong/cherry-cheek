@@ -62,7 +62,7 @@ function Login() {
               type="email"
               name="email"
               id="login-email"
-              placeholder="dara@gmail.com"
+              placeholder="Example@gmail.com"
               autoComplete="email"
               value={form.email}
               onChange={handleChange}

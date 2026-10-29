@@ -9,7 +9,7 @@ import { Slash, Minus, Plus, DollarSign } from "lucide-react";
 
 function ProductDetail() {
   return (
-    <main className="product-detail">
+    <main className="container product-detail">
       {/* Breadcrumb */}
       <nav className="breadcrumb">
         <span>Shop</span>
@@ -112,16 +112,12 @@ function ProductDetail() {
         </div>
       </section>
 
-      {/* Product Related */}
-
-      {/* Section Header */}
       <div className="container-product_related">
         <p className="breadcrumb">COMPLETE THE ROUTINE</p>
 
         <h2 className="title-product_related">You may also like</h2>
       </div>
 
-      {/* Related Product Cards */}
       <div className="product-related-recommend">
         <ProductCard />
         <ProductCard />

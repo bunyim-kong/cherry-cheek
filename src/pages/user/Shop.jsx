@@ -141,7 +141,6 @@ function Shop() {
                                 onChange={handleSearchChange}
                             />
                         </div>
-                        <p className="toolbar-count" aria-live="polite">{countLabel}</p>
                     </div>
 
                     <div className="toolbar-sort">

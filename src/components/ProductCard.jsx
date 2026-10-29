@@ -1,4 +1,5 @@
 import Button from './Button';
+import { Link } from 'react-router-dom';
 import "./ProductCard.css";
 
 const defaultProduct = {
@@ -15,6 +16,7 @@ function formatPrice(value) {
 
 function ProductCard({ product = {}, onAddToBag }) {
   const {
+    id,
     name,
     brand,
     price,
@@ -33,7 +35,13 @@ function ProductCard({ product = {}, onAddToBag }) {
   return (
     <article className="product-card">
       <div className="product-image">
-        <img src={image} alt={name} loading="lazy" />
+        <Link
+          className="product-image-link"
+          to={`/product-detail/${id}`}
+          aria-label={`View ${name} details`}
+        >
+          <img src={image} alt={name} loading="lazy" />
+        </Link>
 
         {badgeLabel && <span className="new-badge">{badgeLabel}</span>}
 
@@ -50,11 +58,15 @@ function ProductCard({ product = {}, onAddToBag }) {
 
       <div className="product-info">
         <p className="category">{brand}</p>
-        <h3 className="product-name">{name}</h3>
+        <h3 className="product-name">
+          <Link className="product-name-link" to={`/product-detail/${id}`}>
+            {name}
+          </Link>
+        </h3>
         <div className="product-meta">
-          <p className="quantity">
+          <p className="product-stock">
             <span>Stock:</span>
-            <span className="quantity-value">{stockQuantity}</span>
+            <span className="product-stock-value">{stockQuantity}</span>
           </p>
           <p className="price-line">
             <span className="price">{formatPrice(price)}</span>

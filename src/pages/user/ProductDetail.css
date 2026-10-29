@@ -1,7 +1,7 @@
 /* Main Container */
 .product-detail {
   margin: 0 auto;
-  padding: 30px 24px 60px;
+  padding: 30px 0px;
   box-sizing: border-box;
   width: 100%;
 }
@@ -60,14 +60,12 @@
 }
 /* Product Information */
 .product-brand {
-  margin: 0 0 20px;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 
 .product-title {
-  margin: 0 0 20px;
   color: #333333;
   font-family: var(--head-font);
   font-size: 58px;
@@ -76,7 +74,6 @@
 }
 
 .product-rating {
-  margin: 0 0 24px;
   color: var(--muted);
   font-size: 12px;
 }
@@ -89,21 +86,19 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 26px;
   color: var(--muted);
   font-size: 15px;
 }
 
 .product-price {
   color: var(--wine);
-  font-size: 21px;
+  font-size: 28px;
   font-weight: 700;
 }
 
 .product-description {
-  margin: 0 0 24px;
   color: var(--muted);
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.8;
 }
 
@@ -191,15 +186,25 @@
   margin: 0 0 8px;
   color: var(--ink);
   font-family: var(--body-font);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
 }
 
-.product-extra p {
-  margin: 0;
+.product-extra ul {
+  list-style-type: circle;
+  margin-left: 16px;
+}
+
+.product-extra ul li {
   color: var(--muted);
-  font-size: 14px;
-  line-height: 1.7;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.product-extra p {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.8;
 }
 
 /* Tablet */

@@ -8,6 +8,7 @@ import Account from './pages/user/Account';
 import Login from './pages/user/Login';
 import Register from './pages/user/Register';
 import Category from './pages/user/Category';
+import Cart from "./pages/user/Cart";
 
 export default function App() {
     return (
@@ -21,6 +22,7 @@ export default function App() {
                 <Route path="category" element={<Category />} />
                 <Route path="our-story" element={<OurStory />} />
                 <Route path="about" element={<About />} />
+                <Route path="cart" element={<Cart />} />
             </Route>
         </Routes>
     );

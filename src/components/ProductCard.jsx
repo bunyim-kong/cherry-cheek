@@ -32,9 +32,6 @@ function ProductCard({ product = {}, onAddToBag }) {
   const badgeLabel = badge ?? (isNew ? 'NEW' : null);
   const inStock = stockQuantity > 0;
 
-  const badgeLabel = badge ?? (isNew ? 'NEW' : null);
-  const inStock = stockQuantity > 0;
-
   return (
     <article className="product-card">
       <div className="product-image">

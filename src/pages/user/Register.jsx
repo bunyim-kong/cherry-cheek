@@ -55,6 +55,7 @@ function Register() {
               id="register-name"
               name="name"
               type="text"
+              placeholder="Enter your full name"
               autoComplete="name"
               value={form.name}
               onChange={handleChange}
@@ -66,6 +67,7 @@ function Register() {
               id="register-email"
               name="email"
               type="email"
+              placeholder="Example@gmail.com"
               autoComplete="email"
               value={form.email}
               onChange={handleChange}
@@ -77,6 +79,7 @@ function Register() {
               id="register-password"
               name="password"
               type="password"
+              placeholder="Enter your password"
               autoComplete="new-password"
               value={form.password}
               onChange={handleChange}

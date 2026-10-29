@@ -4,7 +4,6 @@ import { useSearchParams } from 'react-router-dom';
 import CloseIcon from '../../components/CloseIcon';
 import './Shop.css';
 import Button from '../../components/Button';
-import CloseIcon from '../../components/CloseIcon';
 import ProductCard from "../../components/ProductCard";
 
 function Shop() {
@@ -48,22 +47,6 @@ function Shop() {
 
         loadShopData();
     }, []);
-
-    function handleSearchChange(event) {
-        const nextSearch = event.target.value;
-
-        setSearchParams((currentParams) => {
-            const nextParams = new URLSearchParams(currentParams);
-
-            if (nextSearch) {
-                nextParams.set('q', nextSearch);
-            } else {
-                nextParams.delete('q');
-            }
-
-            return nextParams;
-        }, { replace: true });
-    }
 
     function handleSearchChange(event) {
         const nextSearch = event.target.value;
@@ -168,44 +151,15 @@ function Shop() {
                             value={sort}
                             onChange={(e) => setSort(e.target.value)} // Keep sorting tied to existing state.
                         >
-                            <SlidersHorizontal size={18} aria-hidden="true" />
-                            <span>Filters</span>
-                        </button>
-                        <div className="toolbar-left">
-                            <div className="toolbar-search">
-                                <Search size={20} aria-hidden="true" />
-                                <input
-                                    id="shop-search"
-                                    type="search"
-                                    aria-label="Search skincare products"
-                                    placeholder="Search skincare"
-                                    value={search}
-                                    onChange={handleSearchChange}
-                                />
-                            </div>
-                            <p className="toolbar-count" aria-live="polite">{countLabel}</p>
-                        </div>
-
-                        <div className="toolbar-sort">
-                            <label htmlFor="shop-sort">Sort by</label>
-                            <select
-                                id="shop-sort"
-                                value={sort}
-                                onChange={(e) => setSort(e.target.value)} // Keep sorting tied to existing state.
-                            >
-                                <option value="featured">Featured</option>
-                                <option value="price-asc">Price: low to high</option>
-                                <option value="price-desc">Price: high to low</option>
-                                <option value="stock-desc">Stock: high to low</option>
-                            </select>
-                        </div>
+                            <option value="featured">Featured</option>
+                            <option value="price-asc">Price: low to high</option>
+                            <option value="price-desc">Price: high to low</option>
+                            <option value="stock-desc">Stock: high to low</option>
+                        </select>
                     </div>
                 </div>
 
-
-                <div className="shop-body">
-
-                    <div className="shop-layout">
+                <div className="shop-layout">
 
                         <aside className={`filters ${filtersOpen ? 'filters--open' : ''}`}>
                             <div className="filters-mobile-header">
@@ -268,11 +222,10 @@ function Shop() {
                             {visibleProducts.length === 0 && <p>No products found.</p>}
                         </div>
 
-                    </div>
                 </div>
+            </div>
             </div>
         </section>
     );
 }
-
 export default Shop;

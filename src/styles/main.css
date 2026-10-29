@@ -35,7 +35,7 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: var(--cream); /* match the requested page background */
+    background-color: var(--page-bg); /* match the requested page background */
     color: var(--ink);
     font-family: var(--body-font);
 }

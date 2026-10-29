@@ -28,7 +28,7 @@
 html {
     scroll-behavior: smooth;
     scrollbar-width: none;
-    background-color: #fbf6ec; /* keep the document canvas light cream */
+    background-color: var(--cream); /* keep the document canvas light cream */
 }
 
 body {
@@ -38,5 +38,12 @@ body {
     background-color: var(--page-bg); /* match the requested page background */
     color: var(--ink);
     font-family: var(--body-font);
+}
+
+.container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 

@@ -1,0 +1,207 @@
+.project-about {
+    padding-bottom: 5rem;
+    background: #fffaf6;
+    color: var(--ink);
+}
+
+.project-about .container {
+    width: min(calc(100% - 80px), 1280px);
+}
+
+.project-about__hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(280px, .75fr);
+    gap: 6rem;
+    padding-top: 30px;
+    padding-bottom: 5rem;
+    align-items: end;
+}
+
+.project-about__eyebrow {
+    margin: 0 0 1rem;
+    color: var(--rose);
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+}
+
+.project-about h1,
+.project-about h2,
+.project-about h3 {
+    font-family: var(--head-font);
+    font-weight: 500;
+}
+
+.project-about h1 {
+    max-width: 850px;
+    margin: 0;
+    font-size: clamp(3.6rem, 7vw, 7rem);
+    line-height: .98;
+    letter-spacing: -.055em;
+}
+
+.project-about__summary > p,
+.project-about__feature-copy > p:not(.project-about__eyebrow) {
+    margin: 0;
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.75;
+}
+
+.project-about__link {
+    display: inline-flex;
+    margin-top: 1.75rem;
+    align-items: center;
+    gap: .65rem;
+    color: var(--wine);
+    font-size: .9rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.project-about__link span {
+    transition: transform .2s ease;
+}
+
+.project-about__link:hover span {
+    transform: translateX(.3rem);
+}
+
+.project-about__link:focus-visible {
+    outline: 2px solid var(--rose);
+    outline-offset: 4px;
+}
+
+.project-about__feature {
+    display: grid;
+    grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+    gap: clamp(3rem, 8vw, 7rem);
+    align-items: center;
+}
+
+.project-about__portrait,
+.project-about__landscape {
+    overflow: hidden;
+    background: var(--blush-soft);
+}
+
+.project-about__portrait {
+    border-radius: 14rem 1rem 1rem 1rem;
+}
+
+.project-about__portrait img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+}
+
+.project-about__feature-copy h2,
+.project-about__values-heading h2 {
+    margin: 0 0 1.5rem;
+    font-size: clamp(2.5rem, 4.5vw, 4.5rem);
+    line-height: 1.08;
+    letter-spacing: -.04em;
+}
+
+.project-about__landscape {
+    width: 75%;
+    margin: 3rem 0 0 auto;
+    border-radius: 1rem 1rem 8rem 1rem;
+}
+
+.project-about__landscape img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+}
+
+.project-about__values {
+    padding-top: clamp(5rem, 10vw, 9rem);
+}
+
+.project-about__values-heading {
+    max-width: 760px;
+}
+
+.project-about__value-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: 3rem;
+    border-top: 1px solid var(--line);
+}
+
+.project-about__value {
+    padding: 2rem 2rem 0 0;
+}
+
+.project-about__value + .project-about__value {
+    padding-left: 2rem;
+    border-left: 1px solid var(--line);
+}
+
+.project-about__value span {
+    color: var(--rose);
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+}
+
+.project-about__value h3 {
+    margin: 1.25rem 0 .75rem;
+    font-size: 1.65rem;
+    line-height: 1.2;
+}
+
+.project-about__value p {
+    margin: 0;
+    color: var(--muted);
+    font-size: .92rem;
+    line-height: 1.7;
+}
+
+@media (max-width: 760px) {
+    .project-about {
+        padding-bottom: 5rem;
+    }
+
+    .project-about .container {
+        width: calc(100% - 40px);
+    }
+
+    .project-about__hero,
+    .project-about__feature {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .project-about__hero {
+        padding-block: 2.5rem 4rem;
+    }
+
+    .project-about h1 {
+        font-size: clamp(3rem, 15vw, 4.5rem);
+    }
+
+    .project-about__portrait {
+        border-radius: 8rem 1rem 1rem 1rem;
+    }
+
+    .project-about__landscape {
+        width: 82%;
+        margin-top: 2.25rem;
+    }
+
+    .project-about__value-list {
+        grid-template-columns: 1fr;
+    }
+
+    .project-about__value,
+    .project-about__value + .project-about__value {
+        padding: 1.75rem 0;
+        border-left: 0;
+        border-bottom: 1px solid var(--line);
+    }
+}

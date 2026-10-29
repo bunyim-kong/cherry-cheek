@@ -6,7 +6,7 @@ function Cart() {
   // Temporary conditions for testing UI
   const isLoggedIn = true;
   const hasProducts = true;
-  // STATE 1: User has NOT signed in
+  // condition 1: User has NOT signed in
   if (!isLoggedIn) {
     return (
       <main>
@@ -34,7 +34,7 @@ function Cart() {
     );
   }
 
-  // STATE 2: User signed in but cart is EMPTY
+  // condition 2: User signed in but cart is EMPTY
   if (!hasProducts) {
     return (
       <main>
@@ -61,10 +61,10 @@ function Cart() {
     );
   }
 
-  // STATE 3: User signed in and HAS PRODUCTS
+  // consdition 3: User signed in and HAS PRODUCTS
   return (
     <main>
-      <section className="container-shopping-bag">
+      <section className="container shopping-container">
         {/* Shopping Header */}
         <div className="shopping-bag-header">
           <p className="shopping-subtitle">YOUR SELECTION</p>
@@ -73,15 +73,12 @@ function Cart() {
         </div>
 
         <div className="container-product-order">
-          {/* LEFT: Products */}
           <div className="product-state">
             <article className="shopping-product">
-              {/* Product Image */}
               <div className="shopping-product-image">
                 <img src="/images/product-1.jpg" alt="Skincare Product" />
               </div>
 
-              {/* Product Information */}
               <div className="shopping-product-info">
                 <p className="shopping-product-brand">Cherry Cheeks</p>
 
@@ -90,7 +87,7 @@ function Cart() {
                 <p className="shopping-product-price">150ml</p>
 
                 {/* Quantity UI Only */}
-                <div className="quanity-remove">
+                <div className="quantity-remove">
                   <div className="shopping-quantity">
                     <button type="button">−</button>
 
@@ -108,7 +105,7 @@ function Cart() {
             
           </div>
 
-          {/* RIGHT: Order Summary */}
+
           <div className="order-summary">
             <h2>Order Summary</h2>
 

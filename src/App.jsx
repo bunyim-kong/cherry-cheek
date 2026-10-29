@@ -9,6 +9,7 @@ import Login from './pages/user/Login';
 import Register from './pages/user/Register';
 import Category from './pages/user/Category';
 import Cart from "./pages/user/Cart";
+import ProductDetail from './pages/user/ProductDetail';
 
 export default function App() {
     return (
@@ -23,6 +24,8 @@ export default function App() {
                 <Route path="our-story" element={<OurStory />} />
                 <Route path="about" element={<About />} />
                 <Route path="cart" element={<Cart />} />
+                <Route path="product-detail" element={<ProductDetail />} />
+                <Route path="product-detail/:productId" element={<ProductDetail />} />
             </Route>
         </Routes>
     );

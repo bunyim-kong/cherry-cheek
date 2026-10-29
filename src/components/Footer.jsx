@@ -26,9 +26,8 @@ function Footer() {
           <nav className="footer-col" aria-label="Shop">
             <h3 className="footer-heading">Shop</h3>
             <ul className="footer-list">
-              <li><a href="">All products</a></li>
-              <li><a href="">New arrivals</a></li>
-              <li><a href="">Brands</a></li>
+              <li><a href="/shop">All products</a></li>
+              <li><a href="/category">Category</a></li>
             </ul>
           </nav>
 
@@ -36,7 +35,7 @@ function Footer() {
           <nav className="footer-col" aria-label="Help">
             <h3 className="footer-heading">Help</h3>
             <ul className="footer-list">
-              <li><a href="">Our story</a></li>
+              <li><a href="/our-story">Our story</a></li>
               <li><a href="">Shipping and returns</a></li>
               <li><a href="">Contact</a></li>
             </ul>

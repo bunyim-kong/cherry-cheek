@@ -6,14 +6,6 @@ import './Shop.css';
 import '../../styles/main.css'
 import ProductCard from "../../components/ProductCard";
 
-const categoryNames = {
-    1: 'Skincare',
-    2: 'Makeup',
-    3: 'Haircare',
-    4: 'Fragrance',
-    5: 'Body Care',
-};
-
 function Shop() {
     const [searchParams, setSearchParams] = useSearchParams();
     const [filtersOpen, setFiltersOpen] = useState(false);
@@ -30,16 +22,30 @@ function Shop() {
     const [sort, setSort] = useState('featured');
 
     useEffect(() => {
-        async function loadProducts() {
-            const productData = await (await fetch('/student-data/products.json')).json();
+        async function loadShopData() {
+            const [productResponse, categoryResponse] = await Promise.all([
+                fetch("/student-data/products.json"),
+                fetch("/student-data/categories.json"),
+            ]);
 
-            setProducts(productData.map((product) => ({
+            const [productData, categoryData] = await Promise.all([
+                productResponse.json(),
+                categoryResponse.json(),
+            ]);
+
+            const categoryById = new Map(
+                categoryData.map((category) => [category.id, category.name]),
+            );
+
+            const productsWithCategory = productData.map((product) => ({
                 ...product,
-                category: categoryNames[product.categoryId],
-            })));
+                category: categoryById.get(product.categoryId) ?? 'Other',
+            }));
+
+            setProducts(productsWithCategory);
         }
 
-        loadProducts();
+        loadShopData();
     }, []);
 
     function handleSearchChange(event) {
@@ -209,7 +215,6 @@ function Shop() {
 
                         {/* product grid */}
                         <div className="shop-grid">
-                            {/* FIX: real ProductCard instead of the placeholder block */}
                             {visibleProducts.map((p) => (
                                 <ProductCard
                                     key={p.id}
@@ -218,7 +223,6 @@ function Shop() {
                                 />
                             ))}
 
-                            {/* Shows when filters match nothing */}
                             {visibleProducts.length === 0 && <p>No products found.</p>}
                         </div>
 

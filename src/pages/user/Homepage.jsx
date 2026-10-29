@@ -3,84 +3,43 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import CategoryCard from "../../components/CategoryCard";
 import ProductCard from "../../components/ProductCard";
-import cleanseImage from "../../assets/images/cleanser.jpg";
-import moisturizeImage from "../../assets/images/moisturize.jpg";
-import treatImage from "../../assets/images/treat.jpg";
 import "./Homepage.css";
 
-const routineSteps = [
-    {
-        step: "Step 01",
-        name: "Cleanse",
-        note: "Fresh starts, never stripped",
-        to: "/shop?category=cleansers",
-        image: cleanseImage,
-    },
-    {
-        step: "Step 02",
-        name: "Treat",
-        note: "Targeted care, made simple",
-        to: "/shop?category=serums",
-        image: treatImage,
-    },
-    {
-        step: "Step 03",
-        name: "Moisturize",
-        note: "Comfort that lasts all day",
-        to: "/shop?category=moisturizers",
-        image: moisturizeImage,
-    },
-];
-
-
-
-const favorites = [
-    { brand: "Cherry Cheeks", name: "Cloud Milk Toner", price: "$25.00", rating: "4.9", reviews: "89", badge: "New", image: "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=900&q=88" },
-    { brand: "Seoul Ritual", name: "Glass Skin Serum", price: "$38.00", rating: "4.9", reviews: "214", badge: "Bestseller", image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=900&q=88" },
-    { brand: "Hana Form", name: "Barrier Bloom Cream", price: "$42.00", rating: "4.7", reviews: "76", badge: "Editor pick", image: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=900&q=88" },
-    { brand: "Solskin", name: "Daily Veil SPF 50", price: "$31.00", rating: "4.8", reviews: "143", badge: "Daily essential", image: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=900&q=88" },
-];
-
-const newArrivals = [
-    { brand: "Pinky Studio", name: "Soft Focus Cleansing Balm", price: "$28.00", rating: "4.8", reviews: "67", badge: "Just in", image: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=900&q=88" },
-    { brand: "Pinky Studio", name: "Dew Petal Essence", price: "$32.00", rating: "4.9", reviews: "41", badge: "New", image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=900&q=88" },
-    { brand: "Pinky Studio", name: "Rosy Barrier Cream", price: "$34.00", rating: "4.7", reviews: "36", badge: "New", image: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=900&q=88" },
-    { brand: "Pinky Studio", name: "Cloud Veil Sunscreen", price: "$26.00", rating: "4.8", reviews: "52", badge: "Just in", image: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=900&q=88" },
-];
-
-function ProductShelf() {
+function ProductShelf({ products }) {
     return (
         <div className="cc-product-grid">
-            {favorites.map((product) => (
-                <ProductCard product={product} key={product.name} />
-            ))}
-        </div>
-    );
-}
-
-function NewArrival() {
-    return (
-        <div className="cc-product-grid">
-            {newArrivals.map((product) => (
-                <ProductCard product={product} key={product.name} />
+            {products.map((product) => (
+                <ProductCard key={product.id} product={product} />
             ))}
         </div>
     );
 }
 
 function Homepage() {
-    const [category, setCategory] = useState([]);
+    const [categories, setCategories] = useState([]);
+    const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        async function callCategory() {
-            const res = await fetch("/student-data/categories.json");
-            const data = await res.json();
+        async function loadHomepageData() {
+            const [categoryResponse, productResponse] = await Promise.all([
+                fetch("/student-data/categories.json"),
+                fetch("/student-data/products.json"),
+            ]);
 
-            setCategory(data);
+            const [categoryData, productData] = await Promise.all([
+                categoryResponse.json(),
+                productResponse.json(),
+            ]);
+
+            setCategories(categoryData);
+            setProducts(productData);
         }
 
-        callCategory();
-    });
+        loadHomepageData();
+    }, []);
+
+    const favoriteProducts = products.slice(0, 4);
+    const newArrivalProducts = products.slice(4, 8);
 
     return (
         <div className="homepage">
@@ -122,12 +81,13 @@ function Homepage() {
                     <Link className="cc-text-link cc-desktop-link" to="/category">Shop every category <ArrowRight size={17} aria-hidden="true" /></Link>
                 </div>
                 <div className="cc-category-grid">
-                    {category.slice(0, 3).map((items) => (
+                    {categories.slice(0, 3).map((category) => (
                         <CategoryCard
-                            key={items.id}
-                            name={items.name}
-                            description={items.description}
-                            image={items.image}
+                            key={category.id}
+                            name={category.name}
+                            description={category.description}
+                            image={category.image}
+                            to={`/shop?category=${encodeURIComponent(category.name)}`}
                         />
                     ))}
                 </div>
@@ -139,7 +99,7 @@ function Homepage() {
                         <div><p className="cc-eyebrow">Most loved</p><h2>Community favorites</h2></div>
                         <Link className="cc-text-link" to="/shop">Shop new arrivals <ArrowRight size={17} aria-hidden="true" /></Link>
                     </div>
-                    <ProductShelf />
+                    <ProductShelf products={favoriteProducts} />
                 </div>
             </section>
 
@@ -163,7 +123,7 @@ function Homepage() {
                         <Link className="cc-text-link" to="/shop">Shop new arrival <ArrowRight size={17} aria-hidden="true" /></Link>
                     </div>
                     
-                    <NewArrival />
+                    <ProductShelf products={newArrivalProducts} />
                 </div>
             </section>
         </div>

@@ -15,26 +15,34 @@ function formatPrice(value) {
   return typeof value === 'number' ? `$${value.toFixed(2)}` : value;
 }
 
-function ProductCard({ product = {}, oldPrice, onAddToBag }) {
-  const item = {
+function ProductCard({ product = {}, onAddToBag }) {
+  const {
+    name,
+    brand,
+    price,
+    stockQuantity,
+    image,
+    badge,
+    isNew,
+  } = {
     ...defaultProduct,
     ...product,
-    oldPrice: product.oldPrice ?? oldPrice,
   };
-  const badge = item.badge ?? (item.isNew ? 'NEW' : null);
-  const inStock = item.stockQuantity > 0;
+
+  const badgeLabel = badge ?? (isNew ? 'NEW' : null);
+  const inStock = stockQuantity > 0;
 
   return (
     <article className="product-card">
       <div className="product-image">
-        <img src={item.image} alt={item.name} />
+        <img src={image} alt={name} loading="lazy" />
 
-        {badge && <span className="new-badge">{badge}</span>}
+        {badgeLabel && <span className="new-badge">{badgeLabel}</span>}
 
         <Button
           className="add-to-bag"
           size="compact"
-          aria-label={`Add ${item.name} to bag`}
+          aria-label={`Add ${name} to bag`}
           onClick={onAddToBag}
           disabled={!inStock}
         >
@@ -43,15 +51,15 @@ function ProductCard({ product = {}, oldPrice, onAddToBag }) {
       </div>
 
       <div className="product-info">
-        <p className="category">{item.brand}</p>
-        <h3 className="product-name">{item.name}</h3>
+        <p className="category">{brand}</p>
+        <h3 className="product-name">{name}</h3>
         <div className="product-meta">
           <p className="quantity">
             <span>Stock:</span>
-            <span className="quantity-value">{item.stockQuantity}</span>
+            <span className="quantity-value">{stockQuantity}</span>
           </p>
           <p className="price-line">
-            <span className="price">{formatPrice(item.price)}</span>
+            <span className="price">{formatPrice(price)}</span>
           </p>
         </div>
       </div>

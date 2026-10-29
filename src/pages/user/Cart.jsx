@@ -1,57 +1,38 @@
+import { Minus, Plus } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useCart } from "../../context/cart";
 import "./Cart.css";
 import "../../styles/main.css";
 
+const FREE_DELIVERY_THRESHOLD = 80;
+const STANDARD_DELIVERY_FEE = 6;
+
+function formatCurrency(value) {
+  return `$${value.toFixed(2)}`;
+}
+
 function Cart() {
-  // Temporary conditions for testing UI
-  const isLoggedIn = true;
-  const hasProducts = true;
-  // condition 1: User has NOT signed in
-  if (!isLoggedIn) {
+  const {
+    cartItems,
+    cartCount,
+    subtotal,
+    updateQuantity,
+    removeFromCart,
+  } = useCart();
+
+  if (cartItems.length === 0) {
     return (
       <main>
         <section className="container-shopping">
           <div className="shopping-content">
             <p className="shopping-subtitle">YOUR BAG</p>
-
-            <h1 className="shopping-title">Sign in to view your bag</h1>
-
-            <p className="shopping-description">
-              Sign in to open the shopping bag saved for this account in this
-              browser.
-            </p>
-
-            <Link to="/login" className="shopping-btn">
-              Sign in or register
-            </Link>
-
-            <Link to="/shop" className="link-shopping">
-              Continue Shopping
-            </Link>
-          </div>
-        </section>
-      </main>
-    );
-  }
-
-  // condition 2: User signed in but cart is EMPTY
-  if (!hasProducts) {
-    return (
-      <main>
-        <section className="container-shopping">
-          <div className="shopping-content">
-            <p className="shopping-subtitle">YOUR BAG</p>
-
-            <h1 className="shopping-title">It's quiet in here</h1>
-
+            <h1 className="shopping-title">It&apos;s quiet in here</h1>
             <p className="shopping-description">
               Explore our edit and choose the next step in your routine.
             </p>
-
             <Link to="/shop" className="shopping-btn">
               Shop skincare
             </Link>
-
             <Link to="/shop" className="link-shopping">
               Continue shopping
             </Link>
@@ -61,70 +42,112 @@ function Cart() {
     );
   }
 
-  // consdition 3: User signed in and HAS PRODUCTS
+  const delivery =
+    subtotal >= FREE_DELIVERY_THRESHOLD ? 0 : STANDARD_DELIVERY_FEE;
+  const total = subtotal + delivery;
+  const amountUntilFreeDelivery = Math.max(
+    0,
+    FREE_DELIVERY_THRESHOLD - subtotal,
+  );
+
   return (
     <main>
       <section className="container shopping-container">
-        {/* Shopping Header */}
         <div className="shopping-bag-header">
           <p className="shopping-subtitle">YOUR SELECTION</p>
-
           <h1 className="shopping-bag-title">Shopping bag</h1>
+          <p className="shopping-bag-count">
+            {cartCount} {cartCount === 1 ? "item" : "items"}
+          </p>
         </div>
 
         <div className="container-product-order">
           <div className="product-state">
-            <article className="shopping-product">
-              <div className="shopping-product-image">
-                <img src="/images/product-1.jpg" alt="Skincare Product" />
-              </div>
+            {cartItems.map((product) => (
+              <article className="shopping-product" key={product.id}>
+                <Link
+                  className="shopping-product-image"
+                  to={`/product-detail/${product.id}`}
+                  aria-label={`View ${product.name}`}
+                >
+                  <img src={product.image} alt={product.name} />
+                </Link>
 
-              <div className="shopping-product-info">
-                <p className="shopping-product-brand">Cherry Cheeks</p>
+                <div className="shopping-product-info">
+                  <p className="shopping-product-brand">{product.brand}</p>
+                  <h2 className="shopping-product-name">
+                    <Link to={`/product-detail/${product.id}`}>
+                      {product.name}
+                    </Link>
+                  </h2>
+                  <p className="shopping-product-price">{product.size}</p>
 
-                <h3 className="shopping-product-name">Cloud Milk Toner</h3>
+                  <div className="quantity-remove">
+                    <div className="shopping-quantity">
+                      <button
+                        type="button"
+                        aria-label={`Decrease ${product.name} quantity`}
+                        disabled={product.quantity <= 1}
+                        onClick={() =>
+                          updateQuantity(product.id, product.quantity - 1)
+                        }
+                      >
+                        <Minus size={17} aria-hidden="true" />
+                      </button>
 
-                <p className="shopping-product-price">150ml</p>
+                      <span aria-live="polite">{product.quantity}</span>
 
-                {/* Quantity UI Only */}
-                <div className="quantity-remove">
-                  <div className="shopping-quantity">
-                    <button type="button">−</button>
+                      <button
+                        type="button"
+                        aria-label={`Increase ${product.name} quantity`}
+                        disabled={product.quantity >= product.stockQuantity}
+                        onClick={() =>
+                          updateQuantity(product.id, product.quantity + 1)
+                        }
+                      >
+                        <Plus size={17} aria-hidden="true" />
+                      </button>
+                    </div>
 
-                    <span>1</span>
-
-                    <button type="button">+</button>
+                    <button
+                      type="button"
+                      className="shopping-remove"
+                      onClick={() => removeFromCart(product.id)}
+                    >
+                      Remove
+                    </button>
                   </div>
-
                 </div>
-              </div>
 
-              {/* Product Total */}
-              <div className="shopping-product-total">$25.00</div>
-            </article>
-            
+                <div className="shopping-product-total">
+                  {formatCurrency(product.price * product.quantity)}
+                </div>
+              </article>
+            ))}
           </div>
 
-          <div className="order-summary">
-            <h2>Order Summary</h2>
+          <aside className="order-summary" aria-labelledby="order-summary-title">
+            <h2 id="order-summary-title">Order Summary</h2>
 
             <div className="summary-row">
               <span>Subtotal</span>
-              <span> $63.00</span>
+              <span>{formatCurrency(subtotal)}</span>
             </div>
 
             <div className="summary-row">
               <span>Delivery</span>
-              <span> $6.00</span>
+              <span>{delivery === 0 ? "Complimentary" : formatCurrency(delivery)}</span>
             </div>
 
-            <div className="summary-row">
-              <span>Add $31.00 for complimentary delivery.</span>
-            </div>
+            <p className="delivery-progress" aria-live="polite">
+              {amountUntilFreeDelivery > 0
+                ? `Add ${formatCurrency(amountUntilFreeDelivery)} for complimentary delivery.`
+                : "Complimentary delivery unlocked."}
+            </p>
 
             <div className="summary-total">
-              <span>total</span>
-              <span> $57.00</span>
+              <span>Total</span>
+              <span>{formatCurrency(total)}</span>
             </div>
 
             <button type="button" className="checkout-btn">
@@ -138,7 +161,7 @@ function Cart() {
             <p className="checkout-description">
               Shipping and taxes will be calculated during checkout.
             </p>
-          </div>
+          </aside>
         </div>
       </section>
     </main>

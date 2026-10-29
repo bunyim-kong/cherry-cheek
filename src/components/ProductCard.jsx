@@ -1,6 +1,7 @@
 import Button from './Button';
 import { Link } from 'react-router-dom';
 import "./ProductCard.css";
+import { useCart } from '../context/cart';
 
 const defaultProduct = {
   brand: "Cherry Cheeks",
@@ -15,6 +16,7 @@ function formatPrice(value) {
 }
 
 function ProductCard({ product = {}, onAddToBag }) {
+  const { addToCart } = useCart();
   const {
     id,
     name,
@@ -31,6 +33,11 @@ function ProductCard({ product = {}, onAddToBag }) {
 
   const badgeLabel = badge ?? (isNew ? 'NEW' : null);
   const inStock = stockQuantity > 0;
+
+  function handleAddToBag() {
+    addToCart(product, 1);
+    onAddToBag?.(product);
+  }
 
   return (
     <article className="product-card">
@@ -49,7 +56,7 @@ function ProductCard({ product = {}, onAddToBag }) {
           className="add-to-bag"
           size="compact"
           aria-label={`Add ${name} to bag`}
-          onClick={onAddToBag}
+          onClick={handleAddToBag}
           disabled={!inStock}
         >
           {inStock ? 'Add to bag' : 'Out of stock'}

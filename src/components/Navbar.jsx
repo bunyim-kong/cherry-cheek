@@ -5,6 +5,7 @@ import Button from './Button';
 import '../styles/main.css';
 import CloseIcon from './CloseIcon';
 import './Navbar.css';
+import { useCart } from '../context/cart';
 
 const navLinks = [
     { label: 'Shop', to: '/shop' },
@@ -21,6 +22,7 @@ export default function Navbar() {
     const searchOverlayRef = useRef(null);
     const searchInputRef = useRef(null);
     const navigate = useNavigate();
+    const { cartCount } = useCart();
 
     useEffect(() => {
         if (!menuOpen) return undefined;
@@ -159,8 +161,17 @@ export default function Navbar() {
                             <UserRound aria-hidden="true" />
                         </Button>
 
-                        <Button className="icon-btn" variant="icon" to="/cart" aria-label="Shopping bag">
+                        <Button
+                          className="icon-btn cart-icon-btn"
+                          variant="icon"
+                          to="/cart"
+                          aria-label={`Shopping bag, ${cartCount} ${cartCount === 1 ? 'item' : 'items'}`}>
                             <ShoppingBag aria-hidden="true" />
+                            {cartCount > 0 && (
+                              <span className="cart-count" aria-hidden="true">
+                                {cartCount > 99 ? '99+' : cartCount}
+                              </span>
+                            )}
                         </Button>
                     </div>
                 </div>

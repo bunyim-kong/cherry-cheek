@@ -15,7 +15,7 @@ function ProductCard({ product, onAddToBag }) {
         <Button
           className="add-to-bag"
           size="compact"
-          aria-label={`Add ${item.name} to bag`}
+          aria-label={`Add ${name} to bag`}
           onClick={onAddToBag}
           disabled={!inStock}
         >

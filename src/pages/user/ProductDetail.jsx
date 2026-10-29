@@ -5,11 +5,55 @@ import cleanser2 from "../../assets/images/cleanser-2.jpg";
 import ProductCard from "../../components/ProductCard";
 
 // Icon
-import { Slash, Minus, Plus, DollarSign } from "lucide-react";
+import { Minus, Plus } from "lucide-react";
+
+const relatedProducts = [
+  {
+    id: 102,
+    name: "Vitamin C Serum",
+    brand: "Cherry Cheeks",
+    price: 18.5,
+    stockQuantity: 18,
+    image: "/images/products/102-vitamin-c-serum.jpg",
+    rating: 4.8,
+    reviews: 74,
+    isNew: true,
+  },
+  {
+    id: 103,
+    name: "Daily Sunscreen SPF 50",
+    brand: "Cherry Cheeks",
+    price: 15,
+    stockQuantity: 31,
+    image: "/images/products/103-daily-sunscreen-spf-50.jpg",
+    rating: 4.9,
+    reviews: 112,
+  },
+  {
+    id: 104,
+    name: "Hydrating Moisturizer",
+    brand: "Cherry Cheeks",
+    price: 14,
+    stockQuantity: 20,
+    image: "/images/products/104-hydrating-moisturizer.jpg",
+    rating: 4.7,
+    reviews: 68,
+  },
+  {
+    id: 201,
+    name: "Rose Lip Tint",
+    brand: "Cherry Cheeks",
+    price: 9,
+    stockQuantity: 40,
+    image: "/images/products/201-rose-lip-tint.jpg",
+    rating: 4.8,
+    reviews: 91,
+  },
+];
 
 function ProductDetail() {
   return (
-    <main className="container product-detail">
+    <div className="container product-detail">
       {/* Breadcrumb */}
       <nav className="breadcrumb">
         <span>Shop</span>
@@ -67,11 +111,13 @@ function ProductDetail() {
           {/* Quantity and Add to Bag */}
           <div className="product-purchase">
             <div className="quantity">
-              <button type="button" disabled>
+              <button type="button" disabled aria-label="Decrease quantity">
                 <Minus size={20} />
               </button>
               <span>1</span>
-              <button type="button">+</button>
+              <button type="button" aria-label="Increase quantity">
+                <Plus size={20} />
+              </button>
             </div>
 
             <button type="button" className="add-button">
@@ -86,7 +132,7 @@ function ProductDetail() {
           {/* Product Details */}
           <div className="product-extra">
             <section>
-              <h2>Why you'll like it</h2>
+              <h2>Why you&apos;ll like it</h2>
               <p>
                 A low-foam daily cleanser that lifts sunscreen and impurities
                 without leaving skin tight.
@@ -119,12 +165,11 @@ function ProductDetail() {
       </div>
 
       <div className="product-related-recommend">
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
+        {relatedProducts.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
       </div>
-    </main>
+    </div>
   );
 }
 

@@ -1,7 +1,7 @@
 /* Main Container */
 .product-detail {
   margin: 0 auto;
-  padding: 30px 0px 60px 0px;
+  padding: 30px 24px 60px;
   box-sizing: border-box;
   width: 100%;
 }
@@ -433,4 +433,4 @@
   .product-related-recommend {
     gap: 5px;
   }
-} 
+}

@@ -1,9 +1,34 @@
 import Button from './Button';
 import "./ProductCard.css";
-import productImage from "../assets/images/cloud-milk-toner.jpg";
 
-function ProductCard({ product, onAddToBag }) {
-  const { image, name, brand, rating, reviews, price, oldPrice, isNew } = product;
+const defaultProduct = {
+  brand: "Cherry Cheeks",
+  name: "Cloud Milk Toner",
+  price: "$25.00",
+  stockQuantity: 0,
+  isNew: true,
+};
+
+function formatPrice(value) {
+  return typeof value === 'number' ? `$${value.toFixed(2)}` : value;
+}
+
+function ProductCard({ product = {}, onAddToBag }) {
+  const {
+    name,
+    brand,
+    price,
+    stockQuantity,
+    image,
+    badge,
+    isNew,
+  } = {
+    ...defaultProduct,
+    ...product,
+  };
+
+  const badgeLabel = badge ?? (isNew ? 'NEW' : null);
+  const inStock = stockQuantity > 0;
 
   return (
     <article className="product-card">
@@ -25,25 +50,14 @@ function ProductCard({ product, onAddToBag }) {
 
       <div className="product-info">
         <p className="category">{brand}</p>
-        <h2 className="product-name">{name}</h2>
+        <h3 className="product-name">{name}</h3>
         <div className="product-meta">
-          <p className="rating">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z" />
-            </svg>
-            <span className="rating-value">{rating}</span>
-            <span className="review-count">({reviews})</span>
+          <p className="quantity">
+            <span>Stock:</span>
+            <span className="quantity-value">{stockQuantity}</span>
           </p>
           <p className="price-line">
-            {oldPrice && <span className="old-price">${oldPrice.toFixed(2)}</span>}
-            <span className="price">${price.toFixed(2)}</span>
+            <span className="price">{formatPrice(price)}</span>
           </p>
         </div>
       </div>

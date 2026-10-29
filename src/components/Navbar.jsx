@@ -23,9 +23,19 @@ export default function Navbar() {
     const navigate = useNavigate();
 
     useEffect(() => {
+        if (!menuOpen) return undefined;
+
+        function closeMenu(event) {
+            if (event.key === 'Escape') setMenuOpen(false);
+        }
+
+        document.addEventListener('keydown', closeMenu);
+        return () => document.removeEventListener('keydown', closeMenu);
+    }, [menuOpen]);
+
+    useEffect(() => {
         if (!searchOpen) return undefined;
 
-        const previousOverflow = document.body.style.overflow;
         const searchButton = searchButtonRef.current;
 
         function handleDialogKeys(event) {
@@ -38,7 +48,7 @@ export default function Navbar() {
             if (event.key !== 'Tab') return;
 
             const focusable = [
-                ...searchOverlayRef.current?.querySelectorAll('button, input') ?? [],
+                ...(searchOverlayRef.current?.querySelectorAll('button, input') ?? []),
             ].filter((element) => !element.disabled);
 
             if (focusable.length === 0) return;
@@ -56,24 +66,32 @@ export default function Navbar() {
         }
 
         searchInputRef.current?.focus();
-        document.body.style.overflow = 'hidden';
         document.addEventListener('keydown', handleDialogKeys);
 
         return () => {
-            document.body.style.overflow = previousOverflow;
             document.removeEventListener('keydown', handleDialogKeys);
             searchButton?.focus();
         };
     }, [searchOpen]);
 
+    useEffect(() => {
+        if (!menuOpen && !searchOpen) return undefined;
+
+        const previousOverflow = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+
+        return () => {
+            document.body.style.overflow = previousOverflow;
+        };
+    }, [menuOpen, searchOpen]);
+
     function submitSearch(event) {
         event.preventDefault();
-
         const query = search.trim();
 
         navigate(query ? `/shop?q=${encodeURIComponent(query)}` : '/shop');
-        setSearchOpen(false);
         setMenuOpen(false);
+        setSearchOpen(false);
     }
 
     return (
@@ -94,33 +112,29 @@ export default function Navbar() {
                         Cherry <span>Cheek</span>
                     </Link>
 
-                    <nav 
-                      id='mobile-navigation'
-                      className={`nav-links ${menuOpen ? 'open' : ''}`}>
-
-                        <form className='mobile-search' onSubmit={submitSearch}>
+                    <nav
+                      id="mobile-navigation"
+                      className={`nav-links ${menuOpen ? 'open' : ''}`}
+                      aria-label="Primary navigation">
+                        <form className="mobile-search" onSubmit={submitSearch}>
                             <Search aria-hidden="true" />
-
                             <label className="sr-only" htmlFor="mobile-site-search">
                                 Search products
                             </label>
-
-                            <input 
+                            <input
                               id="mobile-site-search"
-                              type="search" 
-                              placeholder='Search Skincare' 
-                              value={search} onChange={(event) => setSearch(event.target.value)} 
+                              type="search"
+                              placeholder="Search skincare"
+                              value={search}
+                              onChange={(event) => setSearch(event.target.value)}
                               autoComplete="off"
-                              />
-
-                            <button type='submit'>
-                                Search
-                            </button>
+                            />
+                            <Button type="submit" size="compact">Search</Button>
                         </form>
 
-                        {navLinks.map((item)=> (
+                        {navLinks.map((item) => (
                             <NavLink
-                              className='nav-items'
+                              className="nav-items"
                               key={item.label}
                               to={item.to}
                               onClick={() => setMenuOpen(false)}>
@@ -132,10 +146,11 @@ export default function Navbar() {
                     <div className="nav-action">
                         <Button
                           ref={searchButtonRef}
-                          className='icon-btn desktop-search flex items-center justify-center'
-                          type='button'
-                          aria-label='Search products'
-                          aria-haspopup='dialog'
+                          className="icon-btn desktop-search"
+                          variant="icon"
+                          aria-label="Search products"
+                          aria-haspopup="dialog"
+                          aria-expanded={searchOpen}
                           onClick={() => setSearchOpen(true)}>
                             <Search aria-hidden="true" />
                         </Button>
@@ -157,14 +172,17 @@ export default function Navbar() {
                   className="search-overlay"
                   role="dialog"
                   aria-modal="true"
-                  aria-labelledby="search-dialog-title">
-                    <button
+                  aria-labelledby="search-dialog-title"
+                  onMouseDown={(event) => {
+                      if (event.target === event.currentTarget) setSearchOpen(false);
+                  }}>
+                    <Button
                       className="search-overlay__close"
                       variant="icon"
                       aria-label="Close search"
                       onClick={() => setSearchOpen(false)}>
                         <CloseIcon aria-hidden="true" />
-                    </button>
+                    </Button>
 
                     <div className="search-dialog-content">
                         <h2 id="search-dialog-title">What are you looking for?</h2>
@@ -172,10 +190,8 @@ export default function Navbar() {
                             <label className="sr-only" htmlFor="site-search">
                                 Search products
                             </label>
-
                             <div className="search-form__control">
                                 <Search aria-hidden="true" />
-
                                 <input
                                   id="site-search"
                                   ref={searchInputRef}
@@ -192,5 +208,5 @@ export default function Navbar() {
                 </div>
             )}
         </>
-    )
+    );
 }

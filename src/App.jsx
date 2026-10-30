@@ -10,6 +10,8 @@ import Register from './pages/user/Register';
 import Category from './pages/user/Category';
 import Cart from "./pages/user/Cart";
 import ProductDetail from './pages/user/ProductDetail';
+import AdminLayout from './layouts/AdminLayout';
+import { Dashboard, Products, Categories, Orders } from './pages/admin/AdminPages';
 
 export default function App() {
     return (
@@ -17,6 +19,12 @@ export default function App() {
             <Route path="account" element={<Account />} />
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
+            <Route path="admin" element={<AdminLayout />}>
+                <Route index element={<Dashboard />} />
+                <Route path="products" element={<Products />} />
+                <Route path="categories" element={<Categories />} />
+                <Route path="orders" element={<Orders />} />
+            </Route>
             <Route element={<UserLayout />}>
                 <Route index element={<HomePage />} />
                 <Route path="shop" element={<ShopPage />} />

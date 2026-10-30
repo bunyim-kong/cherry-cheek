@@ -1,21 +1,21 @@
-import { Outlet } from "react-router-dom";
-import Sidebar from "../components/Sidebar";
-import Topbar from "../components/Header";
+import { NavLink, Outlet } from 'react-router-dom';
+import { LayoutDashboard, ShoppingBag, FolderTree, ClipboardList, Store } from 'lucide-react';
+import './AdminLayout.css';
 
-function AdminLayout() {
-  return (
-    <div className="min-h-screen flex bg-gray-50">
-      <Sidebar />
+const links = [
+  { to: '/admin', label: 'Dashboard', icon: LayoutDashboard, end: true },
+  { to: '/admin/products', label: 'Products', icon: ShoppingBag },
+  { to: '/admin/categories', label: 'Categories', icon: FolderTree },
+  { to: '/admin/orders', label: 'Orders', icon: ClipboardList },
+];
 
-      <div className="flex-1 min-w-0">
-        <Topbar />
-
-        <main className="p-6">
-          <Outlet />
-        </main>
-      </div>
-    </div>
-  );
+export default function AdminLayout() {
+  return <div className="admin-shell">
+    <aside className="admin-nav">
+      <div className="admin-nav__brand"><span>C</span><div><strong>Cherry Cheeks</strong><small>Admin workspace</small></div></div>
+      <nav aria-label="Admin navigation">{links.map(({ to, label, icon: Icon, end }) => <NavLink key={to} to={to} end={end} className={({ isActive }) => isActive ? 'active' : ''}><Icon size={18} />{label}</NavLink>)}</nav>
+      <NavLink to="/" className="admin-nav__store"><Store size={18} /> View store</NavLink>
+    </aside>
+    <main className="admin-main"><Outlet /></main>
+  </div>;
 }
-
-export default AdminLayout;

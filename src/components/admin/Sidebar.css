@@ -1,0 +1,107 @@
+/* Main Sidebar */
+.admin-sidebar {
+  width: 250px;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  background-color: var(--paper);
+  color: var(--ink);
+
+  padding: 30px 20px;
+  box-sizing: border-box;
+
+  font-family: var(--body-font);
+
+  border-right: 1px solid var(--muted);
+}
+
+/* Logo */
+.sidebar-logo {
+  margin-bottom: 45px;
+  text-align: center;
+}
+
+.sidebar-logo h2 {
+  font-family: var(--head-font);
+  font-size: 26px;
+  font-weight: 600;
+  margin: 0;
+  text-align: start;
+  color: var(--ink);
+}
+
+.sidebar-logo h2 span {
+  color: var(--rose);
+  text-align: start;
+}
+
+.sidebar-logo p {
+  font-size: 11px;
+  letter-spacing: 3px;
+  margin-top: 8px;
+text-align: start;
+  color: var(--muted);
+}
+
+/* Navigation */
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Menu Links */
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  padding: 14px 16px;
+
+  color: var(--muted);
+  text-decoration: none;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  border-radius: 10px;
+
+  transition: all 0.3s ease;
+}
+
+/* Icons */
+.sidebar-link svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+/* Hover */
+.sidebar-link:hover {
+  background-color: var(--blush-soft);
+  color: var(--wine);
+}
+
+/* Active Menu */
+.sidebar-link.active {
+  background-color: var(--blush);
+  color: var(--wine);
+  font-weight: 600;
+}
+
+/* Bottom Section */
+.sidebar-bottom {
+  margin-top: auto;
+  padding-top: 30px;
+
+  border-top: 1px solid var(--line);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .admin-sidebar {
+    width: 220px;
+  }
+}

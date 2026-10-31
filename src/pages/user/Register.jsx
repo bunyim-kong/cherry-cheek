@@ -1,11 +1,22 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth";
 import RegisterImage from "../../assets/register-1.jpg";
 import "./Auth.css";
 
+function getReturnPath(locationState) {
+  const from = locationState?.from;
+
+  if (!from?.pathname?.startsWith("/") || from.pathname.startsWith("//")) {
+    return "/";
+  }
+
+  return `${from.pathname}${from.search || ""}${from.hash || ""}`;
+}
+
 function Register() {
   const navigate = useNavigate();
+  const location = useLocation();
   const { register } = useAuth();
 
   const [form, setForm] = useState({ name: "", email: "", password: "" });
@@ -29,7 +40,7 @@ function Register() {
 
    
     register({ name: form.name, email: form.email });
-    navigate("/account");
+    navigate(getReturnPath(location.state), { replace: true });
   };
 
   return (
@@ -48,6 +59,12 @@ function Register() {
           <p className="auth-description">
             Create a demo account to save your bag and view orders.
           </p>
+
+          {location.state?.authMessage && (
+            <p className="auth-message" role="status">
+              {location.state.authMessage}
+            </p>
+          )}
 
           <form className="auth-form" onSubmit={handleSubmit} noValidate>
             <label htmlFor="register-name">Full name</label>
@@ -99,7 +116,10 @@ function Register() {
           </p>
 
           <p className="auth-switch">
-            Already have an account? <Link to="/login">Sign in</Link>
+            Already have an account?{" "}
+            <Link to="/login" state={location.state}>
+              Sign in
+            </Link>
           </p>
         </div>
       </section>

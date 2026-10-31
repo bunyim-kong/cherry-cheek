@@ -5,7 +5,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 80px 20px;
+  padding: 0 20px 80px;
 }
 
 .shopping-content {
@@ -54,10 +54,9 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  margin-top: 15px;
   padding: 15px 30px;
   border: none;
-  border-radius: 6px;
+  border-radius: 30px;
   background-color: var(--wine, #5f1738);
   color: #ffffff;
   font-family: var(--body-font);
@@ -74,7 +73,6 @@
 }
 
 .link-shopping {
-  margin-top: 20px;
   color: var(--ink, #24171d);
   font-size: 14px;
   font-weight: 500;
@@ -90,7 +88,7 @@
 
 .shopping-container {
   margin: 0 auto;
-  padding: 30px 0px 60px 0px;
+  padding: 0 0 60px;
 }
 
 .shopping-bag-header {

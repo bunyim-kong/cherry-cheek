@@ -35,8 +35,11 @@ function ProductCard({ product = {}, onAddToBag }) {
   const inStock = stockQuantity > 0;
 
   function handleAddToBag() {
-    addToCart(product, 1);
-    onAddToBag?.(product);
+    const wasAdded = addToCart(product, 1);
+
+    if (wasAdded) {
+      onAddToBag?.(product);
+    }
   }
 
   return (

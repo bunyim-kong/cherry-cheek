@@ -89,6 +89,17 @@
   line-height: 1.65;
 }
 
+.auth-message {
+  margin: -0.75rem 0 1.5rem;
+  padding: 0.8rem 0.9rem;
+  color: var(--wine-dark);
+  background: var(--blush-soft);
+  border-left: 3px solid var(--rose);
+  border-radius: 0.35rem;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
 .auth-form {
   display: flex;
   flex-direction: column;

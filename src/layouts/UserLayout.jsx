@@ -1,13 +1,14 @@
 import { Outlet } from "react-router-dom";
 import Navbar from '../components/Navbar';
 import Footer from "../components/Footer";
+import "./UserLayout.css";
 
 function UserLayout() {
     return (
         <div className="min-h-screen flex flex-col">
             <Navbar />
 
-            <main className="flex-1">
+            <main className="user-main flex-1">
                 <Outlet />
             </main>
 

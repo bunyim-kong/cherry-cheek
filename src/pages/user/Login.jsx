@@ -1,18 +1,30 @@
 import loginImage from "../../assets/images/login.jpg";
 import { useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth";
 import "./Auth.css";
 
+function getReturnPath(locationState) {
+  const from = locationState?.from;
+
+  if (!from?.pathname?.startsWith("/") || from.pathname.startsWith("//")) {
+    return "/";
+  }
+
+  return `${from.pathname}${from.search || ""}${from.hash || ""}`;
+}
+
 function Login() {
   const { user, login } = useAuth();
+  const location = useLocation();
   const navigate = useNavigate();
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const returnPath = getReturnPath(location.state);
 
   if (user) {
-    return <Navigate to={user.role === "ADMIN" ? "/admin/dashboard" : "/account"} replace />;
+    return <Navigate to={user.role === "ADMIN" ? "/admin/dashboard" : returnPath} replace />;
   }
 
   function handleChange(event) {
@@ -39,7 +51,10 @@ function Login() {
     setIsSubmitting(true);
     try {
       const signedInUser = await login({ email: form.email });
-      navigate(signedInUser.role === "ADMIN" ? "/admin/dashboard" : "/account", { replace: true });
+      navigate(
+        signedInUser.role === "ADMIN" ? "/admin/dashboard" : returnPath,
+        { replace: true },
+      );
     } catch (loginError) {
       setError(loginError.message || "Unable to sign in. Please try again.");
     } finally {
@@ -63,6 +78,12 @@ function Login() {
           <p className="auth-description">
             Use an email and password for this learning demo. Passwords are not checked.
           </p>
+
+          {location.state?.authMessage && (
+            <p className="auth-message" role="status">
+              {location.state.authMessage}
+            </p>
+          )}
 
           <form className="auth-form" onSubmit={handleSubmit} noValidate>
             <label htmlFor="login-email">Email address</label>
@@ -102,7 +123,10 @@ function Login() {
           </p>
 
           <p className="auth-switch">
-            New to Cherry Cheeks? <Link to="/register">Create an account</Link>
+            New to Cherry Cheeks?{" "}
+            <Link to="/register" state={location.state}>
+              Create an account
+            </Link>
           </p>
         </div>
       </section>

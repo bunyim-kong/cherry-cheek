@@ -6,6 +6,7 @@ import '../styles/main.css';
 import CloseIcon from './CloseIcon';
 import './Navbar.css';
 import { useCart } from '../context/cart';
+import { useAuth } from '../context/auth';
 
 const navLinks = [
     { label: 'Shop', to: '/shop' },
@@ -23,6 +24,7 @@ export default function Navbar() {
     const searchInputRef = useRef(null);
     const navigate = useNavigate();
     const { cartCount } = useCart();
+    const { user } = useAuth();
 
     useEffect(() => {
         if (!menuOpen) return undefined;
@@ -157,7 +159,11 @@ export default function Navbar() {
                             <Search aria-hidden="true" />
                         </Button>
 
-                        <Button className="icon-btn" variant="icon" to="/login" aria-label="Your account">
+                        <Button
+                          className="icon-btn"
+                          variant="icon"
+                          to={user ? '/account' : '/login'}
+                          aria-label={user ? 'View your profile' : 'Sign in'}>
                             <UserRound aria-hidden="true" />
                         </Button>
 

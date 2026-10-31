@@ -25,7 +25,6 @@ function Cart() {
       <main>
         <section className="container-shopping">
           <div className="shopping-content">
-            <p className="shopping-subtitle">YOUR BAG</p>
             <h1 className="shopping-title">It&apos;s quiet in here</h1>
             <p className="shopping-description">
               Explore our edit and choose the next step in your routine.

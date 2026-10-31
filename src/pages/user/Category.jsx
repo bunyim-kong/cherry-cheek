@@ -36,7 +36,7 @@ function Category() {
                             <Link
                                 key={category.id}
                                 className="category-tile"
-                                to="/shop"
+                                to={`/shop?category=${encodeURIComponent(category.name)}`}
                                 aria-label={`Shop ${category.name}`}
                             >
                                 <img src={category.image} alt="" loading="lazy" />

@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { readStorage, writeStorage } from "../service/storage";
+import { useAuth } from "./auth";
 import { CartContext } from "./cart";
 
 const CART_STORAGE_KEY = "cc_cart";
@@ -29,16 +30,23 @@ function clampQuantity(quantity, stockQuantity) {
 
 export function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState(loadStoredCart);
+  const [authPromptOpen, setAuthPromptOpen] = useState(false);
+  const { isAuthenticated } = useAuth();
 
   useEffect(() => {
     writeStorage(CART_STORAGE_KEY, cartItems);
   }, [cartItems]);
 
   function addToCart(product, quantity = 1) {
+    if (!isAuthenticated) {
+      setAuthPromptOpen(true);
+      return false;
+    }
+
     const quantityToAdd = clampQuantity(quantity, product.stockQuantity);
 
     if (quantityToAdd === 0) {
-      return;
+      return false;
     }
 
     setCartItems((currentItems) => {
@@ -61,6 +69,8 @@ export function CartProvider({ children }) {
           : item,
       );
     });
+
+    return true;
   }
 
   function updateQuantity(productId, quantity) {
@@ -82,6 +92,10 @@ export function CartProvider({ children }) {
     );
   }
 
+  const closeAuthPrompt = useCallback(function closeAuthPrompt() {
+    setAuthPromptOpen(false);
+  }, []);
+
   const cartCount = cartItems.reduce(
     (total, item) => total + item.quantity,
     0,
@@ -94,7 +108,9 @@ export function CartProvider({ children }) {
     cartItems,
     cartCount,
     subtotal,
+    authPromptOpen,
     addToCart,
+    closeAuthPrompt,
     updateQuantity,
     removeFromCart,
   };

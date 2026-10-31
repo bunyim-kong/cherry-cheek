@@ -1,13 +1,22 @@
+import DashboardCard from "../../components/admin/DashboardCard";
+import TopSellingProducts from "../../components/admin/TopSellingProducts";
+import LowStockAlerts from "../../components/admin/LowStockAlerts";
 
 import "./Dashboard.css";
 
 function Dashboard() {
   return (
-    <section className="admin-dashboard">
-      <div className="admin-dashboard-intro">
-        <h1>Welcome to Cherry Cheeks Admin</h1>
-        <p>This is the admin dashboard.</p>
+    <section className="dashboard-page">
+
+      {/* Dashboard Statistic Cards */}
+      <DashboardCard />
+
+      {/* Product Performance */}
+      <div className="dashboard-insights">
+        <TopSellingProducts />
+        <LowStockAlerts />
       </div>
+
     </section>
   );
 }

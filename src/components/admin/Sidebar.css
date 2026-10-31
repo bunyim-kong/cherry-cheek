@@ -6,15 +6,15 @@
   display: flex;
   flex-direction: column;
 
-  background-color: var(--paper);
-  color: var(--ink);
+  background-color: var(--wine-dark);
+  color: var(--paper);
 
   padding: 30px 20px;
   box-sizing: border-box;
 
   font-family: var(--body-font);
 
-  border-right: 1px solid var(--muted);
+  border-right: 1px solid var(--wine);
 }
 
 /* Logo */
@@ -29,20 +29,19 @@
   font-weight: 600;
   margin: 0;
   text-align: start;
-  color: var(--ink);
+  color: var(--paper);
 }
 
 .sidebar-logo h2 span {
   color: var(--rose);
-  text-align: start;
 }
 
 .sidebar-logo p {
   font-size: 11px;
   letter-spacing: 3px;
   margin-top: 8px;
-text-align: start;
-  color: var(--muted);
+  text-align: start;
+  color: var(--blush);
 }
 
 /* Navigation */
@@ -60,7 +59,7 @@ text-align: start;
 
   padding: 14px 16px;
 
-  color: var(--muted);
+  color: var(--blush);
   text-decoration: none;
 
   font-size: 14px;
@@ -89,15 +88,20 @@ button.sidebar-link {
 
 /* Hover */
 .sidebar-link:hover {
-  background-color: var(--blush-soft);
-  color: var(--wine);
+  background-color: color-mix(in srgb, var(--rose) 24%, transparent);
+  color: var(--paper);
 }
 
 /* Active Menu */
 .sidebar-link.active {
   background-color: var(--blush);
-  color: var(--wine);
+  color: var(--wine-dark);
   font-weight: 600;
+}
+
+.sidebar-link:focus-visible {
+  outline: 2px solid var(--rose);
+  outline-offset: 2px;
 }
 
 /* Bottom Section */
@@ -105,7 +109,7 @@ button.sidebar-link {
   margin-top: auto;
   padding-top: 30px;
 
-  border-top: 1px solid var(--line);
+  border-top: 1px solid color-mix(in srgb, var(--rose) 35%, transparent);
 }
 
 /* Responsive */

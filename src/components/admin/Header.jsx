@@ -41,7 +41,7 @@ function Header() {
         <div className="admin-profile">
 
           <div className="admin-avatar">
-            <UserRound size={20} />
+            <UserRound size={20} aria-hidden="true" />
           </div>
 
           <div className="admin-profile-info">

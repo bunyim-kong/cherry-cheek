@@ -80,7 +80,7 @@ function Sidebar() {
                 isActive ? "sidebar-link active" : "sidebar-link"
               }
             >
-              <Icon size={20} />
+              <Icon size={20} aria-hidden="true" />
 
               <span>{item.name}</span>
             </NavLink>

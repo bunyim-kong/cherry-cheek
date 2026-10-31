@@ -15,7 +15,7 @@
 
 
  background-color: var(--paper);
- border-bottom: 1px solid var(--muted);
+ border-bottom: 1px solid var(--line);
 
 
  font-family: var(--body-font);
@@ -95,6 +95,11 @@
 .admin-notification-btn:hover {
  background-color: var(--blush-soft);
  color: var(--wine);
+}
+
+.admin-notification-btn:focus-visible {
+ outline: 2px solid var(--rose);
+ outline-offset: 2px;
 }
 
 

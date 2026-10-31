@@ -1,9 +1,13 @@
 
+import "./Dashboard.css";
+
 function Dashboard() {
   return (
-    <section>
-      <h1>Welcome to Cherry Cheeks Admin</h1>
-      <p>This is the admin dashboard.</p>
+    <section className="admin-dashboard">
+      <div className="admin-dashboard-intro">
+        <h1>Welcome to Cherry Cheeks Admin</h1>
+        <p>This is the admin dashboard.</p>
+      </div>
     </section>
   );
 }

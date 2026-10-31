@@ -1,5 +1,5 @@
 import { Search, SlidersHorizontal } from 'lucide-react'; // Icons identify search and mobile filters.
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import CloseIcon from '../../components/CloseIcon';
 import './Shop.css';
@@ -9,6 +9,9 @@ import ProductCard from "../../components/ProductCard";
 function Shop() {
     const [searchParams, setSearchParams] = useSearchParams();
     const [filtersOpen, setFiltersOpen] = useState(false);
+    const filterToggleRef = useRef(null);
+    const filterPanelRef = useRef(null);
+    const filterCloseRef = useRef(null);
     const [products, setProducts] = useState([]);
     const search = searchParams.get('q') ?? '';
     const requestedCategory = searchParams.get('category');
@@ -47,6 +50,52 @@ function Shop() {
 
         loadShopData();
     }, []);
+
+    useEffect(() => {
+        if (!filtersOpen) return undefined;
+
+        const previousOverflow = document.body.style.overflow;
+        const filterToggle = filterToggleRef.current;
+        document.body.style.overflow = 'hidden';
+        filterCloseRef.current?.focus();
+
+        function handleKeyDown(event) {
+            if (event.key === 'Escape') {
+                event.preventDefault();
+                setFiltersOpen(false);
+                return;
+            }
+
+            if (event.key !== 'Tab') return;
+
+            const focusableElements = [
+                ...(filterPanelRef.current?.querySelectorAll(
+                    'button:not([disabled]), input:not([disabled]), select:not([disabled]), [href], [tabindex]:not([tabindex="-1"])',
+                ) ?? []),
+            ];
+
+            if (focusableElements.length === 0) return;
+
+            const firstElement = focusableElements[0];
+            const lastElement = focusableElements[focusableElements.length - 1];
+
+            if (event.shiftKey && document.activeElement === firstElement) {
+                event.preventDefault();
+                lastElement.focus();
+            } else if (!event.shiftKey && document.activeElement === lastElement) {
+                event.preventDefault();
+                firstElement.focus();
+            }
+        }
+
+        document.addEventListener('keydown', handleKeyDown);
+
+        return () => {
+            document.removeEventListener('keydown', handleKeyDown);
+            document.body.style.overflow = previousOverflow;
+            filterToggle?.focus();
+        };
+    }, [filtersOpen]);
 
     function handleSearchChange(event) {
         const nextSearch = event.target.value;
@@ -122,9 +171,13 @@ function Shop() {
             <div className="shop-body">
                 <div className="shop-toolbar">
                     <Button
+                        ref={filterToggleRef}
                         className="filter-toggle"
                         variant="secondary"
                         onClick={() => setFiltersOpen(true)} // Open the existing filters drawer.
+                        aria-expanded={filtersOpen}
+                        aria-controls="shop-filters"
+                        aria-haspopup="dialog"
                     >
                         <SlidersHorizontal size={18} aria-hidden="true" />
                         <span>Filters</span>
@@ -160,10 +213,19 @@ function Shop() {
 
                 <div className="shop-layout">
 
-                        <aside className={`filters ${filtersOpen ? 'filters--open' : ''}`}>
+                        <aside
+                            ref={filterPanelRef}
+                            id="shop-filters"
+                            className={`filters ${filtersOpen ? 'filters--open' : ''}`}
+                            role={filtersOpen ? 'dialog' : undefined}
+                            aria-modal={filtersOpen ? 'true' : undefined}
+                            aria-labelledby={filtersOpen ? 'shop-filters-title' : undefined}
+                            tabIndex="-1"
+                        >
                             <div className="filters-mobile-header">
-                                <strong>Filters</strong>
+                                <strong id="shop-filters-title">Filters</strong>
                                 <button
+                                    ref={filterCloseRef}
                                     type="button"
                                     className="icon-button"
                                     onClick={() => setFiltersOpen(false)}

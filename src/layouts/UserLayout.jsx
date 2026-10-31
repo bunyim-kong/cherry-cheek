@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Navbar from '../components/Navbar';
 import Footer from "../components/Footer";
+import AuthCartPrompt from "../components/AuthCartPrompt";
 import "./UserLayout.css";
 
 function UserLayout() {
@@ -13,6 +14,7 @@ function UserLayout() {
             </main>
 
             <Footer />
+            <AuthCartPrompt />
         </div>
     )
 }

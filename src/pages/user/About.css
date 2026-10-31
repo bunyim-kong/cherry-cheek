@@ -12,7 +12,7 @@
     display: grid;
     grid-template-columns: minmax(0, 1.25fr) minmax(280px, .75fr);
     gap: 6rem;
-    padding-top: 0;
+    padding-top: 30px;
     padding-bottom: 5rem;
     align-items: end;
 }
@@ -171,15 +171,17 @@
         width: calc(100% - 40px);
     }
 
+    .project-about__hero {
+        padding-top: 30px;
+    }
+
     .project-about__hero,
     .project-about__feature {
         grid-template-columns: 1fr;
         gap: 2.5rem;
     }
 
-    .project-about__hero {
-        padding-block: 0 4rem;
-    }
+
 
     .project-about h1 {
         font-size: clamp(3rem, 15vw, 4.5rem);

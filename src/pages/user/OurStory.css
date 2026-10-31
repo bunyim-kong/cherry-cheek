@@ -1,6 +1,5 @@
 .info-page {
   padding-bottom: 7rem;
-
 }
 
 .brand-list {
@@ -38,7 +37,7 @@
   display: grid;
   grid-template-columns: 1.25fr .75fr;
   gap: 6rem;
-  padding-top: 0;
+  padding-top: 30px;
   padding-bottom: 5rem;
   align-items: end;
 }
@@ -176,7 +175,7 @@
   .about-hero {
     grid-template-columns: 1fr;
     gap: 2rem;
-    padding-top: 0;
+    padding-top: 28px;
   }
 
   .editorial {

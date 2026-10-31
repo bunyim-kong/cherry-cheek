@@ -32,9 +32,6 @@ function Cart() {
             <Link to="/shop" className="shopping-btn">
               Shop skincare
             </Link>
-            <Link to="/shop" className="link-shopping">
-              Continue shopping
-            </Link>
           </div>
         </section>
       </main>

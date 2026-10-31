@@ -57,7 +57,7 @@ function Sidebar() {
   }
 
   return (
-    <aside className="admin-sidebar">
+    <aside className="admin-sidebar shrink-0 basis-[250px] max-md:basis-[220px]">
 
       {/* Sidebar Logo */}
       <div className="sidebar-logo">

@@ -10,13 +10,13 @@ function AdminLayout() {
   if (user.role !== "ADMIN") return <Navigate to="/account" replace />;
 
   return (
-    <div className="admin-shell">
+    <div className="flex min-h-screen min-h-dvh bg-[var(--page-bg)]">
       <Sidebar />
 
-      <div className="admin-workspace">
+      <div className="flex min-w-0 flex-1 flex-col">
         <Header />
 
-        <main className="admin-content">
+        <main className="min-w-0 flex-1 px-[35px] py-[15px]">
           <Outlet />
         </main>
       </div>

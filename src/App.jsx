@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import UserLayout from "./layouts/UserLayout";
 import HomePage from "./pages/user/Homepage";
 import OurStory from "./pages/user/OurStory";
@@ -10,8 +10,6 @@ import Register from "./pages/user/Register";
 import Category from "./pages/user/Category";
 import Cart from "./pages/user/Cart";
 import ProductDetail from "./pages/user/ProductDetail";
-import Sidebar from "./components/admin/Sidebar";
-import Header from "./components/admin/Header";
 import AdminLayout from "./layouts/AdminLayout";
 import Dashboard from "./pages/admin/Dashboard";
 export default function App() {
@@ -32,6 +30,7 @@ export default function App() {
       </Route>
       {/* Admin Routes */}
       <Route path="/admin" element={<AdminLayout />}>
+        <Route index element={<Navigate to="dashboard" replace />} />
         <Route path="dashboard" element={<Dashboard />} />
       </Route>
     </Routes>

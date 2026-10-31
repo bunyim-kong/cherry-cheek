@@ -9,9 +9,10 @@ function Login() {
   const navigate = useNavigate();
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   if (user) {
-    return <Navigate to="/account" replace />;
+    return <Navigate to={user.role === "ADMIN" ? "/admin/dashboard" : "/account"} replace />;
   }
 
   function handleChange(event) {
@@ -22,7 +23,7 @@ function Login() {
     setError("");
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
 
     if (!form.email.trim() || !form.password) {
@@ -35,8 +36,15 @@ function Login() {
       return;
     }
 
-    login({ email: form.email });
-    navigate("/account");
+    setIsSubmitting(true);
+    try {
+      const signedInUser = await login({ email: form.email });
+      navigate(signedInUser.role === "ADMIN" ? "/admin/dashboard" : "/account", { replace: true });
+    } catch (loginError) {
+      setError(loginError.message || "Unable to sign in. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -53,7 +61,7 @@ function Login() {
           <p className="auth-eyebrow">Welcome back</p>
           <h1 className="auth-title">Sign in to your account</h1>
           <p className="auth-description">
-            Use any valid email and password for this learning demo.
+            Use an email and password for this learning demo. Passwords are not checked.
           </p>
 
           <form className="auth-form" onSubmit={handleSubmit} noValidate>
@@ -84,8 +92,8 @@ function Login() {
 
             {error && <p className="auth-error">{error}</p>}
 
-            <button className="auth-submit" type="submit">
-              Sign in
+            <button className="auth-submit" type="submit" disabled={isSubmitting}>
+              {isSubmitting ? "Signing in..." : "Sign in"}
             </button>
           </form>
 

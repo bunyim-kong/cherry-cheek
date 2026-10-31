@@ -18,6 +18,7 @@ function loadStoredUser() {
   const sanitizedUser = {
     name: savedUser.name?.trim() || savedUser.email.split("@")[0],
     email: savedUser.email.trim().toLowerCase(),
+    role: savedUser.role === "ADMIN" ? "ADMIN" : "CUSTOMER",
   };
 
   writeStorage(USER_STORAGE_KEY, sanitizedUser);
@@ -27,19 +28,40 @@ function loadStoredUser() {
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(loadStoredUser);
 
-  function createSession({ name, email }) {
+  function createSession({ name, email, role = "CUSTOMER" }) {
     const normalizedEmail = email.trim().toLowerCase();
     const nextUser = {
       name: name?.trim() || normalizedEmail.split("@")[0],
       email: normalizedEmail,
+      role,
     };
 
     setUser(nextUser);
     writeStorage(USER_STORAGE_KEY, nextUser);
+    return nextUser;
   }
 
-  function login({ email }) {
-    createSession({ email });
+  async function login({ email }) {
+    const normalizedEmail = email.trim().toLowerCase();
+    const response = await fetch("/student-data/accounts.json");
+    if (!response.ok) {
+      throw new Error("Unable to load accounts. Please try again.");
+    }
+
+    const accounts = await response.json();
+    const account = accounts.find(
+      (entry) => entry.email.toLowerCase() === normalizedEmail,
+    );
+
+    if (account?.active === false) {
+      throw new Error("This account is inactive.");
+    }
+
+    return createSession({
+      name: account?.fullName,
+      email: normalizedEmail,
+      role: account?.role === "ADMIN" ? "ADMIN" : "CUSTOMER",
+    });
   }
 
   function register({ name, email }) {

@@ -71,6 +71,15 @@ text-align: start;
   transition: all 0.3s ease;
 }
 
+button.sidebar-link {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
 /* Icons */
 .sidebar-link svg {
   width: 20px;

@@ -10,6 +10,9 @@ export default function Account() {
   if (!user) {
     return <Navigate to="/login" replace />;
   }
+  if (user.role === "ADMIN") {
+    return <Navigate to="/admin/dashboard" replace />;
+  }
 
   function handleLogout() {
     logout();

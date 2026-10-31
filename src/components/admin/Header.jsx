@@ -1,6 +1,6 @@
-import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { Bell, UserRound } from "lucide-react";
+import { UserRound } from "lucide-react";
+import { useAuth } from "../../context/auth";
 
 import "./Header.css";
 import "../../styles/main.css";
@@ -16,6 +16,7 @@ const pageTitles = {
 };
 
 function Header() {
+  const { user } = useAuth();
   // Get current URL
   const location = useLocation();
 
@@ -24,9 +25,6 @@ function Header() {
 
   // Set header title
   const pageTitle = pageTitles[currentPage] || "Admin Panel";
-
-  // Notification state
-  const [notificationsOpen, setNotificationsOpen] = useState(false);
 
   return (
     <header className="admin-header">
@@ -39,15 +37,6 @@ function Header() {
       {/* Right Side: Actions */}
       <div className="admin-header-actions">
 
-        {/* Notification */}
-        <div className="admin-notification">
-          {notificationsOpen && (
-            <div className="admin-notification-dropdown">
-              <p>No new notifications</p>
-            </div>
-          )}
-        </div>
-
         {/* Admin Profile */}
         <div className="admin-profile">
 
@@ -56,7 +45,7 @@ function Header() {
           </div>
 
           <div className="admin-profile-info">
-            <span className="admin-name">Admin</span>
+            <span className="admin-name">{user.name}</span>
             <span className="admin-role">Administrator</span>
           </div>
 

@@ -1,4 +1,5 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/auth";
 
 import {
   LayoutDashboard,
@@ -47,6 +48,14 @@ const menuItems = [
 ];
 
 function Sidebar() {
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  function handleLogout() {
+    logout();
+    navigate("/login", { replace: true });
+  }
+
   return (
     <aside className="admin-sidebar">
 
@@ -81,10 +90,10 @@ function Sidebar() {
 
       {/* Bottom Sidebar */}
       <div className="sidebar-bottom">
-        <NavLink to="/login" className="sidebar-link">
+        <button type="button" onClick={handleLogout} className="sidebar-link">
           <LogOut size={20} />
           <span>Logout</span>
-        </NavLink>
+        </button>
       </div>
 
     </aside>

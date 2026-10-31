@@ -12,6 +12,10 @@ import Cart from "./pages/user/Cart";
 import ProductDetail from "./pages/user/ProductDetail";
 import AdminLayout from "./layouts/AdminLayout";
 import Dashboard from "./pages/admin/Dashboard";
+import Products from "./pages/admin/Products";
+import Categories from "./pages/admin/Categories";
+import Orders from "./pages/admin/Orders";
+import Customers from "./pages/admin/Customers";
 export default function App() {
   return (
     <Routes>
@@ -32,6 +36,10 @@ export default function App() {
       <Route path="/admin" element={<AdminLayout />}>
         <Route index element={<Navigate to="dashboard" replace />} />
         <Route path="dashboard" element={<Dashboard />} />
+        <Route path="products" element={<Products />} />
+        <Route path="categories" element={<Categories />} />
+        <Route path="orders" element={<Orders />} />
+        <Route path="customers" element={<Customers />} />
       </Route>
     </Routes>
   );

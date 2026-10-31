@@ -1,0 +1,47 @@
+.admin-panel {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 1.35rem;
+  background: var(--paper);
+  box-shadow: 0 0.65rem 1.8rem rgba(62, 13, 38, 0.04);
+}
+
+.admin-panel__header {
+  display: flex;
+  min-height: 5rem;
+  padding: 1rem 1.3rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in srgb, var(--blush-soft) 48%, var(--paper));
+}
+
+.admin-panel__eyebrow {
+  margin: 0 0 0.25rem;
+  color: var(--rose);
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.admin-panel__title {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--head-font);
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.admin-panel__body {
+  min-width: 0;
+}
+
+@media (max-width: 700px) {
+  .admin-panel__header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}

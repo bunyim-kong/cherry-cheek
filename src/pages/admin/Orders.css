@@ -1,0 +1,11 @@
+.admin-orders {
+  width: 100%;
+  min-width: 0;
+  padding-bottom: 2rem;
+}
+
+.admin-orders__number {
+  color: var(--wine);
+  font-variant-numeric: tabular-nums;
+  font-weight: 750;
+}

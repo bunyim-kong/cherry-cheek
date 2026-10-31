@@ -1,0 +1,65 @@
+.admin-categories {
+  width: 100%;
+  min-width: 0;
+  padding-bottom: 2rem;
+}
+
+.admin-categories__toolbar,
+.admin-categories__actions,
+.admin-categories__remove-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.admin-categories__category {
+  display: flex;
+  min-width: 17rem;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.admin-categories__category img {
+  width: 3.25rem;
+  height: 3.25rem;
+  flex: 0 0 auto;
+  border: 1px solid var(--line);
+  border-radius: 0.8rem;
+  background: var(--blush-soft);
+  object-fit: cover;
+}
+
+.admin-categories__count {
+  color: var(--wine);
+  font-variant-numeric: tabular-nums;
+  font-weight: 750;
+}
+
+.admin-categories__actions {
+  justify-content: flex-end;
+}
+
+.admin-categories__remove-copy {
+  margin: 0;
+  color: var(--ink);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.admin-categories__remove-actions {
+  margin-top: 1.25rem;
+  justify-content: flex-end;
+}
+
+@media (max-width: 900px) {
+  .admin-categories__toolbar {
+    width: 100%;
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .admin-categories__toolbar .admin-search,
+  .admin-categories__toolbar .admin-button {
+    width: 100%;
+  }
+}

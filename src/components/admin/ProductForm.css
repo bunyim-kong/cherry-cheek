@@ -1,0 +1,70 @@
+.product-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.product-form__field {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.product-form__field--wide,
+.product-form__actions {
+  grid-column: 1 / -1;
+}
+
+.product-form__field label {
+  color: var(--ink);
+  font-size: 0.75rem;
+  font-weight: 750;
+}
+
+.product-form__field input,
+.product-form__field select {
+  width: 100%;
+  min-height: 2.85rem;
+  padding: 0.65rem 0.8rem;
+  box-sizing: border-box;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  outline: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.85rem;
+}
+
+.product-form__field input:focus,
+.product-form__field select:focus {
+  border-color: var(--rose);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--rose) 16%, transparent);
+}
+
+.product-form__actions {
+  display: flex;
+  padding-top: 0.35rem;
+  justify-content: flex-end;
+  gap: 0.65rem;
+}
+
+@media (max-width: 560px) {
+  .product-form {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .product-form__field--wide,
+  .product-form__actions {
+    grid-column: auto;
+  }
+
+  .product-form__actions {
+    flex-direction: column-reverse;
+  }
+
+  .product-form__actions .admin-button {
+    width: 100%;
+  }
+}

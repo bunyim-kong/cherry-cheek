@@ -1,0 +1,32 @@
+.admin-customers {
+  width: 100%;
+  min-width: 0;
+  padding-bottom: 2rem;
+}
+
+.admin-customers__customer {
+  display: flex;
+  min-width: 14rem;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.admin-customers__avatar {
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--blush-soft);
+  color: var(--wine);
+  font-family: var(--head-font);
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.admin-customers__number {
+  color: var(--wine);
+  font-variant-numeric: tabular-nums;
+  font-weight: 750;
+}

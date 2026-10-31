@@ -29,7 +29,7 @@
   },
   {
     "id": 102,
-    "fullName": "Sam Customer",samcustomer
+    "fullName": "Sam Customer",
     "email": "sam@example.com",
     "role": "CUSTOMER",
     "active": true

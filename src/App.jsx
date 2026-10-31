@@ -12,34 +12,35 @@ import Cart from "./pages/user/Cart";
 import ProductDetail from "./pages/user/ProductDetail";
 import AdminLayout from "./layouts/AdminLayout";
 import Dashboard from "./pages/admin/Dashboard";
-import AuthCartPrompt from "./components/AuthCartPrompt";
-import Contact from "./pages/user/Contact";
-
+import Products from "./pages/admin/Products";
+import Categories from "./pages/admin/Categories";
+import Orders from "./pages/admin/Orders";
+import Customers from "./pages/admin/Customers";
 export default function App() {
   return (
-    <>
-      <Routes>
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
-        <Route element={<UserLayout />}>
-          <Route index element={<HomePage />} />
-          <Route path="account" element={<Account />} />
-          <Route path="shop" element={<ShopPage />} />
-          <Route path="category" element={<Category />} />
-          <Route path="our-story" element={<OurStory />} />
-          <Route path="about" element={<About />} />
-          <Route path="contact" element={<Contact />} />
-          <Route path="cart" element={<Cart />} />
-          <Route path="product-detail" element={<ProductDetail />} />
-          <Route path="product-detail/:productId" element={<ProductDetail />} />
-        </Route>
-        {/* Admin Routes */}
-        <Route path="/admin" element={<AdminLayout />}>
-          <Route index element={<Navigate to="dashboard" replace />} />
-          <Route path="dashboard" element={<Dashboard />} />
-        </Route>
-      </Routes>
-      <AuthCartPrompt />
-    </>
+    <Routes>
+      <Route path="account" element={<Account />} />
+      <Route path="login" element={<Login />} />
+      <Route path="register" element={<Register />} />
+      <Route element={<UserLayout />}>
+        <Route index element={<HomePage />} />
+        <Route path="shop" element={<ShopPage />} />
+        <Route path="category" element={<Category />} />
+        <Route path="our-story" element={<OurStory />} />
+        <Route path="about" element={<About />} />
+        <Route path="cart" element={<Cart />} />
+        <Route path="product-detail" element={<ProductDetail />} />
+        <Route path="product-detail/:productId" element={<ProductDetail />} />
+      </Route>
+      {/* Admin Routes */}
+      <Route path="/admin" element={<AdminLayout />}>
+        <Route index element={<Navigate to="dashboard" replace />} />
+        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="products" element={<Products />} />
+        <Route path="categories" element={<Categories />} />
+        <Route path="orders" element={<Orders />} />
+        <Route path="customers" element={<Customers />} />
+      </Route>
+    </Routes>
   );
 }

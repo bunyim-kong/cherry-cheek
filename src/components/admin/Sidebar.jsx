@@ -40,11 +40,6 @@ const menuItems = [
     path: "/admin/customers",
     icon: Users,
   },
-  {
-    name: "Settings",
-    path: "/admin/settings",
-    icon: Settings,
-  },
 ];
 
 function Sidebar() {
@@ -57,12 +52,13 @@ function Sidebar() {
   }
 
   return (
-    <aside className="admin-sidebar shrink-0 basis-[250px] max-md:basis-[220px]">
+    <aside className="admin-sidebar">
 
       {/* Sidebar Logo */}
       <div className="sidebar-logo">
         <h2>
-          Cherry <span>Cheeks</span>
+          <span className="sidebar-logo__full">Cherry <b>Cheeks</b></span>
+          <span className="sidebar-logo__compact" aria-hidden="true">CC</span>
         </h2>
         <p>ADMIN WORKPLACE</p>
       </div>
@@ -76,6 +72,7 @@ function Sidebar() {
             <NavLink
               key={item.path}
               to={item.path}
+              title={item.name}
               className={({ isActive }) =>
                 isActive ? "sidebar-link active" : "sidebar-link"
               }
@@ -91,7 +88,7 @@ function Sidebar() {
       {/* Bottom Sidebar */}
       <div className="sidebar-bottom">
         <button type="button" onClick={handleLogout} className="sidebar-link">
-          <LogOut size={20} />
+          <LogOut size={20} aria-hidden="true" />
           <span>Logout</span>
         </button>
       </div>

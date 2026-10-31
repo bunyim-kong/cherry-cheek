@@ -1,0 +1,64 @@
+.admin-table-scroll {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.admin-table {
+  width: 100%;
+  min-width: var(--admin-table-min-width, 620px);
+  border-collapse: collapse;
+  color: var(--ink);
+  font-size: 0.8rem;
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 1rem 1.3rem;
+  text-align: left;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--line);
+}
+
+.admin-table th {
+  color: var(--muted);
+  background: color-mix(in srgb, var(--blush-soft) 30%, var(--paper));
+  font-size: 0.67rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.admin-table th[data-align="right"],
+.admin-table td[data-align="right"] {
+  text-align: right;
+}
+
+.admin-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.admin-table tbody tr:hover {
+  background: var(--blush-soft);
+}
+
+.admin-table__primary,
+.admin-table__secondary {
+  display: block;
+}
+
+.admin-table__primary {
+  color: var(--wine);
+  font-weight: 750;
+}
+
+.admin-table__secondary {
+  margin-top: 0.2rem;
+  color: var(--muted);
+  font-size: 0.7rem;
+}
+
+.admin-table__empty {
+  padding: 3rem 1.3rem;
+  color: var(--muted);
+  text-align: center;
+}

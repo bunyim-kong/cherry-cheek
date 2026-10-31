@@ -1,0 +1,36 @@
+.dashboard-page {
+  width: 100%;
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  padding-bottom: 30px;
+}
+
+/* Two Columns */
+.dashboard-insights {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 20px;
+  width: 100%;
+}
+
+/* Tablet */
+@media (max-width: 1200px) {
+  .dashboard-insights {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .dashboard-page {
+    gap: 16px;
+  }
+
+  .dashboard-insights {
+    gap: 16px;
+  }
+}

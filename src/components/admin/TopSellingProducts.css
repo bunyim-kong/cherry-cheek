@@ -150,18 +150,3 @@
   font-weight: 700;
   color: var(--wine-dark);
 }
-
-/* Responsive */
-@media (max-width: 600px) {
-  .top-selling-products {
-    padding: 16px;
-  }
-
-  .top-selling-products .dashboard-widget-header h2 {
-    font-size: 17px;
-  }
-
-  .top-product-heading h3 {
-    font-size: 12px;
-  }
-}

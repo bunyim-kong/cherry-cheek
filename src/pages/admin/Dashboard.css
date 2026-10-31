@@ -16,21 +16,3 @@
   gap: 20px;
   width: 100%;
 }
-
-/* Tablet */
-@media (max-width: 1200px) {
-  .dashboard-insights {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Mobile */
-@media (max-width: 600px) {
-  .dashboard-page {
-    gap: 16px;
-  }
-
-  .dashboard-insights {
-    gap: 16px;
-  }
-}

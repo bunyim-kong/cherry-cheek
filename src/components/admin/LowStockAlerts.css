@@ -171,26 +171,3 @@
   font-size: 13px;
   color: var(--muted);
 }
-
-/* Responsive */
-@media (max-width: 600px) {
-  .low-stock-alerts {
-    padding: 16px;
-  }
-
-  .low-stock-alerts .dashboard-widget-header h2 {
-    font-size: 17px;
-  }
-
-  .low-stock-info h3 {
-    font-size: 12px;
-  }
-
-  .low-stock-item {
-    flex-wrap: wrap;
-  }
-
-  .stock-status {
-    margin-left: 57px;
-  }
-}

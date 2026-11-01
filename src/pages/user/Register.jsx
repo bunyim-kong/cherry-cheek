@@ -56,9 +56,6 @@ function Register() {
           </Link>
           <p className="auth-eyebrow">Create your account</p>
           <h1 className="auth-title">Join Cherry Cheeks</h1>
-          <p className="auth-description">
-            Create a demo account to save your bag and view orders.
-          </p>
 
           {location.state?.authMessage && (
             <p className="auth-message" role="status">

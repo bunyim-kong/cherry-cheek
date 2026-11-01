@@ -93,7 +93,7 @@
 }
 
 .auth-title {
-  margin: 0 0 0.65rem;
+  margin: 0 0 1rem;
   color: var(--ink);
   font-family: var(--head-font);
   font-size: clamp(1.85rem, 8vw, 2.35rem);

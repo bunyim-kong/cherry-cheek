@@ -75,9 +75,6 @@ function Login() {
           </Link>
           <p className="auth-eyebrow">Welcome back</p>
           <h1 className="auth-title">Sign in to your account</h1>
-          <p className="auth-description">
-            Use an email and password for this learning demo. Passwords are not checked.
-          </p>
 
           {location.state?.authMessage && (
             <p className="auth-message" role="status">

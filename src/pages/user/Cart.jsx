@@ -146,9 +146,9 @@ function Cart() {
               <span>{formatCurrency(total)}</span>
             </div>
 
-            <button type="button" className="checkout-btn">
+            <Link to="/checkout" className="checkout-btn">
               Proceed to Checkout
-            </button>
+            </Link>
 
             <Link to="/shop" className="continue-shopping">
               Continue Shopping

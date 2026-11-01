@@ -4,6 +4,7 @@ import { useAuth } from "./auth";
 import { CartContext } from "./cart";
 
 const CART_STORAGE_KEY = "cc_cart";
+const ORDERS_STORAGE_KEY = "cc_orders";
 
 function loadStoredCart() {
   const storedCart = readStorage(CART_STORAGE_KEY, []);
@@ -28,14 +29,29 @@ function clampQuantity(quantity, stockQuantity) {
   return Math.min(requestedQuantity, availableStock);
 }
 
+function loadStoredOrders() {
+  const storedOrders = readStorage(ORDERS_STORAGE_KEY, []);
+
+  return Array.isArray(storedOrders)
+    ? storedOrders.filter(
+        (order) => order?.id && order?.userEmail && Array.isArray(order.items),
+      )
+    : [];
+}
+
 export function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState(loadStoredCart);
+  const [allOrders, setAllOrders] = useState(loadStoredOrders);
   const [authPromptOpen, setAuthPromptOpen] = useState(false);
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
 
   useEffect(() => {
     writeStorage(CART_STORAGE_KEY, cartItems);
   }, [cartItems]);
+
+  useEffect(() => {
+    writeStorage(ORDERS_STORAGE_KEY, allOrders);
+  }, [allOrders]);
 
   function addToCart(product, quantity = 1) {
     if (!isAuthenticated) {
@@ -92,6 +108,39 @@ export function CartProvider({ children }) {
     );
   }
 
+  function placeOrder({ shippingAddress, paymentMethod }) {
+    if (!user || cartItems.length === 0) {
+      return null;
+    }
+
+    const delivery = subtotal >= 80 ? 0 : 6;
+    const placedAt = new Date().toISOString();
+    const newOrder = {
+      id: `CC-${placedAt.replace(/\D/g, "").slice(-12)}`,
+      placedAt,
+      status: "Processing",
+      userEmail: user.email,
+      items: cartItems.map((item) => ({
+        id: item.id,
+        name: item.name,
+        brand: item.brand,
+        image: item.image,
+        size: item.size,
+        price: item.price,
+        quantity: item.quantity,
+      })),
+      subtotal,
+      delivery,
+      total: subtotal + delivery,
+      shippingAddress,
+      paymentMethod,
+    };
+
+    setAllOrders((currentOrders) => [newOrder, ...currentOrders]);
+    setCartItems([]);
+    return newOrder;
+  }
+
   const closeAuthPrompt = useCallback(function closeAuthPrompt() {
     setAuthPromptOpen(false);
   }, []);
@@ -104,15 +153,18 @@ export function CartProvider({ children }) {
     (total, item) => total + item.price * item.quantity,
     0,
   );
+  const orders = allOrders.filter((order) => order.userEmail === user?.email);
   const value = {
     cartItems,
     cartCount,
     subtotal,
+    orders,
     authPromptOpen,
     addToCart,
     closeAuthPrompt,
     updateQuantity,
     removeFromCart,
+    placeOrder,
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

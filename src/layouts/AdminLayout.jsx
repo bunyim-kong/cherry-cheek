@@ -8,7 +8,7 @@ function AdminLayout() {
   const { user } = useAuth();
 
   if (!user) return <Navigate to="/login" replace />;
-  if (user.role !== "ADMIN") return <Navigate to="/account" replace />;
+  if (user.role !== "ADMIN") return <Navigate to="/profile" replace />;
 
   return (
     <div className="admin-shell">

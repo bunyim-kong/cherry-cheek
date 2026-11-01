@@ -343,6 +343,9 @@
 }
 
 .checkout-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   padding: 16px 20px;
   border: none;
@@ -351,6 +354,7 @@
   color: white;
   font-size: 14px;
   font-weight: 600;
+  text-decoration: none;
   cursor: pointer;
   transition: all 0.3s ease;
 }

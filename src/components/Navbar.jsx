@@ -162,7 +162,7 @@ export default function Navbar() {
                         <Button
                           className="icon-btn"
                           variant="icon"
-                          to={user ? '/account' : '/login'}
+                          to={user ? '/profile' : '/login'}
                           aria-label={user ? 'View your profile' : 'Sign in'}>
                             <UserRound aria-hidden="true" />
                         </Button>

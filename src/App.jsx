@@ -11,6 +11,7 @@ import Category from "./pages/user/Category";
 import Cart from "./pages/user/Cart";
 import Contact from "./pages/user/Contact";
 import ProductDetail from "./pages/user/ProductDetail";
+import Checkout from "./pages/user/Checkout";
 import AdminLayout from "./layouts/AdminLayout";
 import Dashboard from "./pages/admin/Dashboard";
 import Products from "./pages/admin/Products";
@@ -20,9 +21,9 @@ import Customers from "./pages/admin/Customers";
 export default function App() {
   return (
     <Routes>
-      <Route path="account" element={<Account />} />
       <Route path="login" element={<Login />} />
       <Route path="register" element={<Register />} />
+      <Route path="checkout" element={<Checkout />} />
       <Route element={<UserLayout />}>
         <Route index element={<HomePage />} />
         <Route path="shop" element={<ShopPage />} />
@@ -31,6 +32,8 @@ export default function App() {
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
         <Route path="cart" element={<Cart />} />
+        <Route path="profile" element={<Account />} />
+        <Route path="account" element={<Navigate to="/profile" replace />} />
         <Route path="product-detail" element={<ProductDetail />} />
         <Route path="product-detail/:productId" element={<ProductDetail />} />
       </Route>

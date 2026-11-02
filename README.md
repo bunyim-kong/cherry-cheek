@@ -1,6 +1,3 @@
-<div align="center">
-  <img src="public/favicon.svg" alt="Cherry Cheeks logo" width="72" height="72" />
-
 # Cherry Cheeks
 
 ### A modern beauty storefront and administration dashboard
@@ -8,7 +5,6 @@
 A responsive React application for discovering beauty products, managing a shopping cart, placing demo orders, and maintaining a storefront catalog.
 
 [Getting Started](#getting-started) · [Features](#features) · [Project Structure](#project-structure) · [Docker](#run-with-docker)
-</div>
 
 ## About the Project
 

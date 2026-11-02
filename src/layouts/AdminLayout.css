@@ -1,4 +1,7 @@
 .admin-shell {
+  --admin-sidebar-width: 250px;
+  --admin-header-height: 90px;
+
   display: flex;
   min-width: 0;
   min-height: 100vh;
@@ -16,7 +19,20 @@
 .admin-main {
   min-width: 0;
   flex: 1;
-  padding: 0.9rem clamp(1rem, 2.6vw, 2.2rem) 2rem;
+  padding: calc(var(--admin-header-height) + 0.9rem)
+    clamp(1rem, 2.6vw, 2.2rem) 2rem;
+}
+
+@media (max-width: 900px) {
+  .admin-shell {
+    --admin-sidebar-width: 80px;
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-shell {
+    --admin-header-height: 75px;
+  }
 }
 
 @media (max-width: 640px) {

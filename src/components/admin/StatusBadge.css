@@ -1,0 +1,31 @@
+.admin-status-badge {
+  display: inline-flex;
+  min-height: 1.75rem;
+  padding: 0.3rem 0.65rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.admin-status-badge--paid,
+.admin-status-badge--complete,
+.admin-status-badge--active {
+  background: color-mix(in srgb, var(--success) 12%, var(--paper));
+  color: var(--success);
+}
+
+.admin-status-badge--pending,
+.admin-status-badge--waiting {
+  background: color-mix(in srgb, #9a5b13 12%, var(--paper));
+  color: #7a4309;
+}
+
+.admin-status-badge--cancelled,
+.admin-status-badge--inactive {
+  background: color-mix(in srgb, #a12d45 11%, var(--paper));
+  color: #8d2138;
+}

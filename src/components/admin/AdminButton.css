@@ -1,0 +1,83 @@
+.admin-button {
+  display: inline-flex;
+  min-height: 2.75rem;
+  padding: 0.65rem 1rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 750;
+  line-height: 1;
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.admin-button:focus-visible {
+  outline: 2px solid var(--rose);
+  outline-offset: 2px;
+}
+
+.admin-button--primary {
+  background: var(--wine);
+  color: var(--paper);
+}
+
+.admin-button--primary:hover {
+  background: var(--wine-dark);
+}
+
+.admin-button--secondary {
+  border-color: var(--line);
+  background: var(--paper);
+  color: var(--wine);
+}
+
+.admin-button--secondary:hover,
+.admin-button--ghost:hover {
+  background: var(--blush-soft);
+}
+
+.admin-button--danger {
+  background: #8d2138;
+  color: var(--paper);
+}
+
+.admin-button--danger:hover {
+  background: #6f182c;
+}
+
+.admin-button--ghost {
+  border-color: transparent;
+  background: transparent;
+  color: var(--muted);
+}
+
+.admin-button--ghost-danger {
+  border-color: transparent;
+  background: transparent;
+  color: #8d2138;
+}
+
+.admin-button--ghost-danger:hover {
+  background: color-mix(in srgb, #a12d45 9%, var(--paper));
+}
+
+.admin-button--icon {
+  width: 2.75rem;
+  padding: 0;
+  flex: 0 0 2.75rem;
+}
+
+.admin-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .admin-button {
+    transition: none;
+  }
+}

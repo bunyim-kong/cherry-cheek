@@ -1,0 +1,27 @@
+.admin-shell {
+  display: flex;
+  min-width: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--page-bg);
+}
+
+.admin-content {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+}
+
+.admin-main {
+  min-width: 0;
+  flex: 1;
+  padding: 0.9rem clamp(1rem, 2.6vw, 2.2rem) 2rem;
+}
+
+@media (max-width: 640px) {
+  .admin-main {
+    padding-right: 0.75rem;
+    padding-left: 0.75rem;
+  }
+}

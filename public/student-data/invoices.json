@@ -1,0 +1,120 @@
+[
+  {
+    "id": 327,
+    "invoiceNumber": "INV-20261019-00327",
+    "createdAt": "2026-10-19T15:10:00+07:00",
+    "createdByAccountId": 3,
+    "cashierId": 3,
+    "customerId": 103,
+    "status": "PAID",
+    "currency": "USD",
+    "items": [
+      { "productId": 203, "quantity": 1, "unitPrice": 22.0, "lineTotal": 22.0 },
+      { "productId": 301, "quantity": 1, "unitPrice": 13.5, "lineTotal": 13.5 }
+    ],
+    "subtotal": 35.5,
+    "discount": 0.0,
+    "tax": 1.5,
+    "total": 37.0,
+    "payments": [{ "method": "CASH", "amount": 37.0, "reference": null }]
+  },
+  {
+    "id": 326,
+    "invoiceNumber": "INV-20261019-00326",
+    "createdAt": "2026-10-19T11:20:00+07:00",
+    "createdByAccountId": 2,
+    "cashierId": 2,
+    "customerId": null,
+    "status": "PAID",
+    "currency": "USD",
+    "items": [
+      { "productId": 401, "quantity": 1, "unitPrice": 35.0, "lineTotal": 35.0 },
+      { "productId": 501, "quantity": 2, "unitPrice": 10.0, "lineTotal": 20.0 }
+    ],
+    "subtotal": 55.0,
+    "discount": 5.0,
+    "tax": 0.0,
+    "total": 50.0,
+    "payments": [
+      { "method": "CARD", "amount": 50.0, "reference": "CARD-DEMO-326" }
+    ]
+  },
+  {
+    "id": 325,
+    "invoiceNumber": "INV-20261018-00325",
+    "createdAt": "2026-10-18T16:45:00+07:00",
+    "createdByAccountId": 102,
+    "cashierId": 3,
+    "customerId": 102,
+    "status": "PAID",
+    "currency": "USD",
+    "items": [
+      { "productId": 104, "quantity": 1, "unitPrice": 14.0, "lineTotal": 14.0 },
+      { "productId": 201, "quantity": 1, "unitPrice": 9.0, "lineTotal": 9.0 }
+    ],
+    "subtotal": 23.0,
+    "discount": 0.0,
+    "tax": 0.0,
+    "total": 23.0,
+    "payments": [{ "method": "QR", "amount": 23.0, "reference": "QR-DEMO-325" }]
+  },
+  {
+    "id": 323,
+    "invoiceNumber": "INV-20261018-00323",
+    "createdAt": "2026-10-18T10:05:00+07:00",
+    "createdByAccountId": 2,
+    "cashierId": 2,
+    "customerId": 102,
+    "status": "PAID",
+    "currency": "USD",
+    "items": [
+      { "productId": 103, "quantity": 2, "unitPrice": 15.0, "lineTotal": 30.0 },
+      { "productId": 202, "quantity": 1, "unitPrice": 11.5, "lineTotal": 11.5 }
+    ],
+    "subtotal": 41.5,
+    "discount": 0.0,
+    "tax": 0.0,
+    "total": 41.5,
+    "payments": [
+      { "method": "CARD", "amount": 41.5, "reference": "CARD-DEMO-323" }
+    ]
+  },
+  {
+    "id": 322,
+    "invoiceNumber": "INV-20261017-00322",
+    "createdAt": "2026-10-17T14:30:00+07:00",
+    "createdByAccountId": 3,
+    "cashierId": 3,
+    "customerId": null,
+    "status": "PAID",
+    "currency": "USD",
+    "items": [
+      { "productId": 102, "quantity": 1, "unitPrice": 18.5, "lineTotal": 18.5 },
+      { "productId": 502, "quantity": 2, "unitPrice": 6.5, "lineTotal": 13.0 }
+    ],
+    "subtotal": 31.5,
+    "discount": 1.5,
+    "tax": 0.0,
+    "total": 30.0,
+    "payments": [{ "method": "QR", "amount": 30.0, "reference": "QR-DEMO-322" }]
+  },
+  {
+    "id": 321,
+    "invoiceNumber": "INV-20261017-00321",
+    "createdAt": "2026-10-17T09:30:00+07:00",
+    "createdByAccountId": 2,
+    "cashierId": 2,
+    "customerId": 101,
+    "status": "PAID",
+    "currency": "USD",
+    "items": [
+      { "productId": 101, "quantity": 1, "unitPrice": 12.0, "lineTotal": 12.0 },
+      { "productId": 201, "quantity": 2, "unitPrice": 9.0, "lineTotal": 18.0 }
+    ],
+    "subtotal": 30.0,
+    "discount": 0.0,
+    "tax": 0.0,
+    "total": 30.0,
+    "payments": [{ "method": "CASH", "amount": 30.0, "reference": null }]
+  }
+]
